@@ -1,0 +1,8 @@
+.icon {
+  padding: 20px;
+}
+.icon img {
+  width: 200px;
+  height: 100px;
+  object-fit: cover;
+}
