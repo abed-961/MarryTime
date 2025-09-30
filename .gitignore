@@ -1,42 +1,56 @@
 # ===============================
-# Laravel (backend/marryTime)
+# Laravel (backend/MarryTime)
 # ===============================
-/backend/marryTime/vendor/
-/backend/marryTime/node_modules/
+/backend/MarryTime/vendor/
+/backend/MarryTime/node_modules/
 npm-debug.log
 yarn-error.log
 
 # Laravel 4 specific
-/backend/marryTime/bootstrap/compiled.php
-/backend/marryTime/app/storage/
+/backend/MarryTime/bootstrap/compiled.php
+/backend/MarryTime/app/storage/
 
 # Laravel 5 & Lumen specific
-/backend/marryTime/public/storage
-/backend/marryTime/public/hot
+/backend/MarryTime/public/storage
+/backend/MarryTime/public/hot
 
 # Laravel 5 & Lumen specific with changed public path
-/backend/marryTime/public_html/storage
-/backend/marryTime/public_html/hot
+/backend/MarryTime/public_html/storage
+/backend/MarryTime/public_html/hot
 
-/backend/marryTime/storage/*.key
-/backend/marryTime/.env
-/backend/marryTime/.env.*
-/backend/marryTime/Homestead.yaml
-/backend/marryTime/Homestead.json
-/backend/marryTime/.vagrant
-/backend/marryTime/.phpunit.result.cache
+/backend/MarryTime/storage/*.key
+/backend/MarryTime/.env.example
+/backend/MarryTime/Homestead.yaml
+/backend/MarryTime/Homestead.json
+/backend/MarryTime/.vagrant
+/backend/MarryTime/.phpunit.result.cache
 
-/backend/marryTime/public/build
-/backend/marryTime/storage/pail
-/backend/marryTime/.phpactor.json
-/backend/marryTime/auth.json 
+/backend/MarryTime/public/build
+/backend/MarryTime/storage/pail
+/backend/MarryTime/.phpactor.json
+/backend/MarryTime/auth.json 
+
+/backend/MarryTime/resources/views
+
+#laravel database 
+/backend/MarryTime/database/factories
+/backend/MarryTime/database/seeders
+/backend/MarryTime/tests/
+
+
+
+
+
+
+
+
 
 # ===============================
-# Angular (front-end/marryTime)
+# Angular (front-end/MarryTime)
 # ===============================
-/front-end/marryTime/node_modules/
-/front-end/marryTime/dist/
-/front-end/marryTime/.angular/cache
+/front-end/MarryTime/node_modules/
+/front-end/MarryTime/dist/
+/front-end/MarryTime/.angular/cache
 
 # misc logs
 *.log
@@ -48,4 +62,8 @@ lerna-debug.log*
 
 
 # Angular build cache
-/front-end/marryTime/.angular/
+/front-end/MarryTime/.angular/
+/front-end/MarryTime/.vscode/
+
+
+
