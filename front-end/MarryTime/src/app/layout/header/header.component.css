@@ -1,8 +1,68 @@
-.icon {
-  padding: 20px;
+/* Header */
+.app-header1 {
+  background-color: #343a40;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-.icon img {
+
+.app-header1 .container1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.app-header1 .logo1 img {
   width: 200px;
-  height: 100px;
+  height: 60px;
   object-fit: cover;
+}
+
+.app-header1 .nav-links1 {
+  display: flex;
+  gap: 20px;
+}
+
+.app-header1 .nav-links1 a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.app-header1 .nav-links1 a:hover,
+.app-header1 .nav-links1 a.active {
+  color: #ffd700; /* gold highlight */
+}
+
+.app-header1 .hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-header1 .nav-links1 {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    flex-direction: column;
+    background-color: white;
+    width: 200px;
+    padding: 15px;
+    border-radius: 0 0 0 12px;
+  }
+
+  .app-header1 .nav-links1.show {
+    display: flex;
+  }
+
+  .app-header1 .hamburger {
+    display: block;
+  }
 }

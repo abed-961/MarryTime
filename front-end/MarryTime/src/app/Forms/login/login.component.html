@@ -1,0 +1,31 @@
+<section class="section blur" id="login">
+    <div class="child">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-heading text-center">
+                        <h2>Login</h2>
+                        <span>Enter your credentials to access your account</span>
+                    </div>
+
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="section">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" formControlName="email" placeholder="Enter your email"
+                                class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" formControlName="password"
+                                placeholder="Enter your password" class="form-control">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
