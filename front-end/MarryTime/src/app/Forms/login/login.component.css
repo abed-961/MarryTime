@@ -1,0 +1,15 @@
+.blur {
+  border: 1px solid black;
+  width: 600px;
+  margin: 20px auto;
+  background-color: white;
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.child {
+  width: 100%;
+  background-color: rgba(128, 128, 128, 0.253);
+  border-radius: 10px;
+}

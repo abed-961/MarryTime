@@ -1,0 +1,52 @@
+<section class="section  blur" id="register">
+    <div class="child">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-heading text-center">
+                        <h2>Register</h2>
+                        <span>Create your account to book your appointments</span>
+                    </div>
+
+                    <form [formGroup]="registerForm" (ngSubmit)="submit()" class="section">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" formControlName="name" placeholder="Enter your name"
+                                class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" formControlName="email" placeholder="Enter your email"
+                                class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" formControlName="password"
+                                placeholder="Enter your password" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" id="phone" formControlName="phone" placeholder="Enter your phone number"
+                                class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <select id="role" formControlName="role" class="form-control">
+                                <option value="">Select role</option>
+                                <option value="client">Client</option>
+                                <option value="vendor">Vendor</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
