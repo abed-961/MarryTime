@@ -11,14 +11,18 @@ export class UserServicesService {
   constructor(private http: HttpClient) {}
 
   register(userInfo: FormGroup) {
-    return this.http.post(`${this.api}/user/register`, userInfo.value, {
+    return this.http.post(`${this.api}/api/user/register`, userInfo.value, {
       withCredentials: true,
     });
   }
 
   login(userInfo: FormGroup) {
-    return this.http.post(`${this.api}/user/login`, userInfo.value, {
+    return this.http.post(`${this.api}/api/user/login`, userInfo.value, {
       withCredentials: true,
     });
+  }
+
+  getUser() {
+    return this.http.get(`${this.api}/api/user`, { withCredentials: true });
   }
 }
