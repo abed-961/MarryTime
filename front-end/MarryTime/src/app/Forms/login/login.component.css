@@ -8,10 +8,15 @@
   padding: 10px;
 }
 
+.height {
+  height: 50vh;
+}
+
 .child {
   width: 100%;
   background-color: rgba(52, 58, 64, 0.633);
   border-radius: 10px;
+  height: 100%;
 }
 
 .password-group {
