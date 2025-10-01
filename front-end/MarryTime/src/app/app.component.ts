@@ -11,9 +11,4 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  //alert
-  message!: string;
-  type!: string;
-  visible = true;
-}
+export class AppComponent {}
