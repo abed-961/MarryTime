@@ -1,6 +1,7 @@
 # ===============================
 # Laravel (backend/MarryTime)
 # ===============================
+/backend/MarryTime/.env
 /backend/MarryTime/vendor/
 /backend/MarryTime/node_modules/
 npm-debug.log
@@ -32,10 +33,13 @@ yarn-error.log
 
 /backend/MarryTime/resources/views
 
+
 #laravel database 
 /backend/MarryTime/database/factories
 /backend/MarryTime/database/seeders
 /backend/MarryTime/tests/
+
+
 
 
 
