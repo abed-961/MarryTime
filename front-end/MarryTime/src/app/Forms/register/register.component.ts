@@ -8,6 +8,9 @@ import {
   FormsModule,
 } from '@angular/forms';
 import { UserServicesService } from '../../services/user/user-services.service';
+import { AlertService } from '../../services/alert/alert.service';
+import { Router } from '@angular/router';
+import { stat } from 'fs';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +25,9 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private us: UserServicesService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router,
+    private alertService: AlertService
   ) {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -37,10 +42,12 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this.us.register(this.registerForm).subscribe({
         next: (res: any) => {
-          console.log(res);
-          this.cdr.detectChanges();
+          this.handleRegister(res, 'success');
+          this.router.navigate(['/']);
         },
-        error: (err: any) => this.handleErrors(err),
+        error: (err: any) => {
+          this.handleErrors(err);
+        },
       });
     } else {
       this.registerForm.markAllAsTouched();
@@ -50,7 +57,15 @@ export class RegisterComponent {
   handleErrors(err: any) {
     const errors = err.error.errors;
     Object.keys(errors).forEach((key) => {
-      this.registerForm.get(key)?.setErrors({ 'server': errors[key][0] });
+      this.registerForm.get(key)?.setErrors({ server: errors[key][0] });
     });
+    this.handleRegister('please check your information', 'error');
+  }
+
+  handleRegister(
+    res: string,
+    status: 'error' | 'success' | 'info' = 'success'
+  ) {
+    this.alertService.show(res, status);
   }
 }

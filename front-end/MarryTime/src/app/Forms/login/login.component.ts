@@ -8,6 +8,7 @@ import {
 import { UserServicesService } from '../../services/user/user-services.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AlertService } from '../../services/alert/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private us: UserServicesService,
     private cdr: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.us.login(this.loginForm).subscribe({
         next: (res: any) => {
+          this.loginNotification(res.description, 'success');
           this.router.navigate(['/']);
         },
         error: (err: any) => this.handleErrors(err),
@@ -44,7 +47,7 @@ export class LoginComponent implements OnInit {
         },
       });
     } else {
-      console.log('Form is invalid');
+      this.loginForm.markAllAsTouched();
     }
   }
 
@@ -53,5 +56,12 @@ export class LoginComponent implements OnInit {
     Object.keys(errors).forEach((key) => {
       this.loginForm.get(key)?.setErrors({ server: errors[key][0] });
     });
+  }
+
+  loginNotification(
+    message: string,
+    status: 'error' | 'success' | 'info' = 'success'
+  ) {
+    this.alertService.show(message, status);
   }
 }
