@@ -1,58 +1,7 @@
 # ===============================
-# Laravel (backend/MarryTime)
+# Global ignores for the repository
 # ===============================
-/backend/MarryTime/vendor/
-/backend/MarryTime/node_modules/
-npm-debug.log
-yarn-error.log
-
-# Laravel 4 specific
-/backend/MarryTime/bootstrap/compiled.php
-/backend/MarryTime/app/storage/
-
-# Laravel 5 & Lumen specific
-/backend/MarryTime/public/storage
-/backend/MarryTime/public/hot
-
-# Laravel 5 & Lumen specific with changed public path
-/backend/MarryTime/public_html/storage
-/backend/MarryTime/public_html/hot
-
-/backend/MarryTime/storage/*.key
-/backend/MarryTime/.env.example
-/backend/MarryTime/Homestead.yaml
-/backend/MarryTime/Homestead.json
-/backend/MarryTime/.vagrant
-/backend/MarryTime/.phpunit.result.cache
-
-/backend/MarryTime/public/build
-/backend/MarryTime/storage/pail
-/backend/MarryTime/.phpactor.json
-/backend/MarryTime/auth.json 
-
-/backend/MarryTime/resources/views
-
-#laravel database 
-/backend/MarryTime/database/factories
-/backend/MarryTime/database/seeders
-/backend/MarryTime/tests/
-
-
-
-
-
-
-
-
-
-# ===============================
-# Angular (front-end/MarryTime)
-# ===============================
-/front-end/MarryTime/node_modules/
-/front-end/MarryTime/dist/
-/front-end/MarryTime/.angular/cache
-
-# misc logs
+# Log files
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -60,10 +9,40 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# VSCode settings
+/.vscode/
 
-# Angular build cache
+# ===============================
+# Laravel (backend/MarryTime)
+# ===============================
+/backend/MarryTime/vendor/
+/backend/MarryTime/node_modules/
+# Laravel storage & cache
+/backend/MarryTime/public/storage
+/backend/MarryTime/public/hot
+/backend/MarryTime/storage/*.key
+/backend/MarryTime/.env
+/backend/MarryTime/.env.example
+/backend/MarryTime/Homestead.yaml
+/backend/MarryTime/Homestead.json
+/backend/MarryTime/.vagrant
+/backend/MarryTime/.phpunit.result.cache
+/backend/MarryTime/public/build
+/backend/MarryTime/storage/pail
+
+# Optional: Laravel development files
+/backend/MarryTime/database/factories
+/backend/MarryTime/database/seeders
+/backend/MarryTime/tests
+/backend/MarryTime/resources/views
+/backend/MarryTime/.phpactor.json
+/backend/MarryTime/auth.json
+
+# ===============================
+# Angular (front-end/MarryTime)
+# ===============================
+/front-end/MarryTime/node_modules/
+/front-end/MarryTime/dist/
+/front-end/MarryTime/.angular/cache
 /front-end/MarryTime/.angular/
 /front-end/MarryTime/.vscode/
-
-
-
