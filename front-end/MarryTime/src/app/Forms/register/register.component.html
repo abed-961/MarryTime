@@ -8,29 +8,68 @@
                         <span>Create your account to book your appointments</span>
                     </div>
 
-                    <form [formGroup]="registerForm" (ngSubmit)="submit()" class="section">
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" formControlName="name" placeholder="Enter your name"
                                 class="form-control">
+                            <div class="text-danger"
+                                *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid">
+                                <small *ngIf="registerForm.get('name')?.errors?.['required']">Name is required.</small>
+                                <small *ngIf="registerForm.get('name')?.errors?.['minlength']">Name must be at least 3
+                                    characters.</small>
+                            </div>
+                            @if(registerForm.get('name')?.hasError('server')){
+                            <small class="text-danger">{{registerForm.get('name')?.getError('server')}}</small>
+                            }
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" id="email" formControlName="email" placeholder="Enter your email"
                                 class="form-control">
+                            <div class="text-danger"
+                                *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+                                <small *ngIf="registerForm.get('email')?.errors?.['required']">Email is
+                                    required.</small>
+                                <small *ngIf="registerForm.get('email')?.errors?.['email']">Please enter a valid email
+                                    address.</small>
+                                @if(registerForm.get('email')?.hasError('server')){
+                                <small class="text-danger">{{registerForm.get('email')?.getError('server')}}</small>
+                                }
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" id="password" formControlName="password"
                                 placeholder="Enter your password" class="form-control">
+                            <div class="text-danger"
+                                *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+                                <small *ngIf="registerForm.get('password')?.errors?.['required']">Password is
+                                    required.</small>
+                                <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at
+                                    least 6 characters.</small>
+                                @if(registerForm.get('password')?.hasError('server')){
+                                <small class="text-danger">{{registerForm.get('password')?.getError('server')}}</small>
+                                }
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Phone</label>
                             <input type="text" id="phone" formControlName="phone" placeholder="Enter your phone number"
                                 class="form-control">
+                            <div class="text-danger"
+                                *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid">
+                                <small *ngIf="registerForm.get('phone')?.errors?.['required']">Phone number is
+                                    required.</small>
+                                <small *ngIf="registerForm.get('phone')?.errors?.['pattern']">Phone must be 10–15
+                                    digits.</small>
+                                @if(registerForm.get('phone')?.hasError('server')){
+                                <small class="text-danger">{{registerForm.get('phone')?.getError('server')}}</small>
+                                }
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -40,6 +79,13 @@
                                 <option value="client">Client</option>
                                 <option value="vendor">Vendor</option>
                             </select>
+                            <div class="text-danger"
+                                *ngIf="registerForm.get('role')?.touched && registerForm.get('role')?.invalid">
+                                <small *ngIf="registerForm.get('role')?.errors?.['required']">Role is required.</small>
+                                @if(registerForm.get('role')?.hasError('server')){
+                                <small class="text-danger">{{registerForm.get('role')?.getError('server')}}</small>
+                                }
+                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-block">Register</button>
@@ -47,6 +93,7 @@
 
                 </div>
             </div>
+
         </div>
     </div>
 </section>
