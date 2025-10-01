@@ -9,17 +9,19 @@ import {
 import { UserServicesService } from '../../services/user/user-services.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AlertComponent } from '../alert/alert.component';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, AlertComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
   api = api.url;
+
   menuOpen = false;
-  user: any;
+  user?: any;
 
   constructor(
     private us: UserServicesService,
@@ -27,13 +29,15 @@ export class HeaderComponent {
     private cdr: ChangeDetectorRef
   ) {
     router.events.subscribe((url) => {
-      this.ngOnInit(url);
+      if (url instanceof NavigationEnd) {
+        this.ngOnInit(url);
+      }
     });
   }
 
   ngOnInit(url: any) {
+    this.getUser();
     if (url instanceof NavigationEnd) {
-      this.getUser();
       const urls = ['/user/register', '/user/login'];
       if (urls.includes(url.url) && this.user) {
         this.router.navigate(['/']);
@@ -54,12 +58,12 @@ export class HeaderComponent {
   }
 
   checkUser(status: boolean, data: any) {
-    console.log(status);
     if (status) {
       this.user = data;
     } else {
       this.user = null;
     }
+    this.cdr.detectChanges();
   }
 
   logout() {
