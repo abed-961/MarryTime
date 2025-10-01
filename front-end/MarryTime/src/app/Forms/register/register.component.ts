@@ -48,9 +48,10 @@ export class RegisterComponent {
   }
 
   handleErrors(err: any) {
+    console.log(err);
     const errors = err.error.errors;
     Object.keys(errors).forEach((key) => {
-      this.registerForm.get(key)?.setErrors({ 'server': errors[key][0] });
+      this.registerForm.get(key)?.setErrors({ server: errors[key][0] });
     });
   }
 }

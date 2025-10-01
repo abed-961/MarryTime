@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { api } from '../../../environments/api';
-import { ActivatedRoute, NavigationEnd, RouterLink } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  RouterLink,
+  Router,
+} from '@angular/router';
 import { UserServicesService } from '../../services/user/user-services.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,15 +14,13 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   api = api.url;
   menuOpen = false;
   user: any;
 
-  constructor(private us: UserServicesService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.router.events.subscribe((url) => {
+  constructor(private us: UserServicesService, router: Router) {
+    router.events.subscribe((url) => {
       if (url instanceof NavigationEnd) {
         this.getUser();
       }
@@ -36,11 +38,12 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  checkUser(status : boolean , data : any) {
+  checkUser(status: boolean, data: any) {
     if (status) {
       this.user = data;
-    }else {
-      
+      console.log(this.user);
+    } else {
+      console.log('not loggedIN');
     }
   }
 }
