@@ -13,9 +13,10 @@ import { AlertComponent } from '../alert/alert.component';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, CommonModule, AlertComponent],
+  imports: [RouterLink, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
+  standalone: true,
 })
 export class HeaderComponent {
   api = api.url;
