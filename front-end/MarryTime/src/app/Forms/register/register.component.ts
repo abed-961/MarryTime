@@ -16,7 +16,7 @@ import { stat } from 'fs';
   selector: 'app-register',
   imports: [ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  styleUrl: './register.component.css',
 })
 export class RegisterComponent {
   registerForm: FormGroup;
@@ -36,6 +36,17 @@ export class RegisterComponent {
       role: ['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern('^[0-9]{8,15}$')]],
     });
+  }
+  passwordVisible = false;
+  eyeSrc = 'assets/images/show.png';
+
+  togglePassword() {
+    if (this.passwordVisible) {
+      this.eyeSrc = 'assets/images/show.png';
+    } else {
+      this.eyeSrc = 'assets/images/hide.png';
+    }
+    this.passwordVisible = !this.passwordVisible;
   }
 
   onSubmit() {

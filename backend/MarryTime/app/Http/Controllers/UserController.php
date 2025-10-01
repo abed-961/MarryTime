@@ -34,7 +34,7 @@ class UserController extends Controller
         // Create API token
         $user->createToken('user-token')->plainTextToken;
 
-        return Response::success(' Logged in successfully');
+        return Response::success('Logged in successfully');
     }
 
     public function logout(Request $request)

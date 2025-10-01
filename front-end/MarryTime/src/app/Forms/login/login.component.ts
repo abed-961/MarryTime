@@ -34,6 +34,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  passwordVisible = false;
+  eyeSrc = 'assets/images/show.png';
+
+  togglePassword() {
+    if (this.passwordVisible) {
+      this.eyeSrc = 'assets/images/show.png';
+    } else {
+      this.eyeSrc = 'assets/images/hide.png';
+    }
+    this.passwordVisible = !this.passwordVisible;
+  }
+
   onSubmit() {
     if (this.loginForm.valid) {
       this.us.login(this.loginForm).subscribe({
