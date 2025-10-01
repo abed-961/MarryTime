@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\DTO\Response;
+use App\DTO\Response;
 use App\Http\Requests\loginRequest;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
@@ -30,11 +30,28 @@ class UserController extends Controller
         }
 
 
-
+        $user = Auth::user();
         // Create API token
-        $request->user()->createToken('user-token');
+        $user->createToken('user-token')->plainTextToken;
 
         return Response::success(' Logged in successfully');
+    }
+
+    public function logout(Request $request)
+    {
+        // Ensure the user is authenticated
+        $user = $request->user();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        if (!$user) {
+            return Response::failure('User not authenticated');
+        }
+
+        // Delete all tokens for this user (logout from all devices)
+        $user->tokens()->delete();
+
+        return Response::success('Logged out successfully');
     }
 
 }

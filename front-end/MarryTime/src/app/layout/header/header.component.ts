@@ -1,28 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { api } from '../../../environments/api';
-import { ActivatedRoute, NavigationEnd, RouterLink } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Route,
+  RouterLink,
+} from '@angular/router';
 import { UserServicesService } from '../../services/user/user-services.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   api = api.url;
   menuOpen = false;
   user: any;
 
-  constructor(private us: UserServicesService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.router.events.subscribe((url) => {
-      if (url instanceof NavigationEnd) {
-        this.getUser();
-      }
+  constructor(
+    private us: UserServicesService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {
+    router.events.subscribe((url) => {
+      this.ngOnInit(url);
     });
+  }
+
+  ngOnInit(url: any) {
+    if (url instanceof NavigationEnd) {
+      this.getUser();
+      const urls = ['/user/register', '/user/login'];
+      if (urls.includes(url.url) && this.user) {
+        this.router.navigate(['/']);
+        this.cdr.detectChanges();
+      }
+    }
   }
 
   toggleMenu() {
@@ -36,11 +53,22 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  checkUser(status : boolean , data : any) {
+  checkUser(status: boolean, data: any) {
+    console.log(status);
     if (status) {
       this.user = data;
-    }else {
-      
+    } else {
+      this.user = null;
     }
+  }
+
+  logout() {
+    this.us.logout().subscribe({
+      next: (res: any) => {
+        this.user = null;
+        this.router.navigate(['/user/login']);
+      },
+      error: (err: any) => console.log(err),
+    });
   }
 }

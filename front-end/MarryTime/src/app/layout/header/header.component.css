@@ -1,7 +1,7 @@
 /* Header */
 .app-header1 {
   background-color: #343a40;
-  color: white;
+  color: #ffd700;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -28,6 +28,7 @@
 
 .app-header1 .nav-links1 a {
   color: inherit;
+  padding: 10px;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s;

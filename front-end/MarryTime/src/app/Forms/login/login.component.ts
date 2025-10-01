@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { UserServicesService } from '../../services/user/user-services.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private us: UserServicesService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +35,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       this.us.login(this.loginForm).subscribe({
-        next: (res: any) => console.log(res),
+        next: (res: any) => {
+          this.router.navigate(['/']);
+        },
         error: (err: any) => this.handleErrors(err),
         complete: () => {
           this.cdr.detectChanges();

@@ -8,8 +8,11 @@
             <a routerLink="/" routerLinkActive="active">Home</a>
             <a routerLink="/vendors" routerLinkActive="active">Vendors</a>
             <a routerLink="/appointments" routerLinkActive="active">Appointments</a>
-            <a routerLink="/user/register" routerLinkActive="active">Register</a>
-            <a routerLink="/user/login" routerLinkActive="active">Login</a>
+            <a *ngIf="!user" routerLink="/user/register" routerLinkActive="active">Register</a>
+            <a *ngIf="!user" routerLink="/user/login" routerLinkActive="active">Login</a>
+            <a *ngIf="user" (click)="logout()" routerLinkActive="active">Logout</a>
+
+
         </nav>
 
         <div class="hamburger" (click)="toggleMenu()">
