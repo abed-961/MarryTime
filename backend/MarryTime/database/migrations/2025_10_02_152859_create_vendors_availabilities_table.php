@@ -13,10 +13,10 @@ return new class extends Migration {
         Schema::create('vendors_availabilities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('vendor_id')->constrained('vendors');
-            $table->date('date');
-            $table->date('start-time');
-            $table->date('end-time');
-            $table->boolean('is_available');
+            $table->date('datecolumn: ');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->boolean('is_available')->default(true);
         });
     }
 
