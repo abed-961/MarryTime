@@ -16,5 +16,6 @@ Route::prefix('/user')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/logout', [UserController::class, 'logout']);
+        Route::get('/dashboard' , [UserController::class , 'userDashboardDetails']);
     });
 });

@@ -54,5 +54,15 @@ class UserController extends Controller
         return Response::success('Logged out successfully');
     }
 
+    public function userDashboardDetails(Request $request)
+    {
+        $user = $request->user()->load([
+            'vendor.services.category',
+            'vendor.availabilities',
+        ]);
+
+        return $user;
+    }
+
 }
 

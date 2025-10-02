@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { api } from '../../../environments/api';
+import { api } from '../../environments/api';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { UserFullDetails } from '../../interfaces/user_full_details_interface';
 
 @Injectable({
   providedIn: 'root',
@@ -31,4 +33,16 @@ export class UserServicesService {
       withCredentials: true,
     });
   }
+
+  getUserDashboard(): Observable<UserFullDetails> {
+    return this.http.get<UserFullDetails>(`${this.api}/api/user/dashboard`, {
+      withCredentials: true,
+    });
+  }
+
+  // getUserDashboard1() {
+  //   return this.http.get(`${this.api}/api/user/dashboard`, {
+  //     withCredentials: true,
+  //   });
+  // }
 }

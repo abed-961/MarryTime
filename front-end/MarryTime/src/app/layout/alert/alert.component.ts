@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
-import { AlertMessage, AlertService } from '../../services/alert/alert.service';
+import {
+  AlertMessage,
+  AlertService,
+} from '../../../services/alert/alert.service';
 
 @Component({
   selector: 'app-alert',

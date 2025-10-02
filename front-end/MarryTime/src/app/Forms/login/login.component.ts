@@ -5,10 +5,10 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { UserServicesService } from '../../services/user/user-services.service';
+import { UserServicesService } from '../../../services/user/user-services.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AlertService } from '../../services/alert/alert.service';
+import { AlertService } from '../../../services/alert/alert.service';
 
 @Component({
   selector: 'app-login',

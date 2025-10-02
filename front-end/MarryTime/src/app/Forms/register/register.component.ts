@@ -7,8 +7,8 @@ import {
   FormBuilder,
   FormsModule,
 } from '@angular/forms';
-import { UserServicesService } from '../../services/user/user-services.service';
-import { AlertService } from '../../services/alert/alert.service';
+import { UserServicesService } from '../../../services/user/user-services.service';
+import { AlertService } from '../../../services/alert/alert.service';
 import { Router } from '@angular/router';
 import { stat } from 'fs';
 

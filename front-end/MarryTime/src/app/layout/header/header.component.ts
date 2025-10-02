@@ -6,7 +6,7 @@ import {
   Route,
   RouterLink,
 } from '@angular/router';
-import { UserServicesService } from '../../services/user/user-services.service';
+import { UserServicesService } from '../../../services/user/user-services.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AlertComponent } from '../alert/alert.component';

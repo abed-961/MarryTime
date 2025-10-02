@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('vendor_id')->constrained('vendors');
             $table->date('date');
-            $table->date('start-time');
-            $table->date('end-time');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->boolean('is_available');
         });
     }

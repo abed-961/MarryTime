@@ -1,0 +1,81 @@
+<div class="user-profile-section " id="profile">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left -->
+            <div class="col-lg-6">
+                <div class="profile-left">
+                    <div class="profile-thumb">
+                        <div class="profile-card" *ngIf="user$ | async as user">
+                            <h4>Name: <u>{{ user.name }}s</u></h4>
+                            <span>Email: {{ user.email }}</span><br>
+                            <span>Phone: {{ user.phone }}</span><br>
+                            <span>Member since: {{ user.created_at | date:'longDate' }}</span>
+
+                            <div class="profile-button mt-3">
+                                <a href="#" (click)="editProfile()">Edit Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Right -->
+            <div class="col-lg-6">
+                <div class="profile-right" *ngIf="user$ | async as user">
+                    <!-- If Vendor -->
+                    <div *ngIf="user.role == 'vendor'; else clientBlock">
+                        <h4>Vendor Details</h4>
+                        <div>
+                            <ng-container *ngIf="user.vendor as vendorData">
+                                @for(vendor of vendors; track vendor){
+                                <div>
+                                    <p><strong>Company:</strong> {{ vendor?.company_name }}</p>
+                                    <p><strong>Location:</strong> {{ vendor?.location }}</p>
+                                    <p><strong>Price Range:</strong> {{ vendor?.price_range }}</p>
+
+                                    <h5>Services:</h5>
+                                    <ul>
+                                        <li *ngFor="let service of vendor?.services">
+                                            {{ service.category.name }} - ${{ service.price }}
+                                        </li>
+                                    </ul>
+
+                                    <h5>Availabilities:</h5>
+                                    <ul>
+                                        <li *ngFor="let avail of vendor?.availabilities">
+                                            {{ avail.date | date }}: {{ avail.start_time }} - {{ avail.end_time }}
+                                            <span *ngIf="!avail.is_available">(Unavailable)</span>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                }
+                            </ng-container>
+
+
+                        </div>
+                    </div>
+
+                    <!-- If Client -->
+                    <ng-template #clientBlock>
+                        <h4>Client Details</h4>
+                        <p><strong>Phone:</strong> {{ user.phone }}</p>
+                        <p><strong>Registered:</strong> {{ user.created_at | date }}</p>
+                        <!-- Example: My Vendors -->
+                        <h5>My servers:</h5>
+                        <ul>
+                            @for(vendor of user.vendor; track vendor){
+                            <li> {{ vendor.company_name }} - {{ vendor.location }}</li>
+                            }@empty {
+                            <li>you don't have any servers yet </li>
+                            }
+
+                        </ul>
+                    </ng-template>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

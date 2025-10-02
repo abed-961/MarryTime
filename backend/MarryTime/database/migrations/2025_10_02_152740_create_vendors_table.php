@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained('users');
             $table->string('company_name')->nullable();
             $table->string('location');
-            $table->integer('price_range');
+            $table->string('price_range')->nullable();
             $table->timestamps();
         });
     }
