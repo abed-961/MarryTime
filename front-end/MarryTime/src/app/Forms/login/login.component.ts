@@ -50,8 +50,12 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.us.login(this.loginForm).subscribe({
         next: (res: any) => {
-          this.loginNotification(res.description, 'success');
-          this.router.navigate(['/']);
+          if (res.status) {
+            this.loginNotification(res.description, 'success');
+            this.router.navigate(['/']);
+          } else {
+            this.loginNotification(res.description, 'error');
+          }
         },
         error: (err: any) => this.handleErrors(err),
         complete: () => {
