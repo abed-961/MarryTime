@@ -8,9 +8,8 @@ use App\Http\Requests\PatchUserRequest;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules\Password;
+
 
 class UserController extends Controller
 {
