@@ -6,10 +6,12 @@ import {
 import { Observable, UnaryFunction } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { UserServicesService } from '../../../../services/user/user-services.service';
+import { RouterLink } from '@angular/router';
+import { api } from '../../../../environments/api';
 
 @Component({
   selector: 'app-user-profile-view',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './user-profile-view.component.html',
   styleUrl: './user-profile-view.component.css',
 })
@@ -19,10 +21,10 @@ export class UserProfileViewComponent {
   // --- injections End ---
   user$!: Observable<UserFullDetails>;
   vendors!: Vendor[] | undefined[];
+  photo_url = api.photo_url;
 
   ngOnInit() {
     this.user$ = this.us.getUserDashboard();
-    this.user$.subscribe((user) => console.log(user));
     this.user$.subscribe((user) => {
       // Normalize to array
       this.vendors = Array.isArray(user.vendor) ? user.vendor : [user.vendor];

@@ -1,4 +1,7 @@
+const baseUrl = 'http://localhost:8000';
+
 export const api = {
   production: true,
-  url: 'http://localhost:8000',
+  url: baseUrl,
+  photo_url: baseUrl + '/storage/photos/',
 };

@@ -1,12 +1,16 @@
 /* === User Profile Section === */
 .user-profile-section {
-  background: #fff;
+  background: #ddd;
   padding: 50px 0;
   font-family: "Poppins", sans-serif;
   color: #333;
   border-bottom: 3px dotted #eee;
 }
 
+.Right {
+  display: flex;
+  justify-content: center;
+}
 /* Layout content */
 .profile-left,
 .profile-right {
@@ -101,4 +105,16 @@
   font-size: 14px;
   color: #f9f9f9;
   margin-bottom: 12px;
+}
+
+.photo-container {
+  width: max-content;
+  padding: 10px;
+  border-radius: 30%;
+  background-color: #eee;
+}
+.photo {
+  width: 70px;
+  border-radius: 50%;
+  object-fit: cover;
 }

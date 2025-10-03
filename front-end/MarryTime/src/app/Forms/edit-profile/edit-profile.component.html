@@ -1,0 +1,77 @@
+<div class="edit-profile-container">
+    <h2>Edit Profile</h2>
+
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+        <!-- Profile Picture -->
+        <div class="form-group">
+            <label>Profile Picture</label>
+            <div class="photo-preview">
+                <img [src]="previewUrl" alt="Profile Picture">
+            </div>
+            <input type="file" (change)="onFileSelected($event)" accept="image/*">
+        </div>
+
+        <!-- Name -->
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" formControlName="name" class="form-control">
+            <small class="text-danger" *ngIf="profileForm.get('name')?.touched && profileForm.get('name')?.invalid">
+                Name is required.
+            </small>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" formControlName="email" class="form-control">
+            <small class="text-danger" *ngIf="profileForm.get('email')?.touched && profileForm.get('email')?.invalid">
+                <span *ngIf="profileForm.get('email')?.errors?.['required']">Email is required.</span>
+                <span *ngIf="profileForm.get('email')?.errors?.['email']">Enter a valid email.</span>
+            </small>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+            <label>Phone</label>
+            <input type="text" formControlName="phone" class="form-control">
+            <small class="text-danger" *ngIf="profileForm.get('phone')?.touched && profileForm.get('phone')?.invalid">
+                <span *ngIf="profileForm.get('phone')?.errors?.['required']">Phone is required.</span>
+                <span *ngIf="profileForm.get('phone')?.errors?.['pattern']">Enter a valid phone number.</span>
+            </small>
+        </div>
+
+        <!-- Current Password -->
+        <div class="form-group">
+            <label>Current Password</label>
+            <input type="password" formControlName="current_password" class="form-control">
+            <small>Leave it blank if you don't want to change</small>
+            <small class="text-danger" *ngIf="profileForm.get('current_password')?.errors?.['current_password']">
+                Current password is incorrect.
+            </small>
+        </div>
+
+        <!-- New Password -->
+        <div class="form-group">
+            <label>New Password</label>
+            <input type="password" formControlName="new_password" class="form-control">
+            <small>Leave it blank if you don't want to change</small>
+            <small class="text-danger" *ngIf="profileForm.get('new_password')?.errors?.['minlength']">
+                Password must be at least 6 characters.
+            </small>
+        </div>
+
+        <!-- Role -->
+        <div class="form-group">
+            <label>Role</label>
+            <select formControlName="role">
+                <option value="client">Client</option>
+                <option value="vendor">Vendor</option>
+            </select>
+        </div>
+
+        <!-- Save Button -->
+        <button type="submit" class="btn-save" [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Saving...' : 'Save Changes' }}
+        </button>
+    </form>
+</div>

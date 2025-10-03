@@ -6,13 +6,13 @@
                 <div class="profile-left">
                     <div class="profile-thumb">
                         <div class="profile-card" *ngIf="user$ | async as user">
-                            <h4>Name: <u>{{ user.name }}s</u></h4>
+                            <h4>Name: <u>{{ user.name }}</u></h4>
                             <span>Email: {{ user.email }}</span><br>
                             <span>Phone: {{ user.phone }}</span><br>
                             <span>Member since: {{ user.created_at | date:'longDate' }}</span>
 
                             <div class="profile-button mt-3">
-                                <a href="#" (click)="editProfile()">Edit Profile</a>
+                                <a [routerLink]="['/user','edit' , 'profile']" (click)="editProfile()">Edit Profile</a>
                             </div>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
 
 
             <!-- Right -->
-            <div class="col-lg-6">
+            <div class="col-lg-6 Right">
                 <div class="profile-right" *ngIf="user$ | async as user">
                     <!-- If Vendor -->
                     <div *ngIf="user.role == 'vendor'; else clientBlock">
@@ -59,19 +59,13 @@
 
                     <!-- If Client -->
                     <ng-template #clientBlock>
-                        <h4>Client Details</h4>
-                        <p><strong>Phone:</strong> {{ user.phone }}</p>
-                        <p><strong>Registered:</strong> {{ user.created_at | date }}</p>
-                        <!-- Example: My Vendors -->
-                        <h5>My servers:</h5>
-                        <ul>
-                            @for(vendor of user.vendor; track vendor){
-                            <li> {{ vendor.company_name }} - {{ vendor.location }}</li>
-                            }@empty {
-                            <li>you don't have any servers yet </li>
-                            }
-
-                        </ul>
+                        <div class="profile-card w-100">
+                            <h4>Client Details</h4>
+                            <p><strong>Phone:</strong> {{ user.phone }}</p>
+                            <div class="photo-container">
+                                <img [src]="photo_url+user.photo" alt="profile-picture" class="photo">
+                            </div>
+                        </div>
                     </ng-template>
 
                 </div>
