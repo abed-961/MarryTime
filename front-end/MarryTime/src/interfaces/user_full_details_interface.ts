@@ -4,7 +4,7 @@ export interface UserFullDetails {
   email: string;
   role: string;
   phone: string;
-  photo : string ,
+  photo: string;
   created_at: Date;
   vendor?: Vendor[]; // optional if the user might not be a vendor
 }

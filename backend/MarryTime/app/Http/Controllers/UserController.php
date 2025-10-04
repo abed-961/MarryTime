@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -71,8 +72,10 @@ class UserController extends Controller
     public function editUser(PatchUserRequest $request)
     {   /** @var Request $req */
         $req = $request;
-        $data = $req->validated();
         $user = $req->user();
+        $data = $req->validate(['email' => Rule::unique('users', 'email')->ignore($user->id)]);
+        $data = $req->validated();
+
 
         $user->fill($data);
 

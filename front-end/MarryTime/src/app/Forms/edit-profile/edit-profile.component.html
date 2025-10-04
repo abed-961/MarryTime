@@ -9,6 +9,11 @@
                 <img [src]="previewUrl" alt="Profile Picture">
             </div>
             <input type="file" (change)="onFileSelected($event)" accept="image/*">
+            <br>
+            <!-- backend -->
+            <small *ngIf="profileForm.get('photo')?.hasError('server')" class="text-danger">
+                {{profileForm.get('photo')?.getError('server')}}
+            </small>
         </div>
 
         <!-- Name -->
@@ -18,6 +23,11 @@
             <small class="text-danger" *ngIf="profileForm.get('name')?.touched && profileForm.get('name')?.invalid">
                 Name is required.
             </small>
+            <!-- backend -->
+            <small class="text-danger"
+                *ngIf="profileForm.get('name')?.hasError('server')">{{profileForm.get('name')?.getError('server')}}
+            </small>
+
         </div>
 
         <!-- Email -->
@@ -27,6 +37,10 @@
             <small class="text-danger" *ngIf="profileForm.get('email')?.touched && profileForm.get('email')?.invalid">
                 <span *ngIf="profileForm.get('email')?.errors?.['required']">Email is required.</span>
                 <span *ngIf="profileForm.get('email')?.errors?.['email']">Enter a valid email.</span>
+            </small>
+            <!-- backend -->
+            <small class="text-danger"
+                *ngIf="profileForm.get('email')?.hasError('server')">{{profileForm.get('email')?.getError('server')}}
             </small>
         </div>
 
@@ -38,27 +52,49 @@
                 <span *ngIf="profileForm.get('phone')?.errors?.['required']">Phone is required.</span>
                 <span *ngIf="profileForm.get('phone')?.errors?.['pattern']">Enter a valid phone number.</span>
             </small>
+            <small class="text-danger"
+                *ngIf="profileForm.get('phone')?.hasError('server')">{{profileForm.get('phone')?.getError('server')}}
+            </small>
         </div>
 
         <!-- Current Password -->
-        <div class="form-group">
+        <div class="form-group position-relative">
             <label>Current Password</label>
-            <input type="password" formControlName="current_password" class="form-control">
+            <input [type]="showCurrentPassword ? 'text' : 'password'" formControlName="current_password"
+                class="form-control">
+            <button type="button" class="btn btn-sm position-absolute" style="top: 32px; right: 10px; padding: 2px 6px;"
+                (click)="toggle1()">
+                <img [src]="currSrc" class="toggle-password" />
+
+            </button>
             <small>Leave it blank if you don't want to change</small>
             <small class="text-danger" *ngIf="profileForm.get('current_password')?.errors?.['current_password']">
                 Current password is incorrect.
             </small>
+            <!-- backend -->
+            <small class="text-danger" *ngIf="profileForm.get('current_password')?.hasError('server')">
+                {{ profileForm.get('current_password')?.getError('server') }}
+            </small>
         </div>
 
         <!-- New Password -->
-        <div class="form-group">
+        <div class="form-group position-relative">
             <label>New Password</label>
-            <input type="password" formControlName="new_password" class="form-control">
+            <input [type]="showNewPassword ? 'text' : 'password'" formControlName="new_password" class="form-control">
+            <button type="button" class="btn btn-sm position-absolute" style="top: 32px; right: 10px; padding: 2px 6px;"
+                (click)="toggle2()">
+                <img [src]="newSrc" class="toggle-password" />
+            </button>
             <small>Leave it blank if you don't want to change</small>
             <small class="text-danger" *ngIf="profileForm.get('new_password')?.errors?.['minlength']">
                 Password must be at least 6 characters.
             </small>
+            <small class="text-danger" *ngIf="profileForm.get('new_password')?.hasError('server')">
+                {{ profileForm.get('new_password')?.getError('server') }}
+            </small>
         </div>
+
+
 
         <!-- Role -->
         <div class="form-group">

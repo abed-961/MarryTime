@@ -7,14 +7,13 @@
   border-bottom: 3px dotted #eee;
 }
 
-.Right {
-  display: flex;
-  justify-content: center;
-}
 /* Layout content */
 .profile-left,
 .profile-right {
   padding: 20px;
+}
+.profile-right {
+  height: 100%;
 }
 
 /* Profile info cards */
@@ -108,7 +107,7 @@
 }
 
 .photo-container {
-  width: max-content;
+  width: 100%;
   padding: 10px;
   border-radius: 30%;
   background-color: #eee;
@@ -116,5 +115,22 @@
 .photo {
   width: 70px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
+  aspect-ratio: 16/9;
+}
+.block {
+  background-color: #eee;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+.m-10 {
+  margin: 10px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+
+.avail_decor {
+  background: #f8f9fa;
+  border-radius: 12px;
 }
