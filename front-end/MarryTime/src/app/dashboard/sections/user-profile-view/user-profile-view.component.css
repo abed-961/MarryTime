@@ -1,6 +1,6 @@
 /* === User Profile Section === */
 .user-profile-section {
-  background: #fff;
+  background: #ddd;
   padding: 50px 0;
   font-family: "Poppins", sans-serif;
   color: #333;
@@ -11,6 +11,9 @@
 .profile-left,
 .profile-right {
   padding: 20px;
+}
+.profile-right {
+  height: 100%;
 }
 
 /* Profile info cards */
@@ -101,4 +104,33 @@
   font-size: 14px;
   color: #f9f9f9;
   margin-bottom: 12px;
+}
+
+.photo-container {
+  width: 100%;
+  padding: 10px;
+  border-radius: 30%;
+  background-color: #eee;
+}
+.photo {
+  width: 70px;
+  border-radius: 50%;
+  object-fit: contain;
+  aspect-ratio: 16/9;
+}
+.block {
+  background-color: #eee;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+.m-10 {
+  margin: 10px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+
+.avail_decor {
+  background: #f8f9fa;
+  border-radius: 12px;
 }

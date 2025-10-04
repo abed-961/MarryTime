@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\DTO\Response;
 use App\Http\Requests\loginRequest;
+use App\Http\Requests\PatchUserRequest;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -64,5 +68,32 @@ class UserController extends Controller
         return $user;
     }
 
+
+    public function editUser(PatchUserRequest $request)
+    {   /** @var Request $req */
+        $req = $request;
+        $user = $req->user();
+        $data = $req->validate(['email' => Rule::unique('users', 'email')->ignore($user->id)]);
+        $data = $req->validated();
+
+
+        $user->fill($data);
+
+        // Handle password
+        if (isset($data['new_password'])) {
+            $user->password = $data['new_password'];
+        }
+
+        // Handle photo upload
+        if ($req->hasFile('photo')) {
+            $photo = $req->file('photo');
+            $photo_name = time() . $photo->getClientOriginalName();
+            $user->photo = $photo_name;
+            $photo->storeAs('photos', $photo_name, 'public');
+        }
+
+        $user->save();
+        return Response::success('user edited succefully');
+    }
 }
 

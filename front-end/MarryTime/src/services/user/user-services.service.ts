@@ -40,9 +40,9 @@ export class UserServicesService {
     });
   }
 
-  // getUserDashboard1() {
-  //   return this.http.get(`${this.api}/api/user/dashboard`, {
-  //     withCredentials: true,
-  //   });
-  // }
+  updateUser(userData: any) {
+    return this.http.post(`${this.api}/api/user/edit/data`, userData, {
+      withCredentials: true,
+    });
+  }
 }

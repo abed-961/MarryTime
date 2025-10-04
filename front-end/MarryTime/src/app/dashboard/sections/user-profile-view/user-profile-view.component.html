@@ -5,31 +5,36 @@
             <div class="col-lg-6">
                 <div class="profile-left">
                     <div class="profile-thumb">
+
                         <div class="profile-card" *ngIf="user$ | async as user">
-                            <h4>Name: <u>{{ user.name }}s</u></h4>
+                            <h4>Name: <u>{{ user.name }}</u></h4>
                             <span>Email: {{ user.email }}</span><br>
                             <span>Phone: {{ user.phone }}</span><br>
                             <span>Member since: {{ user.created_at | date:'longDate' }}</span>
-
-                            <div class="profile-button mt-3">
-                                <a href="#" (click)="editProfile()">Edit Profile</a>
+                            <div class="photo-container">
+                                <img [src]="photo_url+user.photo" alt="profile-picture" class="photo">
                             </div>
+                            <div class="profile-button mt-3">
+                                <a [routerLink]="['/user','edit' , 'profile']" (click)="editProfile()">Edit Profile</a>
+                            </div>
+
                         </div>
+
                     </div>
                 </div>
             </div>
 
 
             <!-- Right -->
-            <div class="col-lg-6">
-                <div class="profile-right" *ngIf="user$ | async as user">
+            <div class="col-lg-6 Right">
+                <div class="profile-right profile-card" *ngIf="user$ | async as user">
                     <!-- If Vendor -->
-                    <div *ngIf="user.role == 'vendor'; else clientBlock">
+                    <div class="m-10">
                         <h4>Vendor Details</h4>
                         <div>
                             <ng-container *ngIf="user.vendor as vendorData">
                                 @for(vendor of vendors; track vendor){
-                                <div>
+                                <div class="block">
                                     <p><strong>Company:</strong> {{ vendor?.company_name }}</p>
                                     <p><strong>Location:</strong> {{ vendor?.location }}</p>
                                     <p><strong>Price Range:</strong> {{ vendor?.price_range }}</p>
@@ -43,9 +48,9 @@
 
                                     <h5>Availabilities:</h5>
                                     <ul>
-                                        <li *ngFor="let avail of vendor?.availabilities">
+                                        <li *ngFor="let avail of vendor?.availabilities" class="mt-10 avail_decor">
                                             {{ avail.date | date }}: {{ avail.start_time }} - {{ avail.end_time }}
-                                            <span *ngIf="!avail.is_available">(Unavailable)</span>
+                                            <span *ngIf="!avail.is_available" class="text-danger">(Unavailable)</span>
                                         </li>
                                     </ul>
 
@@ -55,24 +60,17 @@
 
 
                         </div>
+
+
+                        <!-- If Client -->
+                        <h4 class="mt-10">Client Details</h4>
+                        <div class="block profile-card">
+
+                            <p><strong>Phone:</strong> {{ user.phone }}</p>
+
+                        </div>
                     </div>
 
-                    <!-- If Client -->
-                    <ng-template #clientBlock>
-                        <h4>Client Details</h4>
-                        <p><strong>Phone:</strong> {{ user.phone }}</p>
-                        <p><strong>Registered:</strong> {{ user.created_at | date }}</p>
-                        <!-- Example: My Vendors -->
-                        <h5>My servers:</h5>
-                        <ul>
-                            @for(vendor of user.vendor; track vendor){
-                            <li> {{ vendor.company_name }} - {{ vendor.location }}</li>
-                            }@empty {
-                            <li>you don't have any servers yet </li>
-                            }
-
-                        </ul>
-                    </ng-template>
 
                 </div>
             </div>

@@ -3,7 +3,7 @@
 namespace App\DTO;
 class Response
 {
-  
+
 
     public static function success($description, $httpCode = 200)
     {
@@ -17,5 +17,10 @@ class Response
     public static function to_json_response($status, $description, $httpCode)
     {
         return response()->json(['status' => $status, 'description' => $description, 'code' => $httpCode]);
+    }
+
+    public static function to_json($data)
+    {
+        return response()->json($data);
     }
 }
