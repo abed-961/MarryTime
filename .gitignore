@@ -46,3 +46,5 @@ lerna-debug.log*
 /front-end/MarryTime/.angular/cache
 /front-end/MarryTime/.angular/
 /front-end/MarryTime/.vscode/
+
+.DS_Store
