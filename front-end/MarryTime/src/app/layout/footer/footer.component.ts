@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { discardPeriodicTasks } from '@angular/core/testing';
 import { NavigationEnd, Router } from '@angular/router';
+import { url } from 'inspector';
 
 @Component({
   selector: 'app-footer',
@@ -11,11 +12,13 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class FooterComponent {
   style: any = {};
+  private cdr = inject(ChangeDetectorRef);
 
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
+      const urls = ['/user/login', 'user/vendor/Tasks'];
       if (event instanceof NavigationEnd) {
-        if (event.url === '/user/login') {
+        if (urls.includes(event.url)) {
           this.style = {
             position: 'fixed',
             bottom: '0',
@@ -23,6 +26,7 @@ export class FooterComponent {
             zIndex: 1000,
             width: '100%',
           };
+          this.cdr.detectChanges();
         } else {
           this.style = {}; // reset style for other routes
         }

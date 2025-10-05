@@ -34,4 +34,8 @@ class Vendor extends Model
     {
         return $this->hasMany(Vendors_availability::class);
     }
+
+    public function tasks()  {
+        return $this->hasMany(VendorTask::class);
+    }
 }

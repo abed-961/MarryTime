@@ -1,0 +1,72 @@
+<div class="task-container">
+    <h2>Vendor To-Do List</h2>
+
+    <form class="new-task" [formGroup]="formTask" (ngSubmit)="addTask(vendorId)">
+        <input type="text" placeholder="Task title..." formControlName="title">
+        <small class="text-danger"
+            *ngIf="formTask.get('title')?.hasError('required') || formTask.get('title')?.hasError('minlength')">
+            Title is required and must be at least 2 characters.
+        </small>
+
+        <small class="text-danger" *ngIf="formTask.get('title')?.hasError('server')">
+            {{formTask.get('title')?.getError('server')}}
+        </small>
+
+
+        <input type="text" placeholder="Task description..." formControlName="description">
+        <small class="text-danger"
+            *ngIf="formTask.get('description')?.hasError('required') || formTask.get('description')?.hasError('minlength')">
+            description is required and must be at least 2 characters.
+        </small>
+
+        <small class="text-danger" *ngIf="formTask.get('description')?.hasError('server')">
+            {{formTask.get('description')?.getError('server')}}
+        </small>
+
+
+        <input type="date" placeholder="Due date" formControlName="due_date">
+        <small class="text-danger" *ngIf="formTask.get('due_date')?.hasError('server')">
+            {{formTask.get('due_date')?.getError('server')}}
+        </small>
+
+        <button type="submit">Add</button>
+    </form>
+
+
+    <div class="task-container">
+        <h2>Vendor To-Do List</h2>
+
+        <!-- Filter select -->
+        <label for="statusFilter">Filter by status:</label>
+        <select id="statusFilter" (change)="applyFilter($event)">
+            <option value="">All</option>
+            <option value="pending">Pending</option>
+            <option value="in_progress">In Progress</option>
+            <option value="completed">Completed</option>
+        </select>
+
+        <ul>
+            <ng-container *ngIf="tasks$ | async as tasks; else noTasks">
+                <li *ngFor="let task of tasks" [ngClass]="task.status">
+                    <div class="task-info">
+                        <span class="title"><strong>Title:</strong> {{ task.title }}</span>
+                        <span class="description"><strong>Description:</strong> {{ task.description }}</span>
+                        <span class="status"><strong>Status:</strong> {{ task.status | titlecase }}</span>
+                    </div>
+                    <div class="actions">
+                        <button *ngIf="task.status === 'pending'" (click)="startTask(task.id)" class="start">▶
+                            Start</button>
+                        <button *ngIf="task.status === 'in_progress'" (click)="markAsCompleted(task.id)"
+                            class="complete">✔ Complete</button>
+                        <button (click)="deleteTask(task.id!)" class="delete">🗑 Delete</button>
+                    </div>
+                </li>
+            </ng-container>
+        </ul>
+
+        <ng-template #noTasks>
+            <li>No Tasks yet</li>
+        </ng-template>
+    </div>
+
+</div>

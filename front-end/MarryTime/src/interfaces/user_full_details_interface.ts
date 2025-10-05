@@ -36,3 +36,21 @@ export interface Category {
   name: string;
   description: string;
 }
+
+export interface VendorTask {
+  id?: number;
+  vendor_id: number;
+  title: string;
+  description?: string;
+  status: string;
+  due_date?: string;
+}
+
+export interface Task {
+  id?: number;
+  vendor_id: number;
+  title: string;
+  description?: string;
+  status?: 'pending' | 'in_progress' | 'completed';
+  due_date?: string;
+}

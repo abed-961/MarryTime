@@ -1,15 +1,10 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { api } from '../../../environments/api';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Route,
-  RouterLink,
-} from '@angular/router';
+import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { UserServicesService } from '../../../services/user/user-services.service';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AlertComponent } from '../alert/alert.component';
+import { firstValueFrom, Observable } from 'rxjs';
+import { UserFullDetails } from '../../../interfaces/user_full_details_interface';
 
 @Component({
   selector: 'app-header',
@@ -20,60 +15,49 @@ import { AlertComponent } from '../alert/alert.component';
 })
 export class HeaderComponent {
   api = api.url;
-
   menuOpen = false;
-  user?: any;
+  user$!: Observable<UserFullDetails>;
 
   constructor(
     private us: UserServicesService,
     private router: Router,
     private cdr: ChangeDetectorRef
   ) {
-    router.events.subscribe((url) => {
-      if (url instanceof NavigationEnd) {
-        this.ngOnInit(url);
+    router.events.subscribe((route) => {
+      if (route instanceof NavigationEnd) {
+        this.checkUser(route.url);
       }
     });
   }
 
-  ngOnInit(url: any) {
-    this.getUser();
-    if (url instanceof NavigationEnd) {
-      const urls = ['/user/register', '/user/login'];
-      if (urls.includes(url.url) && this.user) {
-        this.router.navigate(['/']);
-        this.cdr.detectChanges();
-      }
-    }
+  async checkUser(url: string) {
+    const vendorUrls = ['/user/vendor/Tasks'];
+    const guestUrls = ['/user/login', '/user/register', '/'];
+    this.user$ = await this.us.getUser();
+    this.user$.subscribe({
+      next: (user) => {
+        if (user.role !== 'vendor' && vendorUrls.includes(url)) {
+          this.router.navigate(['/']);
+        }
+      },
+
+      error: () => {
+        if (!guestUrls.includes(url)) {
+          this.router.navigate(['user/login']);
+        }
+      },
+    });
   }
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
 
-  getUser() {
-    this.us.getUser().subscribe({
-      next: (res: any) => this.checkUser(true, res),
-      error: (err: any) => this.checkUser(false, err.message),
-    });
-  }
-
-  checkUser(status: boolean, data: any) {
-    if (status) {
-      this.user = data;
-    } else {
-      this.user = null;
-    }
-    this.cdr.detectChanges();
-  }
-
   logout() {
     this.us.logout().subscribe({
-      next: (res: any) => {
-        this.user = null;
+      next: () => {
         this.router.navigate(['/user/login']);
       },
-      error: (err: any) => console.log(err),
     });
   }
 }
