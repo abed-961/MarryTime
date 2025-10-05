@@ -1,0 +1,36 @@
+<!-- ***** Vendor Task Area Starts ***** -->
+<section class="section" id="vendor-tasks">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading">
+                    <h2>Vendor Tasks</h2>
+                    <span>Manage your latest tasks easily from here.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row task-grid-row">
+            <div class="col-lg-8">
+                <div class="task-grid">
+                    <ng-container *ngIf="tasks$ | async as tasks">
+                        <div class="task-square" *ngFor="let task of tasks | slice:0:4">
+                            <p class="task-title">{{task.title | titlecase}} </p>
+                            <p>{{task.description}} </p>
+                            <p class="task-status" [ngClass]="task.status">{{ task.status | titlecase }}</p>
+                            <p class="task-due" *ngIf="task.due_date">Due: {{ task.due_date | date:'shortDate' }}</p>
+                            <p class="task-created">Created: {{ task.created_at | date:'shortDate' }}</p>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="(tasks$ | async)?.length === 0">
+                        <p>No tasks available.</p>
+                    </ng-container>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<!-- ***** Vendor Task Area Ends ***** -->
