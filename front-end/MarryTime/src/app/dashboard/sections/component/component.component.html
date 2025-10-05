@@ -1,4 +1,5 @@
-<app-user-profile-view></app-user-profile-view>
+<app-user-profile-view *ngIf="user$ | async as user"></app-user-profile-view>
+
 
 <!-- ***** Men Area Starts ***** -->
 <section class="section" id="men">

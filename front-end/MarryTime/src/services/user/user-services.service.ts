@@ -24,8 +24,8 @@ export class UserServicesService {
     });
   }
 
-  getUser() {
-    return this.http.get(`${this.api}/api/user`, { withCredentials: true });
+  getUser():Observable<UserFullDetails> {
+    return this.http.get<UserFullDetails>(`${this.api}/api/user`, { withCredentials: true });
   }
 
   logout() {

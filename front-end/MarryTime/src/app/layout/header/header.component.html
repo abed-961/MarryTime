@@ -5,14 +5,19 @@
         </div>
 
         <nav class="nav-links1" [class.show]="menuOpen">
-            <a routerLink="/" routerLinkActive="active">Home</a>
-            <a routerLink="/vendors" routerLinkActive="active">Vendors</a>
-            <a routerLink="/appointments" routerLinkActive="active">Appointments</a>
-            <a *ngIf="!user" routerLink="/user/register" routerLinkActive="active">Register</a>
-            <a *ngIf="!user" routerLink="/user/login" routerLinkActive="active">Login</a>
-            <a *ngIf="user" (click)="logout()" routerLinkActive="active">Logout</a>
 
+            <ng-container *ngIf="user$ | async as user; else guestLinks">
+                <a routerLink="/" routerLinkActive="active">Home</a>
+                <a *ngIf="user.role === 'vendor'" routerLink="/user/vendors" routerLinkActive="active">Vendors</a>
+                <a routerLink="/appointments" routerLinkActive="active">Appointments</a>
+                <a routerLink="/user/vendor/Tasks" routerLinkActive="active">My Tasks</a>
+                <a (click)="logout()" class="logout-link">Logout</a>
+            </ng-container>
 
+            <ng-template #guestLinks>
+                <a routerLink="/user/register" routerLinkActive="active">Register</a>
+                <a routerLink="/user/login" routerLinkActive="active">Login</a>
+            </ng-template>
         </nav>
 
         <div class="hamburger" (click)="toggleMenu()">
