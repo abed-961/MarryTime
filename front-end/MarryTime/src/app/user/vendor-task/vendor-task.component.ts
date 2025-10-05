@@ -54,6 +54,7 @@ export class VendorTaskComponent implements OnInit {
       this.vs.addTask(this.formTask.value, vendor_id).subscribe({
         next: (res: any) => {
           this.notification(res.description, 'success');
+          this.formTask.reset();
           this.loadTasks();
         },
         error: (err) => {

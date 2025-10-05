@@ -44,6 +44,7 @@ export interface VendorTask {
   description?: string;
   status: string;
   due_date?: string;
+  created_at: Date;
 }
 
 export interface Task {
