@@ -1,0 +1,164 @@
+/* Container */
+.subscribe {
+  background-color: var(--white);
+  padding: 4rem 2rem;
+  font-family: "Inter", system-ui, Arial, sans-serif;
+  border: 3px dotted var(--light-grey1);
+}
+
+.subscribe .section-heading h2 {
+  font-size: 2rem;
+  color: var(--black);
+  margin-bottom: 0.5rem;
+}
+
+.subscribe .section-heading span {
+  font-size: 1rem;
+  color: var(--light-grey2);
+}
+
+/* Form */
+#subscribeForm {
+  border: 2px solid var(--black);
+  width: 100%;
+  background-color: var(--light-grey2);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+#text-area {
+  width: 90%;
+}
+
+#subscribeForm .row {
+  display: block;
+  margin-bottom: 1rem;
+}
+.w-100 {
+  box-sizing: unset !important;
+  width: 100% !important;
+}
+
+#subscribeForm fieldset {
+  border: none;
+  padding: 0;
+  width: 100%;
+}
+form#subscribeForm input,
+form#subscribeForm textarea {
+  width: 100% !important;
+  padding: 0.75rem 1rem;
+  color: var(--black);
+  border: 1px solid var(--light-grey1);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+}
+
+form#subscribeForm input:focus,
+form#subscribeForm textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+#subscribeForm button {
+  background-color: var(--blue);
+  width: 220px;
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+#subscribeForm button:hover {
+  background-color: var(--yellow);
+  color: var(--black);
+  transform: translateY(-1px);
+}
+
+/* Personal Info Section */
+.personal-info {
+  text-align: center;
+  margin-top: 2rem;
+  background-color: var(--light-grey2);
+  border-radius: 10px;
+  padding: 10px;
+  border: 2px solid var(--black);
+}
+
+.personal-info .profile-photo {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  background-color: var(--light-grey1);
+  border: 3px solid var(--blue);
+}
+
+.personal-info ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.personal-info ul li {
+  margin-bottom: 0.75rem;
+  color: var(--white);
+}
+
+.personal-info ul li span {
+  font-weight: 500;
+  color: var(--light-grey1);
+}
+
+.personal-info ul li a {
+  color: var(--yellow);
+  text-decoration: none;
+  margin-right: 0.5rem;
+}
+
+.personal-info ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .subscribe .row {
+    flex-direction: column;
+  }
+
+  .personal-info {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  form#subscribeForm {
+    margin-top: 2rem;
+  }
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 576px) {
+  form#subscribeForm input,
+  form#subscribeForm textarea,
+  form#subscribeForm button {
+    width: 100%;
+  }
+}

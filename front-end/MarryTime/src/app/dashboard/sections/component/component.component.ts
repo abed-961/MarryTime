@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { UserFullDetails } from '../../../../interfaces/user_full_details_interface';
 import { UserServicesService } from '../../../../services/user/user-services.service';
 import { TasksBoardComponent } from '../tasks-board/tasks-board.component';
+import { PersonalizedComponent } from "../personalized/personalized.component";
 
 @Component({
   selector: 'app-component',
@@ -14,7 +15,8 @@ import { TasksBoardComponent } from '../tasks-board/tasks-board.component';
     WeddingPicturesComponent,
     CommonModule,
     TasksBoardComponent,
-  ],
+    PersonalizedComponent
+],
   templateUrl: './component.component.html',
   styleUrl: './component.component.css',
 })

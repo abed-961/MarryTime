@@ -17,7 +17,7 @@ export class HeaderComponent {
   api = api.url;
   menuOpen = false;
   @Input() user!: UserFullDetails;
-  currentUrl!: string;
+  @Input() currentUrl!: string;
 
   private us = inject(UserServicesService);
   private router = inject(Router);
