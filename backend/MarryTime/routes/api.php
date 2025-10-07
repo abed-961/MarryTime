@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorsController;
 use Illuminate\Http\Request;
@@ -28,7 +30,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post("/{vendor}/vendor-tasks", [VendorsController::class, 'addTask']);
     Route::get("/vendor/filter", [VendorsController::class, 'vendorTaskFilter']);
     Route::put('/vendor-tasks/{task}', [VendorsController::class, 'updateStatus']);
-        Route::delete('/{task}/vendor-tasks', [VendorsController::class, 'destroy']);
+    Route::delete('/{task}/vendor-tasks', [VendorsController::class, 'destroy']);
+
+    //appointment page 
+    Route::get('/appointments', [AppointmentController::class, 'index']);
+    Route::post('/appointments', [AppointmentController::class, 'store']);
+    Route::get('/vendors', [VendorsController::class, 'index']);
+    Route::get('/categories', [CategoryController::class, 'index']);
+
 
 
 

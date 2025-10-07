@@ -1,0 +1,49 @@
+.vendor-appointments {
+  padding: 1rem;
+  font-family: Inter, system-ui, Arial;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.loading,
+.error,
+.empty {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.appointments-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+th,
+td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+.status-pending {
+  color: #f59e0b;
+  font-weight: 600;
+}
+.status-completed {
+  color: #16a34a;
+  font-weight: 600;
+}
+.status-cancelled {
+  color: #dc2626;
+  font-weight: 600;
+}

@@ -101,4 +101,30 @@ class VendorsController extends Controller
         $task->delete();
         return Response::success('Task deleted successfully');
     }
+
+    public function index(Request $request)
+    {
+        $query = User::with('vendor'); // eager load vendor
+
+        if ($request->has('search') && !empty($request->input('search'))) {
+            $search = $request->input('search');
+            $query->where('name', 'like', "%{$search}%");
+        }
+
+        // Only users who have a vendor record
+        $query->has('vendor');
+
+        $vendors = $query->orderBy('name')->get();
+
+        // Format response: include company_name
+        $vendors = $vendors->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'name' => $user->name,
+                'company_name' => $user->vendor->company_name ?? null
+            ];
+        });
+
+        return response()->json($vendors);
+    }
 }

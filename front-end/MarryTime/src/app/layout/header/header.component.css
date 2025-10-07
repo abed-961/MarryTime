@@ -1,7 +1,7 @@
 /* Header */
 .app-header1 {
-  background-color: #343a40;
-  color: #ffd700;
+  background-color: var(--grey);
+  color: var(--yellow);
   position: sticky;
   top: 0;
   z-index: 1000;
