@@ -1,5 +1,17 @@
-<app-header></app-header>
+<ng-container *ngIf="user$ |async as user ; else headerNotLoggedIn">
+    <app-header [user]="user"></app-header>
+</ng-container>
+<ng-template #headerNotLoggedIn>
+    <app-header></app-header>
+</ng-template>
+
+
 
 <router-outlet></router-outlet>
 <app-alert></app-alert>
-<app-footer></app-footer>
+<ng-container *ngIf="user$ | async as user; else footerNotLoggedIn">
+    <app-footer [user]="user"></app-footer>
+</ng-container>
+<ng-template #footerNotLoggedIn>
+    <app-footer></app-footer>
+</ng-template>

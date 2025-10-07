@@ -1,14 +1,61 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, RouterOutlet, Router } from '@angular/router';
 import { AlertComponent } from './layout/alert/alert.component';
 import { CommonModule } from '@angular/common';
+import { UserServicesService } from '../services/user/user-services.service';
+import { Observable } from 'rxjs';
+import { UserFullDetails } from '../interfaces/user_full_details_interface';
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderComponent, FooterComponent, RouterOutlet, CommonModule, AlertComponent],
+  imports: [
+    HeaderComponent,
+    FooterComponent,
+    RouterOutlet,
+    CommonModule,
+    AlertComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {}
+export class AppComponent {
+  user$!: Observable<UserFullDetails>;
+  currentUrl!: string;
+
+  constructor(
+    private us: UserServicesService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {
+    router.events.subscribe((route) => {
+      if (route instanceof NavigationEnd) {
+        this.checkUser(route.url);
+        this.currentUrl = route.url;
+      }
+    });
+  }
+
+  async checkUser(url: string) {
+    const vendorUrls = ['/user/vendor/Tasks', '/vendor/appointments'];
+    const guestUrls = ['/user/login', '/user/register', '/'];
+    this.user$ = await this.us.getUser();
+    this.user$.subscribe({
+      next: (user) => {
+        if (user.role !== 'vendor' && vendorUrls.includes(url)) {
+          this.router.navigate(['/']);
+        } else if (user.role == 'vendor' && url == '/client/appointments') {
+          this.router.navigate(['/vendor/appointments']);
+        }
+      },
+
+      error: () => {
+        if (!guestUrls.includes(url)) {
+          this.router.navigate(['user/login']);
+        }
+      },
+    });
+    this.cdr.detectChanges();
+  }
+}

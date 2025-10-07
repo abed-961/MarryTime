@@ -5,25 +5,38 @@
         </div>
 
         <div class="footer-links">
-            <a routerLink="/">Home</a>
-            <a routerLink="/vendors">Vendors</a>
-            <a routerLink="/appointments">Appointments</a>
-            <a routerLink="/user/register">Register</a>
-            <a routerLink="/user/login">Login</a>
+            <ng-container *ngIf="user else guestLinks">
+                <a routerLink="/" routerLinkActive="active" *ngIf="currentUrl != '/'">Home</a>
+
+
+                <ng-container *ngIf="user.role === 'vendor'">
+                    <a routerLink="/user/vendors" routerLinkActive="active">Vendors</a>
+                    <a routerLink="/user/vendor/Tasks" routerLinkActive="active"
+                        *ngIf="currentUrl !== '/user/vendor/Tasks'">My Tasks</a>
+                </ng-container>
+                <a routerLink="/{{user.role}}/appointments" routerLinkActive="active"
+                    *ngIf="currentUrl !== `/${user.role}/appointments` ">Appointments </a>
+            </ng-container>
+
+            <ng-template #guestLinks>
+                <a routerLink="/user/register" routerLinkActive="active"
+                    *ngIf="currentUrl != '/user/register'">Register</a>
+                <a routerLink="/user/login" routerLinkActive="active" *ngIf="currentUrl != '/user/login'">Login</a>
+            </ng-template>
         </div>
 
         <div class="footer-contact">
-            <p>Email: info@marrytime.com</p>
-            <p>Phone: +123 456 7890</p>
+            <p>Email: {{ownerInfo.email}} </p>
+            <p>Phone: {{ownerInfo.phone}} </p>
         </div>
 
         <div class="footer-social">
-            <a href="#"><img src="assets/images/facebook.png" alt="Facebook"></a>
-            <a href="#"><img src="assets/images/instagram.png" alt="Instagram"></a>
+            <a href="{{ownerInfo.facebook.link}}"><img src="assets/images/facebook.png" alt="Facebook"></a>
+            <a href="{{ownerInfo.instagram.link}}"><img src="assets/images/instagram.png" alt="Instagram"></a>
         </div>
     </div>
 
     <div class="footer-bottom">
-        <p>&copy; 2025 MarryTime. All Rights Reserved.</p>
+        <p>&copy; MarryTime. All Rights Reserved.</p>
     </div>
 </footer>
