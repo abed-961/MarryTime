@@ -1,6 +1,6 @@
 .app-footer {
-  background-color: #343a40;
-  color: white;
+  background-color: var(--grey);
+  color: var(--white);
   padding: 40px 20px 20px;
   font-family: Arial, sans-serif;
 }
@@ -14,23 +14,27 @@
 }
 
 .app-footer .footer-logo img {
-  height: 50px;
+  width: 200px;
+  object-fit: cover;
+  height: 100px;
+  border-radius: 10px;
 }
 
 .app-footer .footer-links a {
   display: block;
-  color: white;
+  color: inherit;
   text-decoration: none;
   margin: 5px 0;
   transition: color 0.3s;
 }
 
 .app-footer .footer-links a:hover {
-  color: #ffd700;
+  color: var(--yellow);
 }
 
 .app-footer .footer-contact p {
   margin: 5px 0;
+  color: inherit;
 }
 
 .app-footer .footer-social a img {
@@ -47,7 +51,10 @@
   text-align: center;
   margin-top: 20px;
   font-size: 14px;
-  color: #ccc;
+}
+
+.footer-bottom p {
+  color: inherit;
 }
 
 /* Responsive */

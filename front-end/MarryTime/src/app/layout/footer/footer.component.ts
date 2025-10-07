@@ -1,17 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { discardPeriodicTasks } from '@angular/core/testing';
-import { NavigationEnd, Router } from '@angular/router';
-import { url } from 'inspector';
+import { ChangeDetectorRef, Component, inject, Input } from '@angular/core';
+
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { UserFullDetails } from '../../../interfaces/user_full_details_interface';
+import { identity } from '../../../environments/ownerInfo';
 
 @Component({
   selector: 'app-footer',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
 })
 export class FooterComponent {
   style: any = {};
+  @Input() user!: UserFullDetails;
+  @Input() currentUrl!: string;
+
+  ownerInfo = identity;
+
   private cdr = inject(ChangeDetectorRef);
 
   constructor(private router: Router) {

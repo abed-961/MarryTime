@@ -6,7 +6,7 @@
 
         <nav class="nav-links1" [class.show]="menuOpen">
 
-            <ng-container *ngIf="user$ | async as user; else guestLinks">
+            <ng-container *ngIf="user else guestLinks">
                 <a routerLink="/" routerLinkActive="active" *ngIf="currentUrl != '/'">Home</a>
 
 

@@ -3,10 +3,12 @@ import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { VendorTask } from '../../../../interfaces/user_full_details_interface';
 import { VendorService } from '../../../../services/user/vendor.service';
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-tasks-board',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './tasks-board.component.html',
   styleUrl: './tasks-board.component.css',
 })
