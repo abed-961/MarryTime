@@ -1,8 +1,8 @@
 <ng-container *ngIf="user$ |async as user ; else headerNotLoggedIn">
-    <app-header [user]="user"></app-header>
+    <app-header [user]="user" [currentUrl]="currentUrl"></app-header>
 </ng-container>
 <ng-template #headerNotLoggedIn>
-    <app-header></app-header>
+    <app-header [currentUrl]="currentUrl"></app-header>
 </ng-template>
 
 
@@ -10,8 +10,8 @@
 <router-outlet></router-outlet>
 <app-alert></app-alert>
 <ng-container *ngIf="user$ | async as user; else footerNotLoggedIn">
-    <app-footer [user]="user"></app-footer>
+    <app-footer [user]="user" [currentUrl]="currentUrl"></app-footer>
 </ng-container>
 <ng-template #footerNotLoggedIn>
-    <app-footer></app-footer>
+    <app-footer [currentUrl]="currentUrl"></app-footer>
 </ng-template>
