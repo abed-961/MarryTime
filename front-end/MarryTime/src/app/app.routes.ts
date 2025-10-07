@@ -4,6 +4,8 @@ import { ComponentComponent } from './dashboard/sections/component/component.com
 import { LoginComponent } from './Forms/login/login.component';
 import { EditProfileComponent } from './Forms/edit-profile/edit-profile.component';
 import { VendorTaskComponent } from './user/vendor-task/vendor-task.component';
+import { ClientAppointmentsComponent } from './user/appointment/client-appointments/client-appointments.component';
+import { VendorAppointmentsComponent } from './user/appointment/vendor-appointments/vendor-appointments.component';
 
 export const routes: Routes = [
   { path: '', component: ComponentComponent },
@@ -11,4 +13,6 @@ export const routes: Routes = [
   { path: 'user/login', component: LoginComponent },
   { path: 'user/vendor/Tasks', component: VendorTaskComponent },
   { path: 'user/edit/profile', component: EditProfileComponent },
+  { path: 'client/appointments', component: ClientAppointmentsComponent },
+  { path: 'vendor/appointments', component: VendorAppointmentsComponent },
 ];

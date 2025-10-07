@@ -1,0 +1,96 @@
+.appointment-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  color: white;
+  padding: 2rem;
+  background-color: var(--grey);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Inter", system-ui, Arial, sans-serif;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  padding: 0.65rem 0.8rem;
+  border: 1px solid;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+  outline: none;
+}
+
+.form-input[type="textarea"] {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-submit {
+  background-color: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.2rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.form-submit:hover:not(:disabled) {
+  background-color: #1e40af;
+  transform: translateY(-1px);
+}
+
+.form-submit:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .appointment-form {
+    padding: 1rem;
+  }
+
+  .form-input {
+    font-size: 0.95rem;
+  }
+}
+
+.dropdown {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0 0;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.dropdown li {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.dropdown li:hover {
+  background-color: #2563eb;
+  color: #fff;
+}

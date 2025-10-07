@@ -1,0 +1,39 @@
+<section class="vendor-appointments">
+    <h2>Appointments Received</h2>
+
+    <div *ngIf="loading" class="loading">Loading...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <table *ngIf="!loading && appointments.length" class="appointments-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Client</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Guests</th>
+                <th>Tables</th>
+                <th>Status</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of appointments">
+                <td>{{ a.id }}</td>
+                <td>{{ a.client.name }}</td>
+                <td>{{ a.category.name }}</td>
+                <td>{{ a.appointment_date | date }}</td>
+                <td>{{ a.location }}</td>
+                <td>{{ a.guests }}</td>
+                <td>{{ a.tables }}</td>
+                <td><span [class]="getStatusClass(a.status)">{{ a.status }}</span></td>
+                <td>{{ a.notes }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngIf="!loading && !appointments.length" class="empty">
+        No appointments received yet.
+    </div>
+</section>

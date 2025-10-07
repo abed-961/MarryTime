@@ -17,6 +17,7 @@ export class HeaderComponent {
   api = api.url;
   menuOpen = false;
   user$!: Observable<UserFullDetails>;
+  currentUrl!: string;
 
   constructor(
     private us: UserServicesService,
@@ -26,18 +27,21 @@ export class HeaderComponent {
     router.events.subscribe((route) => {
       if (route instanceof NavigationEnd) {
         this.checkUser(route.url);
+        this.currentUrl = route.url;
       }
     });
   }
 
   async checkUser(url: string) {
-    const vendorUrls = ['/user/vendor/Tasks'];
+    const vendorUrls = ['/user/vendor/Tasks', '/vendor/appointments'];
     const guestUrls = ['/user/login', '/user/register', '/'];
     this.user$ = await this.us.getUser();
     this.user$.subscribe({
       next: (user) => {
         if (user.role !== 'vendor' && vendorUrls.includes(url)) {
           this.router.navigate(['/']);
+        } else if (user.role == 'vendor' && url == '/client/appointments') {
+          this.router.navigate(['/vendor/appointments']);
         }
       },
 
@@ -47,6 +51,7 @@ export class HeaderComponent {
         }
       },
     });
+    this.cdr.detectChanges();
   }
 
   toggleMenu() {

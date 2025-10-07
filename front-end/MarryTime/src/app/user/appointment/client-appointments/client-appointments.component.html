@@ -1,0 +1,38 @@
+<div class="client-appointments">
+
+    <button (click)="toggleForm()" [ngClass]="{'btn-success' : !showForm , 'btn-danger': showForm}">
+        {{ showForm ? 'Cancel' : 'New Appointment' }}
+    </button>
+    <h2>My Appointments</h2>
+
+    <app-appointment-form *ngIf="showForm" (appointmentCreated)="onAppointmentCreated()"></app-appointment-form>
+
+    <table *ngIf="appointments$ | async as appointments" class="appointments-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Guests</th>
+                <th>Vendor</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let appt of appointments">
+                <td data-label="Date">{{ appt.appointment_date | date }}</td>
+                <td data-label="Location">{{ appt.location }}</td>
+                <td data-label="Guests">{{ appt.guests }}</td>
+                <td data-label="Vendor">{{ appt.vendor_id }}</td>
+                <td data-label="Status">
+                    <span [ngClass]="{
+              'status-pending': appt.status === 'pending',
+              'status-completed': appt.status === 'completed',
+              'status-cancelled': appt.status === 'cancelled'
+            }">
+                        {{ appt.status }}
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

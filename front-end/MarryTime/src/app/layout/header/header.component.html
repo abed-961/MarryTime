@@ -7,16 +7,23 @@
         <nav class="nav-links1" [class.show]="menuOpen">
 
             <ng-container *ngIf="user$ | async as user; else guestLinks">
-                <a routerLink="/" routerLinkActive="active">Home</a>
-                <a *ngIf="user.role === 'vendor'" routerLink="/user/vendors" routerLinkActive="active">Vendors</a>
-                <a routerLink="/appointments" routerLinkActive="active">Appointments</a>
-                <a routerLink="/user/vendor/Tasks" routerLinkActive="active">My Tasks</a>
+                <a routerLink="/" routerLinkActive="active" *ngIf="currentUrl != '/'">Home</a>
+
+
+                <ng-container *ngIf="user.role === 'vendor'">
+                    <a routerLink="/user/vendors" routerLinkActive="active">Vendors</a>
+                    <a routerLink="/user/vendor/Tasks" routerLinkActive="active"
+                        *ngIf="currentUrl !== '/user/vendor/Tasks'">My Tasks</a>
+                </ng-container>
+                <a routerLink="/{{user.role}}/appointments" routerLinkActive="active"
+                    *ngIf="currentUrl !== `/${user.role}/appointments` ">Appointments </a>
                 <a (click)="logout()" class="logout-link">Logout</a>
             </ng-container>
 
             <ng-template #guestLinks>
-                <a routerLink="/user/register" routerLinkActive="active">Register</a>
-                <a routerLink="/user/login" routerLinkActive="active">Login</a>
+                <a routerLink="/user/register" routerLinkActive="active"
+                    *ngIf="currentUrl != '/user/register'">Register</a>
+                <a routerLink="/user/login" routerLinkActive="active" *ngIf="currentUrl != '/user/login'">Login</a>
             </ng-template>
         </nav>
 
