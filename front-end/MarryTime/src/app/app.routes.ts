@@ -6,6 +6,7 @@ import { EditProfileComponent } from './Forms/edit-profile/edit-profile.componen
 import { VendorTaskComponent } from './user/vendor-task/vendor-task.component';
 import { ClientAppointmentsComponent } from './user/appointment/client-appointments/client-appointments.component';
 import { VendorAppointmentsComponent } from './user/appointment/vendor-appointments/vendor-appointments.component';
+import { NotificationsComponent } from './user/notifications/notifications.component';
 
 export const routes: Routes = [
   { path: '', component: ComponentComponent },
@@ -15,4 +16,5 @@ export const routes: Routes = [
   { path: 'user/edit/profile', component: EditProfileComponent },
   { path: 'client/appointments', component: ClientAppointmentsComponent },
   { path: 'vendor/appointments', component: VendorAppointmentsComponent },
+  { path: 'notifications', component: NotificationsComponent },
 ];

@@ -1,0 +1,67 @@
+<div class="sidebar-container ">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div></div>
+
+        <nav class="sidebar-nav">
+            <a routerLink="/" *ngIf="currenUrl !== '/'" routerLinkActive="active">Dashboard</a>
+            <a (click)="scrollTo('profile-section')" routerLinkActive="active" *ngIf="currenUrl === '/'">Profile
+            </a>
+            <a [routerLink]="['/user','edit' , 'profile']" routerLinkActive="active">Settings</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <span class="small">Logged in as</span>
+                <span class="username"> {{username}}</span>
+            </div>
+
+            <!-- Notification Bell -->
+            <div class="notification-wrapper">
+                <ng-container *ngIf="notifications">
+                    <div class="notification-wrapper">
+                        <button (click)="toggleNotifications()" class="notification-btn">
+                            🔔
+                            <span class="badge">{{notifications.length}} </span>
+
+                        </button>
+
+                        <div *ngIf="showNotifications" class="notifications-dropdown">
+
+                            <div *ngIf="notifications.length; else noNotifications">
+                                <div class="notification-list">
+                                    <div class="notification-item unread" *ngFor="let n of notifications | slice:0:5"
+                                        [ngClass]="[n.type]" (click)="markAsRead(n)">
+                                        <p>{{ n.message }}</p>
+                                        <small>{{ n.created_at | date:'short' }}</small>
+                                        <span *ngIf="!n.readed_it" class="unread-dot"></span>
+                                    </div>
+                                </div>
+
+
+                                <!-- View More Button -->
+                                <div class="view-more">
+                                    <a routerLink="/notifications" (click)="showNotifications = false">
+                                        View More
+                                    </a>
+                                </div>
+                            </div>
+
+                            <ng-template #noNotifications>
+                                <div class="no-notifications">No new notifications</div>
+                                <div class="view-more">
+                                    <a routerLink="/notifications" (click)="showNotifications = false">
+                                        View All
+                                    </a>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+
+                </ng-container>
+            </div>
+        </div>
+    </aside>
+
+
+</div>

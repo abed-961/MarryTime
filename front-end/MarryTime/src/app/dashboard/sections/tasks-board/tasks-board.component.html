@@ -14,6 +14,7 @@
             <div class="col-lg-8">
                 <div class="task-grid">
                     <ng-container *ngIf="tasks$ | async as tasks">
+                        @for(task of tasks | slice:0:4; track $index ){
                         <div class="task-square" *ngFor="let task of tasks | slice:0:4" routerLink="/user/vendor/Tasks">
                             <p class="task-title">{{task.title | titlecase}} </p>
                             <p>{{task.description}} </p>
@@ -21,10 +22,12 @@
                             <p class="task-due" *ngIf="task.due_date">Due: {{ task.due_date | date:'shortDate' }}</p>
                             <p class="task-created">Created: {{ task.created_at | date:'shortDate' }}</p>
                         </div>
-                    </ng-container>
-
-                    <ng-container *ngIf="(tasks$ | async)?.length === 0">
-                        <p>No tasks available.</p>
+                        }@empty {
+                        <div class="task-square">
+                            <p>No tasks available.</p>
+                            <button class="btn btn-success" routerLink='user/vendor/Tasks'>Add tasks</button>
+                        </div>
+                        }
                     </ng-container>
                 </div>
             </div>

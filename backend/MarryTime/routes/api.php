@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorsController;
 use Illuminate\Http\Request;
@@ -37,6 +38,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/appointments', [AppointmentController::class, 'store']);
     Route::get('/vendors', [VendorsController::class, 'index']);
     Route::get('/categories', [CategoryController::class, 'index']);
+
+
+    //notification 
+    Route::get('/notifications', [NotificationController::class, 'index']);
+    Route::post('/notifications/{notification}/read', [NotificationController::class, 'markRead']);
+    Route::delete('/{notification}/notifications', [NotificationController::class, 'destroy']);
+
 
 
 

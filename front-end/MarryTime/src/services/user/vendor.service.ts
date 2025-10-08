@@ -70,6 +70,4 @@ export class VendorService {
       { withCredentials: true }
     );
   }
-
-
 }

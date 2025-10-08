@@ -1,11 +1,12 @@
-<app-user-profile-view *ngIf="user$ | async as user"></app-user-profile-view>
-
-
 <!-- ***** wedding pictures  Area Starts ***** -->
 <section class="section" id="men">
     <app-wedding-pictures></app-wedding-pictures>
 </section>
 <!-- ***** wedding pictures  Area Ends ***** -->
+<section class="section" id='profile-section'>
+    <app-user-profile-view *ngIf="user$ | async as user"></app-user-profile-view>
+</section>
+
 
 <!-- ***** vendor task Area Starts ***** -->
 <section class="section" id="women" *ngIf="user$ | async as user">
@@ -271,5 +272,7 @@
     </div>
 </section>
 <!-- ***** Social Area Ends ***** -->
+<section class="section">
+    <app-personalized></app-personalized>
 
-<app-personalized></app-personalized>
+</section>

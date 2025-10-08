@@ -5,7 +5,6 @@ import { VendorTask } from '../../../../interfaces/user_full_details_interface';
 import { VendorService } from '../../../../services/user/vendor.service';
 import { RouterLink } from '@angular/router';
 
-
 @Component({
   selector: 'app-tasks-board',
   imports: [CommonModule, RouterLink],
@@ -24,7 +23,7 @@ export class TasksBoardComponent {
 
   loadTasks() {
     this.tasks$ = this.vs.loadTasks();
-    this.tasks$.subscribe((res) => console.log(res));
+
     this.cdr.detectChanges();
   }
 }

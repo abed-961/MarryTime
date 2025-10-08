@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { UserServicesService } from '../services/user/user-services.service';
 import { Observable } from 'rxjs';
 import { UserFullDetails } from '../interfaces/user_full_details_interface';
+import { SideBarComponent } from './layout/side-bar/side-bar.component';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { UserFullDetails } from '../interfaces/user_full_details_interface';
     RouterOutlet,
     CommonModule,
     AlertComponent,
+    SideBarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -23,6 +25,12 @@ import { UserFullDetails } from '../interfaces/user_full_details_interface';
 export class AppComponent {
   user$!: Observable<UserFullDetails>;
   currentUrl!: string;
+  footerStyle = {};
+  style = {
+    position: 'fixed',
+    bottom: 0,
+    width: '100%',
+  };
 
   constructor(
     private us: UserServicesService,
@@ -48,6 +56,7 @@ export class AppComponent {
         } else if (user.role == 'vendor' && url == '/client/appointments') {
           this.router.navigate(['/vendor/appointments']);
         }
+        this.checkForFooter(url);
       },
 
       error: () => {
@@ -57,5 +66,14 @@ export class AppComponent {
       },
     });
     this.cdr.detectChanges();
+  }
+
+  checkForFooter(url: string) {
+    const fixedFooter = ['/notifications', '/user/login'];
+    if (fixedFooter.includes(url)) {
+      this.footerStyle = this.style;
+    } else {
+      this.footerStyle = {};
+    }
   }
 }

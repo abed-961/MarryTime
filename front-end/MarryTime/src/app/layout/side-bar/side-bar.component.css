@@ -1,0 +1,238 @@
+.sidebar-container-main {
+  position: absolute;
+  height: 100vh;
+  right: 0;
+  top: 0;
+}
+
+/* Container layout */
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  right: 0;
+  width: 250px;
+  background-color: var(--grey); /* dark gray */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Header */
+.sidebar-header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--light-grey2);
+}
+.sidebar-header h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Navigation */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.sidebar-nav a {
+  text-decoration: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  transition: background 0.2s;
+}
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  background-color: #374151;
+}
+
+/* Footer */
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid #374151;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* User info */
+.user-info .small {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+.user-info .username {
+  font-weight: bold;
+}
+
+/* Notifications */
+.notification-wrapper {
+  position: relative;
+}
+.notification-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  position: relative;
+  cursor: pointer;
+}
+.notification-btn:focus {
+  outline: none;
+}
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  font-size: 0.65rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dropdown */
+.notifications-dropdown {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  width: 260px;
+  max-height: 300px;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Individual notification */
+.notification-item {
+  padding: 10px 15px;
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.notification-item:hover {
+  background-color: #f3f4f6;
+}
+.notification-item p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.notification-item small {
+  color: #6b7280;
+}
+
+/* No notifications */
+.no-notifications {
+  padding: 15px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  background-color: #f9fafb;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+/* Status classes */
+.status-warning {
+  background-color: #fcd34d; /* lighter yellow */
+  color: #78350f; /* dark amber text for contrast */
+  font-weight: 600;
+}
+
+.status-success {
+  background-color: #34d399; /* soft green */
+  color: #065f46; /* dark green text for contrast */
+  font-weight: 600;
+}
+
+.status-error {
+  background-color: #f87171; /* lighter red */
+  color: #7f1d1d; /* dark red text for contrast */
+  font-weight: 600;
+}
+
+.status-info {
+  background-color: #60a5fa; /* soft blue */
+  color: #1e3a8a; /* dark blue text for contrast */
+  font-weight: 600;
+}
+
+.warning {
+  background-color: #fcd34d;
+  color: #78350f;
+}
+.success {
+  background-color: #34d399;
+  color: #065f46;
+}
+.error {
+  background-color: #f87171;
+  color: #7f1d1d;
+}
+.info {
+  background-color: #60a5fa;
+  color: #1e3a8a;
+}
+.view-more {
+  text-align: center;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  background-color: #f9fafb;
+}
+
+.view-more a {
+  text-decoration: none;
+  color: #1f2937;
+  font-weight: bold;
+}
+
+.view-more a:hover {
+  color: #2563eb;
+}
+
+.read {
+  background-color: #f3f4f6; /* light gray */
+  color: #9ca3af; /* gray text */
+  opacity: 0.8;
+}
+
+/* Unread dot */
+.unread-dot {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 180px;
+  }
+}

@@ -8,3 +8,15 @@
   --light-grey2: #6b7280;
   --black: #111827;
 }
+
+.section {
+  width: 82%;
+}
+
+.sidebar {
+  width: 18%;
+}
+
+.w-90 {
+  width: 90%;
+}
