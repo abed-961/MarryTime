@@ -1,0 +1,23 @@
+<div class="notification-page">
+    <h2>Notifications</h2>
+
+    <div *ngIf="loading">Loading notifications...</div>
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <div *ngIf="!loading && notifications.length === 0" class="no-notifications">
+        No notifications found.
+    </div>
+
+    <div *ngIf="notifications.length > 0" class="notification-list">
+        <div class="notification-item status-{{n.type}}" *ngFor="let n of notifications" (click)="markAsRead(n)"
+            [ngClass]="[n.type, n.readed_it ? 'read' : 'unread']">
+            <p>{{ n.message }}</p>
+            <small>{{ n.created_at | date:'short' }}</small>
+            <span *ngIf="!n.readed_it" class="unread-dot"></span>
+
+            <!-- Delete Button -->
+            <button class="delete-btn" (click)="deleteNotification(n, $event)">✕</button>
+        </div>
+
+    </div>
+</div>

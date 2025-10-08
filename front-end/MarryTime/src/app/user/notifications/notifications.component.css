@@ -1,0 +1,68 @@
+.notification-page {
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notification-item {
+  padding: 12px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.notification-item:hover {
+  opacity: 0.9;
+}
+
+/* Status colors */
+.status-warning {
+  background-color: #fcd34d;
+  color: #78350f;
+}
+.status-success {
+  background-color: #34d399;
+  color: #065f46;
+}
+.status-error {
+  background-color: #f87171;
+  color: #7f1d1d;
+}
+.status-info {
+  background-color: #60a5fa;
+  color: #1e3a8a;
+}
+
+.unread-dot {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: #ef4444; /* red */
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.delete-btn:hover {
+  color: #b91c1c;
+}

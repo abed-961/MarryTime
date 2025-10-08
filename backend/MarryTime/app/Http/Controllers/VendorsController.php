@@ -18,6 +18,9 @@ class VendorsController extends Controller
             return Response::failure('you are not a vendor ');
         }
         $vendor = $user->vendor;
+        if (!$vendor) {
+            return Response::to_json([]);
+        }
         $tasks = $vendor->tasks()->get();
 
         return Response::to_json($tasks);

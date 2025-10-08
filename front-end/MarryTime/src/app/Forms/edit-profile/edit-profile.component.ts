@@ -39,15 +39,7 @@ export class EditProfileComponent {
     this.profileForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            /^(\+?[0-9]{1,3}[- ]?)?(\(?\d{3}\)?[- ]?)?\d{3}[- ]?\d{4}$/
-          ),
-        ],
-      ],
+      phone: ['', [Validators.required]],
       current_password: [''],
       new_password: [''],
       role: ['client', Validators.required],

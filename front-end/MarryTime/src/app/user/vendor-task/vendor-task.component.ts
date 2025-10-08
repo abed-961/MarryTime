@@ -44,7 +44,9 @@ export class VendorTaskComponent implements OnInit {
   }
 
   loadTasks() {
-    this.vs.getVendorId().subscribe((res: any) => (this.vendorId = res));
+    this.vs.getVendorId().subscribe((res: any) => {
+      this.vendorId = res;
+    });
     this.tasks$ = this.vs.loadTasks();
     this.cdr.detectChanges();
   }
