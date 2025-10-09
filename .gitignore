@@ -48,3 +48,5 @@ lerna-debug.log*
 /front-end/MarryTime/.vscode/
 
 .DS_Store
+front-end/.DS_Store
+backend/.DS_Store
