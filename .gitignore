@@ -15,37 +15,37 @@ lerna-debug.log*
 # ===============================
 # Laravel (backend/MarryTime)
 # ===============================
-/backend/MarryTime/vendor/
-/backend/MarryTime/node_modules/
+/backend/vendor/
+/backend/node_modules/
 # Laravel storage & cache
-/backend/MarryTime/public/storage
-/backend/MarryTime/public/hot
-/backend/MarryTime/storage/*.key
-/backend/MarryTime/.env
-/backend/MarryTime/.env.example
-/backend/MarryTime/Homestead.yaml
-/backend/MarryTime/Homestead.json
-/backend/MarryTime/.vagrant
-/backend/MarryTime/.phpunit.result.cache
-/backend/MarryTime/public/build
-/backend/MarryTime/storage/pail
+/backend/public/storage
+/backend/public/hot
+/backend/storage/*.key
+/backend/.env
+/backend/.env.example
+/backend/Homestead.yaml
+/backend/Homestead.json
+/backend/.vagrant
+/backend/.phpunit.result.cache
+/backend/public/build
+/backend/storage/pail
 
 # Optional: Laravel development files
-/backend/MarryTime/database/factories
-/backend/MarryTime/database/seeders
-/backend/MarryTime/tests
-/backend/MarryTime/resources/views
-/backend/MarryTime/.phpactor.json
-/backend/MarryTime/auth.json
+/backend/database/factories
+/backend/database/seeders
+/backend/tests
+/backend/resources/views
+/backend/.phpactor.json
+/backend/auth.json
 
 # ===============================
 # Angular (front-end/MarryTime)
 # ===============================
-/front-end/MarryTime/node_modules/
-/front-end/MarryTime/dist/
-/front-end/MarryTime/.angular/cache
-/front-end/MarryTime/.angular/
-/front-end/MarryTime/.vscode/
+/front-end/node_modules/
+/front-end/dist/
+/front-end/.angular/cache
+/front-end/.angular/
+/front-end/.vscode/
 
 .DS_Store
 front-end/.DS_Store

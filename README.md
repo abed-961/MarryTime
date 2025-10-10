@@ -36,8 +36,8 @@ project-root/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/abed-961/MarryTime.git
+cd MarryTime
 ```
 
 ---
@@ -70,12 +70,12 @@ php artisan migrate
 
 ### Start the backend server:
 ```bash
-php artisan serve --host=127.0.0.1 --port=8000
+php artisan serve --host=localhost  --port=8000
 ```
 
 Your API will be available at:
 ```
-http://127.0.0.1:8000
+http://localhost:8000
 ```
 
 ---
@@ -97,9 +97,9 @@ npm install
 Edit `src/environments/environment.ts` to match your backend API URL:
 
 ```ts
-export const environment = {
+export const api  = {
   production: false,
-  apiUrl: 'http://127.0.0.1:8000/api'
+  url : 'http://localhost:8000'
 };
 ```
 
@@ -109,7 +109,7 @@ Create `proxy.conf.json`:
 ```json
 {
   "/api": {
-    "target": "http://127.0.0.1:8000",
+    "target": "http://localhost:8000",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
@@ -119,14 +119,8 @@ Create `proxy.conf.json`:
 
 Then in `package.json`, update the start script:
 ```json
-"start": "ng serve --proxy-config proxy.conf.json"
+"start": "ng serve"
 ```
-
-### Run the Angular app:
-```bash
-npm start
-```
-
 Frontend runs at:
 ```
 http://localhost:4200
@@ -140,7 +134,7 @@ API calls are proxied automatically to the PHP backend.
 
 ### Build Angular app:
 ```bash
-ng build --prod
+ng build
 ```
 
 The output will be generated in:
@@ -163,7 +157,7 @@ Now the backend serves both the frontend and API together from one server.
 | Task | Command |
 |------|----------|
 | Run backend | `php artisan serve` |
-| Run frontend | `npm start` |
+| Run frontend | `ng serve ` |
 | Build frontend | `ng build --prod` |
 | Install PHP deps | `composer install` |
 | Install Node deps | `npm install` |
@@ -187,5 +181,5 @@ This project is open source under the [MIT License](LICENSE).
 
 ## ✨ Author
 
-Developed by **[Your Name]**  
-📧 Contact: your.email@example.com  
+Developed by **Abdallah Taha**  
+📧 Contact: abdallahkhoder59@gmail.com 
