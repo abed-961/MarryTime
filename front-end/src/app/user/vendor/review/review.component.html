@@ -1,0 +1,27 @@
+<section class="recent-feedback section">
+    <h2>Recent Feedback</h2>
+
+    <div *ngIf="loading" class="loading">Loading...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <div *ngIf="!loading && !error && feedbacks.length; else noFeedback">
+        <div class="feedback-item" *ngFor="let fb of feedbacks">
+            <div class="feedback-header">
+                <strong><u>From :</u> <span class="from-name">{{fb.client.name}} </span><u>To company: </u>{{
+                    fb.vendor?.company_name || 'Unknown componay' }}
+                    <u>On vendor : </u> <span class="to-name">{{fb.vendor?.user?.name || 'unkown vendor'}}
+                    </span></strong>
+                <span class="badge" [ngClass]="fb.ration.toLowerCase()">{{ fb.ration }}</span>
+            </div>
+            <p class="comment">"{{ fb.comment }}"</p>
+            <small>{{ fb.created_at | date: 'short' }}</small>
+        </div>
+
+        <button routerLink="/user/feedbacks" class="view-more-btn" (click)="go()" *ngIf="show"> View All
+            Feedbacks</button>
+    </div>
+
+    <ng-template #noFeedback>
+        <p>No feedback found.</p>
+    </ng-template>
+</section>

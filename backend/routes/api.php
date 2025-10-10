@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorsController;
@@ -52,6 +53,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/notifications/{notification}/read', [NotificationController::class, 'markRead']);
     Route::delete('/{notification}/notifications', [NotificationController::class, 'destroy']);
 
+
+    //feedback
+    Route::get('/feedbacks/latest', [FeedbackController::class, 'latest']);
+    Route::get('/feedbacks', [FeedbackController::class, 'index']);
 
 
 

@@ -7,6 +7,7 @@ import { UserFullDetails } from '../../../../interfaces/user_full_details_interf
 import { UserServicesService } from '../../../../services/user/user-services.service';
 import { TasksBoardComponent } from '../tasks-board/tasks-board.component';
 import { PersonalizedComponent } from "../personalized/personalized.component";
+import { ReviewComponent } from "../../../user/vendor/review/review.component";
 
 @Component({
   selector: 'app-component',
@@ -15,7 +16,8 @@ import { PersonalizedComponent } from "../personalized/personalized.component";
     WeddingPicturesComponent,
     CommonModule,
     TasksBoardComponent,
-    PersonalizedComponent
+    PersonalizedComponent,
+    ReviewComponent
 ],
   templateUrl: './component.component.html',
   styleUrl: './component.component.css',
