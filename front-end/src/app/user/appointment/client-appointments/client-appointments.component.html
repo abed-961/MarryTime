@@ -13,8 +13,9 @@
                 <th>Date</th>
                 <th>Location</th>
                 <th>Guests</th>
-                <th>Vendor</th>
+
                 <th>Status</th>
+                <th>Vendors</th>
             </tr>
         </thead>
         <tbody>
@@ -22,7 +23,7 @@
                 <td data-label="Date">{{ appt.appointment_date | date }}</td>
                 <td data-label="Location">{{ appt.location }}</td>
                 <td data-label="Guests">{{ appt.guests }}</td>
-                <td data-label="Vendor">{{ appt.vendor_id }}</td>
+
                 <td data-label="Status">
                     <span [ngClass]="{
               'status-pending': appt.status === 'pending',
@@ -32,6 +33,7 @@
                         {{ appt.status }}
                     </span>
                 </td>
+                <td>{{appt.vendors.length }} </td>
             </tr>
         </tbody>
     </table>

@@ -130,4 +130,11 @@ class VendorsController extends Controller
 
         return response()->json($vendors);
     }
+
+
+    public function getVendorById(Vendor $vendor)
+    {
+        return Response::to_json($vendor->load('user'));
+    }
 }
+

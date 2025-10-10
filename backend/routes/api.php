@@ -36,6 +36,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //user vendors
     Route::get('/user/{appointment}/vendors', [UserController::class, 'getUserVendors']);
+    Route::get('/user/{vendor}/getVendor', [VendorsController::class, 'getVendorById']);
+
 
 
     //appointment page 
@@ -57,6 +59,8 @@ Route::middleware('auth:sanctum')->group(function () {
     //feedback
     Route::get('/feedbacks/latest', [FeedbackController::class, 'latest']);
     Route::get('/feedbacks', [FeedbackController::class, 'index']);
+    Route::post('/user/{vendor}/feedback', [FeedbackController::class, 'store']);
+
 
 
 

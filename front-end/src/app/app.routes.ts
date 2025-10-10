@@ -10,6 +10,7 @@ import { NotificationsComponent } from './user/notifications/notifications.compo
 import { VendorPageComponent } from './user/vendor/vendor-page/vendor-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ReviewComponent } from './user/vendor/review/review.component';
+import { InsertComponent } from './user/vendor/review/insert/insert.component';
 
 export const routes: Routes = [
   { path: '', component: ComponentComponent },
@@ -22,6 +23,7 @@ export const routes: Routes = [
   { path: 'notifications', component: NotificationsComponent },
   { path: 'user/appointment/vendors', component: VendorPageComponent },
   { path: 'user/feedbacks', component: ReviewComponent },
+  { path: 'vendor/:id/review', component: InsertComponent },
 
   //404 not found page
   { path: '**', component: NotFoundComponent },

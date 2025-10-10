@@ -70,4 +70,8 @@ export class VendorService {
       { withCredentials: true }
     );
   }
+
+  getVendorById(id : number){
+    return this.http.get(`${this.api}/api/user/${id}/getVendor` , {withCredentials : true})
+  }
 }

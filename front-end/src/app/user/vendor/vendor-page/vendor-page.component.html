@@ -18,6 +18,7 @@
             <p><strong>Owner:</strong> {{ vendor.vendor_name }}</p>
             <p><strong>Location:</strong> {{ vendor.location }}</p>
             <p *ngIf="vendor.price_range"><strong>Price Range:</strong> {{ vendor.price_range }}</p>
+            <button (click)="sendReviewPage(vendor.id)" class="btn btn-info">Feedback</button>
         </div>
     </div>
 

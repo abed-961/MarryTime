@@ -5,7 +5,7 @@
             (input)="filterVendors($event.target.value)" (focus)="showVendorDropdown = true"
             (blur)="showVendorDropdown= false " placeholder="Search vendor..." />
         <ul class="dropdown c-black" *ngIf="showVendorDropdown && filteredVendors.length">
-            <li *ngFor="let v of filteredVendors" (click)="selectVendor(v)" class="c-black">
+            <li *ngFor="let v of filteredVendors" (mousedown)="selectVendor(v)" class="c-black">
                 {{ v.name }}
             </li>
         </ul>
@@ -17,7 +17,7 @@
             (input)="filterCategories($event.target.value)" (focus)="showCategoryDropdown = true"
             (blur)="showCategoryDropdown = false " placeholder="Search category..." />
         <ul class="dropdown" *ngIf="showCategoryDropdown && filteredCategories.length">
-            <li *ngFor="let c of filteredCategories" (click)="selectCategory(c)" class="c-black">
+            <li *ngFor="let c of filteredCategories" (mousedown)="selectCategory(c)" class="c-black">
                 {{ c.name }}
             </li>
         </ul>

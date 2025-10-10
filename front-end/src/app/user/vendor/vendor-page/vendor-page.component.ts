@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { api } from '../../../../environments/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../../../services/data/data.service';
+import { ReviewService } from '../../../../services/Review/Review.service';
 
 @Component({
   selector: 'app-vendor-page',
@@ -22,6 +23,7 @@ export class VendorPageComponent {
   private DataRecieve = inject(DataService);
   private cdr = inject(ChangeDetectorRef);
   private router = inject(Router);
+  private reviewService = inject(ReviewService);
 
   ngOnInit(): void {
     this.fetchVendors();
@@ -50,5 +52,9 @@ export class VendorPageComponent {
         this.cdr.detectChanges();
       },
     });
+  }
+
+  sendReviewPage(id: number) {
+    this.router.navigate([`vendor/${id}/review`]);
   }
 }

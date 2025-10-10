@@ -3,12 +3,12 @@ import { Appointment } from '../../../../interfaces/appointment';
 import { AppointmentService } from '../../../../services/appointment/appointment.service';
 import { CommonModule } from '@angular/common';
 import { api } from '../../../../environments/api';
-import { RouterLink } from '@angular/router';
-import { AppointmentFormComponent } from "../../../Forms/appointment-form/appointment-form.component";
+import { Router, RouterLink } from '@angular/router';
+import { DataService } from '../../../../services/data/data.service';
 
 @Component({
   selector: 'app-vendor-appointments',
-  imports: [CommonModule, RouterLink, AppointmentFormComponent],
+  imports: [CommonModule, RouterLink],
   templateUrl: './vendor-appointments.component.html',
   styleUrls: ['./vendor-appointments.component.css'],
 })
@@ -20,7 +20,9 @@ export class VendorAppointmentsComponent implements OnInit {
 
   constructor(
     private appointmentService: AppointmentService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private dataService: DataService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -58,5 +60,10 @@ export class VendorAppointmentsComponent implements OnInit {
         this.fetchAppointments();
       },
     });
+  }
+
+  sendToVendors(data: any) {
+    this.dataService.sendData(data);
+    this.router.navigate(['/user/appointment/vendors']);
   }
 }
