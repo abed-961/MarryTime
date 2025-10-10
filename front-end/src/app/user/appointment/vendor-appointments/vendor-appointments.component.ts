@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { api } from '../../../../environments/api';
 import { Router, RouterLink } from '@angular/router';
 import { DataService } from '../../../../services/data/data.service';
+import { route } from '../../../../environments/routes';
 
 @Component({
   selector: 'app-vendor-appointments',
@@ -17,6 +18,7 @@ export class VendorAppointmentsComponent implements OnInit {
   loading = true;
   error = '';
   photoUrl = api.photo_url;
+  route = route;
 
   constructor(
     private appointmentService: AppointmentService,
@@ -64,6 +66,6 @@ export class VendorAppointmentsComponent implements OnInit {
 
   sendToVendors(data: any) {
     this.dataService.sendData(data);
-    this.router.navigate(['/user/appointment/vendors']);
+    this.router.navigate([route.appointment_vendors]);
   }
 }

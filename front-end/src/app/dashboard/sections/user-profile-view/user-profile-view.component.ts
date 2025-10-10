@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { UserServicesService } from '../../../../services/user/user-services.service';
 import { RouterLink } from '@angular/router';
 import { api } from '../../../../environments/api';
+import { route } from '../../../../environments/routes';
 
 @Component({
   selector: 'app-user-profile-view',
@@ -16,6 +17,7 @@ import { api } from '../../../../environments/api';
   styleUrl: './user-profile-view.component.css',
 })
 export class UserProfileViewComponent {
+  route = route
   // --- injections Start ---
   private us = inject(UserServicesService);
   // --- injections End ---

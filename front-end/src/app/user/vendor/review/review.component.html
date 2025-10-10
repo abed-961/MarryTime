@@ -17,8 +17,8 @@
             <small>{{ fb.created_at | date: 'short' }}</small>
         </div>
 
-        <button routerLink="/user/feedbacks" class="view-more-btn" (click)="go()" *ngIf="show"> View All
-            Feedbacks</button>
+        <a class="view-more-btn" (click)="go()" *ngIf="show"> View All
+            Feedbacks</a>
     </div>
 
     <ng-template #noFeedback>

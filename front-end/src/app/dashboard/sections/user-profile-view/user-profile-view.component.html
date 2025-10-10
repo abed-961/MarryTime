@@ -15,7 +15,7 @@
                                 <img [src]="photo_url+user.photo" alt="profile-picture" class="photo">
                             </div>
                             <div class="profile-button mt-3">
-                                <a [routerLink]="['/user','edit' , 'profile']" (click)="editProfile()">Edit Profile</a>
+                                <a [routerLink]="route.editProfile" (click)="editProfile()">Edit Profile</a>
                             </div>
 
                         </div>

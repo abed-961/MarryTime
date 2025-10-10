@@ -4,10 +4,10 @@
         <div></div>
 
         <nav class="sidebar-nav">
-            <a routerLink="/" *ngIf="currenUrl !== '/'" routerLinkActive="active">Dashboard</a>
+            <a [routerLink]="route.home" *ngIf="currenUrl !== '/'" routerLinkActive="active">Dashboard</a>
             <a (click)="scrollTo('profile-section')" routerLinkActive="active" *ngIf="currenUrl === '/'">Profile
             </a>
-            <a [routerLink]="['/user','edit' , 'profile']" routerLinkActive="active">Settings</a>
+            <a [routerLink]="route.editProfile" routerLinkActive="active">Settings</a>
         </nav>
 
         <div class="sidebar-footer">
@@ -41,7 +41,7 @@
 
                                 <!-- View More Button -->
                                 <div class="view-more">
-                                    <a routerLink="/notifications" (click)="showNotifications = false">
+                                    <a [routerLink]="route.notification" (click)="showNotifications = false">
                                         View More
                                     </a>
                                 </div>
@@ -50,7 +50,7 @@
                             <ng-template #noNotifications>
                                 <div class="no-notifications">No new notifications</div>
                                 <div class="view-more">
-                                    <a routerLink="/notifications" (click)="showNotifications = false">
+                                    <a [routerLink]="route.notification" (click)="showNotifications = false">
                                         View All
                                     </a>
                                 </div>

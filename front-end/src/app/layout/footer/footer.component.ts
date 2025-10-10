@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component, inject, Input } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { UserFullDetails } from '../../../interfaces/user_full_details_interface';
 import { identity } from '../../../environments/ownerInfo';
+import { route } from '../../../environments/routes';
 
 @Component({
   selector: 'app-footer',
@@ -11,6 +12,7 @@ import { identity } from '../../../environments/ownerInfo';
   styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent {
+  route = route
   ownerInfo = identity;
   isIn!: boolean;
   @Input() user!: UserFullDetails;

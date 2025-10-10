@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { UserFullDetails } from '../../../interfaces/user_full_details_interface';
 import { NotificationService } from '../../../services/notification/notification.service';
 import { Observable } from 'rxjs';
+import { route } from '../../../environments/routes';
 
 @Component({
   selector: 'app-side-bar',
@@ -13,6 +14,7 @@ import { Observable } from 'rxjs';
   styleUrl: './side-bar.component.css',
 })
 export class SideBarComponent {
+  route = route
   @Input() username: string = 'not logged in';
   @Input() currenUrl!: string;
   showNotifications = false;

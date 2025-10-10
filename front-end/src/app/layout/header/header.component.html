@@ -1,28 +1,28 @@
 <header class="app-header1">
     <div class="container1">
         <div class="logo1">
-            <a routerLink="/"><img src="assets/images/logo.png" alt="MarryTime Logo"></a>
+            <a [routerLink]="route.home"><img src="assets/images/logo.png" alt="MarryTime Logo"></a>
         </div>
 
         <nav class="nav-links1" [class.show]="menuOpen">
 
             <ng-container *ngIf="user else guestLinks">
-                <a routerLink="/" routerLinkActive="active" *ngIf="currentUrl != '/'">Home</a>
+                <a [routerLink]="route.home" routerLinkActive="active" *ngIf="currentUrl != '/'">Home</a>
 
 
                 <ng-container *ngIf="user.role === 'vendor'">
-                    <a routerLink="/user/vendor/Tasks" routerLinkActive="active"
+                    <a [routerLink]="route.vendorTasks" routerLinkActive="active"
                         *ngIf="currentUrl !== '/user/vendor/Tasks'">My Tasks</a>
                 </ng-container>
-                <a routerLink="/{{user.role}}/appointments" routerLinkActive="active"
-                    *ngIf="currentUrl !== `/${user.role}/appointments` ">Appointments </a>
+                <a [routerLink]="user.role === 'vendor' ? route.vendor_appointments : route.client_appointments "
+                    routerLinkActive="active" *ngIf="currentUrl !== `/${user.role}/appointments` ">Appointments </a>
                 <a (click)="logout()" class="logout-link">Logout</a>
             </ng-container>
 
             <ng-template #guestLinks>
-                <a routerLink="/user/register" routerLinkActive="active"
+                <a [routerLink]="route.register" routerLinkActive="active"
                     *ngIf="currentUrl != '/user/register'">Register</a>
-                <a routerLink="/user/login" routerLinkActive="active" *ngIf="currentUrl != '/user/login'">Login</a>
+                <a [routerLink]="route.login" routerLinkActive="active" *ngIf="currentUrl != '/user/login'">Login</a>
             </ng-template>
         </nav>
 

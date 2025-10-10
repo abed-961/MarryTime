@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { VendorTask } from '../../../../interfaces/user_full_details_interface';
 import { VendorService } from '../../../../services/user/vendor.service';
 import { RouterLink } from '@angular/router';
+import { route } from '../../../../environments/routes';
 
 @Component({
   selector: 'app-tasks-board',
@@ -12,6 +13,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './tasks-board.component.css',
 })
 export class TasksBoardComponent {
+  route = route
   tasks$!: Observable<VendorTask[]>;
 
   private vs = inject(VendorService);
