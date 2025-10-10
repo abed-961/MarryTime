@@ -1,0 +1,69 @@
+.recent-feedback {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.feedback-item {
+  border-bottom: 1px solid #eee;
+  padding: 0.75rem 0;
+}
+
+.feedback-item:last-child {
+  border: none;
+}
+
+.feedback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment {
+  color: #444;
+  margin: 5px 0;
+  font-style: italic;
+}
+
+.badge {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: white;
+}
+
+.badge.bad {
+  background-color: #e74c3c;
+}
+
+.badge.good {
+  background-color: #f1c40f;
+}
+
+.badge.excellent {
+  background-color: #27ae60;
+}
+
+.view-more-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #ff4d4d;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.view-more-btn:hover {
+  background: var(--red);
+}
+
+.from-name {
+  color: var(--blue);
+}
+.to-name {
+  color: var(--red);
+}
