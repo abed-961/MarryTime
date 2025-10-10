@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let appt of appointments">
+            <tr *ngFor="let appt of appointments" (click)="goToAppointmentsService(appt)">
                 <td data-label="Date">{{ appt.appointment_date | date }}</td>
                 <td data-label="Location">{{ appt.location }}</td>
                 <td data-label="Guests">{{ appt.guests }}</td>

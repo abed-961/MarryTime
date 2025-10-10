@@ -17,14 +17,15 @@ class AppointmentController extends Controller
         $user = $request->user();
 
         if ($user->role === 'vendor') {
-            $appointments = Appointment::with(['client', 'category'])
-                ->where('vendor_id', $user->vendor->id)
+            // For vendors, show all appointments linked to their vendor account
+            $appointments = $user->vendor
+                ->appointments()
+                ->with(['vendors.user']) // load all vendors and their owners
                 ->get();
+
         } else {
-            // Client view
-            $appointments = Appointment::with(['vendor', 'category'])
-                ->where('client_id', $user->id)
-                ->get();
+            // For clients, show appointments where the user is the client
+            $appointments = Appointment::with('vendors.user')->where('client_id', $user->id)->get();
         }
 
         return Response::to_json($appointments);
@@ -79,8 +80,25 @@ class AppointmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Appointment $appointment, Request $request)
     {
-        //
+        $user = $request->user();
+
+
+        // Optional: check if the user is client or vendor and owns this appointment
+        if ($user->role === 'client' && $appointment->client_id !== $user->id) {
+            return Response::failure('Unauthorized1');
+        }
+
+        if ($user->role === 'vendor') {
+            $vendors_id = $appointment->vendors->pluck('id')->toArray();
+            if (!in_array($user->vendor->id, $vendors_id))
+                return Response::failure('Unauthorized2');
+
+            $appointment->vendors()->detach($user->vendor->id);
+            return Response::success('Appointment refused successfully');
+        }
+
+        return Response::failure('Unauthorized3');
     }
 }

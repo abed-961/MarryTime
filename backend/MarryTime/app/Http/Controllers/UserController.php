@@ -6,6 +6,7 @@ use App\DTO\Response;
 use App\Http\Requests\loginRequest;
 use App\Http\Requests\PatchUserRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -94,6 +95,30 @@ class UserController extends Controller
 
         $user->save();
         return Response::success('user edited succefully');
+    }
+
+    public function getUserVendors(Appointment $appointment)
+    {
+
+        $appointment_data = Appointment::with(['vendors'])
+            ->where('id', $appointment->id)
+            ->get();
+
+
+        return Response::to_json($appointment_data);
+    }
+
+    public function getUserWithAppointments(Request $request)
+    {
+        $user = $request->user(); // Authenticated user
+
+        $userWithAppointments = $user->load([
+            'appointments.vendors' => function ($query) {
+                $query->select('vendors.id', 'company_name', 'location', 'price_range');
+            }
+        ]);
+
+        return Response::to_json($userWithAppointments);
     }
 }
 

@@ -7,6 +7,7 @@ import { VendorTaskComponent } from './user/vendor-task/vendor-task.component';
 import { ClientAppointmentsComponent } from './user/appointment/client-appointments/client-appointments.component';
 import { VendorAppointmentsComponent } from './user/appointment/vendor-appointments/vendor-appointments.component';
 import { NotificationsComponent } from './user/notifications/notifications.component';
+import { VendorPageComponent } from './user/vendor/vendor-page/vendor-page.component';
 
 export const routes: Routes = [
   { path: '', component: ComponentComponent },
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'client/appointments', component: ClientAppointmentsComponent },
   { path: 'vendor/appointments', component: VendorAppointmentsComponent },
   { path: 'notifications', component: NotificationsComponent },
+  { path: 'user/appointment/vendors', component: VendorPageComponent },
 ];

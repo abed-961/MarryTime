@@ -33,17 +33,25 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/vendor-tasks/{task}', [VendorsController::class, 'updateStatus']);
     Route::delete('/{task}/vendor-tasks', [VendorsController::class, 'destroy']);
 
+    //user vendors
+    Route::get('/user/{appointment}/vendors', [UserController::class, 'getUserVendors']);
+
+
     //appointment page 
     Route::get('/appointments', [AppointmentController::class, 'index']);
     Route::post('/appointments', [AppointmentController::class, 'store']);
     Route::get('/vendors', [VendorsController::class, 'index']);
     Route::get('/categories', [CategoryController::class, 'index']);
+    Route::get('/user/appointments', [UserController::class, 'getUserWithAppointments']);
+    Route::delete('/appointment/{appointment}/delete', [AppointmentController::class, 'destroy']);
+
 
 
     //notification 
     Route::get('/notifications', [NotificationController::class, 'index']);
     Route::post('/notifications/{notification}/read', [NotificationController::class, 'markRead']);
     Route::delete('/{notification}/notifications', [NotificationController::class, 'destroy']);
+
 
 
 

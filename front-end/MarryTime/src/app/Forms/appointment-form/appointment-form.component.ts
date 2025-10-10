@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -16,6 +16,8 @@ import { CommonModule } from '@angular/common';
 })
 export class AppointmentFormComponent {
   appointmentForm: FormGroup;
+
+  @Input() showModal: any;
 
   vendors: any[] = [];
   filteredVendors: any[] = [];
@@ -48,6 +50,7 @@ export class AppointmentFormComponent {
   // Load vendors from backend
   loadVendors(loadTerm: any) {
     this.appointmentService.loadVendors(loadTerm).subscribe((data) => {
+      console.log(data);
       this.vendors = data;
       this.filteredVendors = data;
     });

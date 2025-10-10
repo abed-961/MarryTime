@@ -17,10 +17,15 @@ class Vendor extends Model
     ];
 
 
-    // ✅ Vendor belongs to a User
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    // Users that have this vendor (many-to-many)
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_vendor', 'vendor_id', 'user_id');
     }
 
     // ✅ Vendor offers many services
@@ -35,7 +40,18 @@ class Vendor extends Model
         return $this->hasMany(Vendors_availability::class);
     }
 
-    public function tasks()  {
+    public function tasks()
+    {
         return $this->hasMany(VendorTask::class);
     }
+
+
+    public function appointments()
+    {
+        return $this->belongsToMany(Appointment::class, 'vendor_appointments', 'vendor_id', 'appointment_id')
+            ->withTimestamps();
+    }
+
+
+
 }

@@ -1,10 +1,11 @@
 <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()" class="appointment-form">
     <div class="form-group">
         <label class="form-label">Vendor</label>
-        <input type="text" class="form-input" [value]="getVendorName()" (input)="filterVendors($event.target.value)"
-            (focus)="showVendorDropdown = true" placeholder="Search vendor..." />
-        <ul class="dropdown" *ngIf="showVendorDropdown && filteredVendors.length">
-            <li *ngFor="let v of filteredVendors" (click)="selectVendor(v)">
+        <input type="text c-black" class="form-input" [value]="getVendorName()"
+            (input)="filterVendors($event.target.value)" (focus)="showVendorDropdown = true"
+            (blur)="showVendorDropdown= false " placeholder="Search vendor..." />
+        <ul class="dropdown c-black" *ngIf="showVendorDropdown && filteredVendors.length">
+            <li *ngFor="let v of filteredVendors" (click)="selectVendor(v)" class="c-black">
                 {{ v.name }}
             </li>
         </ul>
@@ -14,9 +15,9 @@
         <label class="form-label">Category</label>
         <input type="text" class="form-input" [value]="getCategoryName()"
             (input)="filterCategories($event.target.value)" (focus)="showCategoryDropdown = true"
-            placeholder="Search category..." />
+            (blur)="showCategoryDropdown = false " placeholder="Search category..." />
         <ul class="dropdown" *ngIf="showCategoryDropdown && filteredCategories.length">
-            <li *ngFor="let c of filteredCategories" (click)="selectCategory(c)">
+            <li *ngFor="let c of filteredCategories" (click)="selectCategory(c)" class="c-black">
                 {{ c.name }}
             </li>
         </ul>

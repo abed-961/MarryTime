@@ -54,4 +54,15 @@ class User extends Authenticatable
     {
         return $this->hasOne(Vendor::class);
     }
+
+    // Users can have many vendors (many-to-many)
+    public function vendors()
+    {
+        return $this->belongsToMany(Vendor::class, 'user_vendor', 'user_id', 'vendor_id');
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
 }

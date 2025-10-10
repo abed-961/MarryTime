@@ -26,9 +26,11 @@ class Appointment extends Model
         return $this->belongsTo(User::class, 'client_id');
     }
 
-    public function vendor()
+    public function vendors()
     {
-        return $this->belongsTo(Vendor::class);
+        return $this->belongsToMany(Vendor::class, 'vendor_appointments', 'appointment_id', 'vendor_id')
+            ->withTimestamps();
+
     }
 
     public function category()

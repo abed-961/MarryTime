@@ -11,7 +11,6 @@
 
 
                 <ng-container *ngIf="user.role === 'vendor'">
-                    <a routerLink="/user/vendors" routerLinkActive="active">Vendors</a>
                     <a routerLink="/user/vendor/Tasks" routerLinkActive="active"
                         *ngIf="currentUrl !== '/user/vendor/Tasks'">My Tasks</a>
                 </ng-container>

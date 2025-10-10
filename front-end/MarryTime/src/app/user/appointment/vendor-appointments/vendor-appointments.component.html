@@ -1,34 +1,72 @@
-<section class="vendor-appointments">
-    <h2>Appointments Received</h2>
+<section class="vendor-appointments section ">
+    <div class="vendor-title-btn-container">
+        <h2>Appointments Received</h2>
+    </div>
 
+    <!-- Loading / Error States -->
     <div *ngIf="loading" class="loading">Loading...</div>
     <div *ngIf="error" class="error">{{ error }}</div>
 
-    <table *ngIf="!loading && appointments.length" class="appointments-table">
+    <!-- Appointments Table -->
+    <table *ngIf="!loading && appointments.length" class="appointments-table section">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Client</th>
-                <th>Category</th>
+                <th>appointment</th>
+                <th>Vendors</th>
                 <th>Date</th>
                 <th>Location</th>
                 <th>Guests</th>
                 <th>Tables</th>
                 <th>Status</th>
-                <th>Notes</th>
+                <th>action</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let a of appointments">
-                <td>{{ a.id }}</td>
-                <td>{{ a.client.name }}</td>
-                <td>{{ a.category.name }}</td>
-                <td>{{ a.appointment_date | date }}</td>
-                <td>{{ a.location }}</td>
-                <td>{{ a.guests }}</td>
+            <tr *ngFor="let a of appointments; index as i">
+
+                <td routerLink="/user/{{a.id}}/vendors">{{i + 1}}</td>
+
+                <!-- Vendors List as Table -->
+                <td routerLink="/user/{{a.id}}/vendors">
+                    <table class="nested-vendors-table">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>Company</th>
+                                <th>name</th>
+                                <th>Location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let v of a.vendors">
+                                <td>
+                                    <img *ngIf="v.user?.photo" [src]="photoUrl + v.user.photo" [alt]="v.user?.name"
+                                        class="vendor-photo" />
+                                    <div *ngIf="!v.user?.photo" class="vendor-photo-placeholder">
+                                        {{ v.user?.name ? v.user.name[0] : '?' }}
+                                    </div>
+                                </td>
+                                <td>{{ v.company_name }}</td>
+                                <td>{{ v.user?.name }}</td>
+                                <td>{{ v.location }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+
+
+                <td routerLink="/user/{{a.id}}/vendors">{{ a.appointment_date | date: 'mediumDate' }}</td>
+                <td routerLink="/user/{{a.id}}/vendors">{{ a.location }}</td>
+                <td routerLink="/user/{{a.id}}/vendors">{{ a.guests }}</td>
                 <td>{{ a.tables }}</td>
-                <td><span [class]="getStatusClass(a.status)">{{ a.status }}</span></td>
-                <td>{{ a.notes }}</td>
+
+                <td>
+                    <span class="status" [ngClass]="getStatusClass(a.status)">
+                        {{ a.status }}
+                    </span>
+                </td>
+
+                <td><button class="btn btn-danger" (click)="refuseAppointment(a.id)"> Refuse </button></td>
             </tr>
         </tbody>
     </table>

@@ -1,4 +1,5 @@
 export interface Appointment {
+vendors: any;
   id: number;
   client : {id : number , name : string },
   category : {id : number , name : string },
