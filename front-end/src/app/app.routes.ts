@@ -8,6 +8,7 @@ import { ClientAppointmentsComponent } from './user/appointment/client-appointme
 import { VendorAppointmentsComponent } from './user/appointment/vendor-appointments/vendor-appointments.component';
 import { NotificationsComponent } from './user/notifications/notifications.component';
 import { VendorPageComponent } from './user/vendor/vendor-page/vendor-page.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
   { path: '', component: ComponentComponent },
@@ -19,4 +20,7 @@ export const routes: Routes = [
   { path: 'vendor/appointments', component: VendorAppointmentsComponent },
   { path: 'notifications', component: NotificationsComponent },
   { path: 'user/appointment/vendors', component: VendorPageComponent },
+
+  //404 not found page
+  { path: '**', component: NotFoundComponent },
 ];

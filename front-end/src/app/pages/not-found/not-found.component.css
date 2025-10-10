@@ -1,0 +1,46 @@
+.not-found-container {
+  position: absolute;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: #222;
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  font-size: 8rem;
+  margin: 0;
+  font-weight: 800;
+  color: #ff4d4d;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.back-home-btn {
+  background: #ff4d4d;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.back-home-btn:hover {
+  background: #e63946;
+}
