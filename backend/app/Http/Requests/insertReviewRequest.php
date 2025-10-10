@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class appointmentCreateRequest extends FormRequest
+class insertReviewRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +23,8 @@ class appointmentCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'vendor_id' => ['required', 'exists:vendors,id'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'appointment_date' => ['required ', 'date'],
-            'location' => ['required', 'string'],
-            'guests' => ['required', 'integer', 'min:1'],
-            'tables' => ['required', 'integer', 'min:1'],
-            'notes' => ['nullable', 'string'],
-
+            'ration' => ['required', Rule::in(['Bad', 'Good', 'Excellent'])],
+            'comment' => ['required', 'string', 'min:3'],
         ];
     }
 }

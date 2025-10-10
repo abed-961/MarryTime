@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -16,6 +16,8 @@ import { CommonModule } from '@angular/common';
 })
 export class AppointmentFormComponent {
   appointmentForm: FormGroup;
+  vendorName!: string;
+  categoryName!: string;
 
   @Input() showModal: any;
 
@@ -29,7 +31,8 @@ export class AppointmentFormComponent {
 
   constructor(
     private fb: FormBuilder,
-    private appointmentService: AppointmentService
+    private appointmentService: AppointmentService,
+    private cdr: ChangeDetectorRef
   ) {
     this.appointmentForm = this.fb.group({
       vendor_id: ['', Validators.required],
@@ -50,7 +53,6 @@ export class AppointmentFormComponent {
   // Load vendors from backend
   loadVendors(loadTerm: any) {
     this.appointmentService.loadVendors(loadTerm).subscribe((data) => {
-      console.log(data);
       this.vendors = data;
       this.filteredVendors = data;
     });
@@ -95,6 +97,7 @@ export class AppointmentFormComponent {
   selectCategory(category: any) {
     this.appointmentForm.patchValue({ category_id: category.id });
     this.showCategoryDropdown = false;
+    this.cdr.detectChanges();
   }
 
   getCategoryName() {

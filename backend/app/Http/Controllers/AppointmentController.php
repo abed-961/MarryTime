@@ -42,14 +42,17 @@ class AppointmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(appointmentCreateRequest $appointmentCreateRequest, Request $request)
+    public function store(appointmentCreateRequest $request)
     {
-        $validated = $appointmentCreateRequest->validated();
+        /** @var Request $req */
+        $req = $request;
+        $validated = $req->validated();
         $validated['client_id'] = $request->user()->id;
         $validated['status'] = 'pending';
 
         $appointment = Appointment::create($validated);
 
+        $appointment->vendors()->attach($validated['vendor_id']);
         return Response::success($appointment);
     }
 

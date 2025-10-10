@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\insertReviewRequest;
+use App\Models\Category;
 use App\Models\Review;
+use App\Models\User;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
@@ -45,5 +49,31 @@ class FeedbackController extends Controller
         $feedbacks = $query->with(['vendor.user', 'category', 'client'])->latest()->get();
 
         return response()->json($feedbacks);
+    }
+
+    public function store(insertReviewRequest $request, Vendor $vendor)
+    { /** @var Request $req */
+        $req = $request;
+
+        $user = $req->user();
+        // Validated  incoming data
+        $validated = $req->validated();
+
+
+        $validated['vendor_id'] = $vendor->id;
+        $validated['category_id'] = Category::inRandomOrder()->first()->id;
+
+
+        // Set the client_id as the logged-in user
+        $validated['client_id'] = $user->id;
+
+        // Create the feedback
+        $feedback = Review::create($validated);
+
+        return response()->json([
+            'message' => 'Feedback submitted successfully',
+            'feedback' => $feedback,
+        ]);
+
     }
 }

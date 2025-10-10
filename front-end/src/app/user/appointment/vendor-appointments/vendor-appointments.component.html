@@ -22,12 +22,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let a of appointments; index as i">
+            <tr *ngFor="let a of appointments; index as i" (click)="sendToVendors(a)">
 
-                <td routerLink="/user/{{a.id}}/vendors">{{i + 1}}</td>
+                <td>{{i + 1}}</td>
 
                 <!-- Vendors List as Table -->
-                <td routerLink="/user/{{a.id}}/vendors">
+                <td>
                     <table class="nested-vendors-table">
                         <thead>
                             <tr>
@@ -55,9 +55,9 @@
                 </td>
 
 
-                <td routerLink="/user/{{a.id}}/vendors">{{ a.appointment_date | date: 'mediumDate' }}</td>
-                <td routerLink="/user/{{a.id}}/vendors">{{ a.location }}</td>
-                <td routerLink="/user/{{a.id}}/vendors">{{ a.guests }}</td>
+                <td>{{ a.appointment_date | date: 'mediumDate' }}</td>
+                <td>{{ a.location }}</td>
+                <td>{{ a.guests }}</td>
                 <td>{{ a.tables }}</td>
 
                 <td>
