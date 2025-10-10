@@ -11,18 +11,19 @@ import { VendorPageComponent } from './user/vendor/vendor-page/vendor-page.compo
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ReviewComponent } from './user/vendor/review/review.component';
 import { InsertComponent } from './user/vendor/review/insert/insert.component';
-
+import { route } from '../environments/routes';
 export const routes: Routes = [
-  { path: '', component: ComponentComponent },
-  { path: 'user/register', component: RegisterComponent },
-  { path: 'user/login', component: LoginComponent },
-  { path: 'user/vendor/Tasks', component: VendorTaskComponent },
-  { path: 'user/edit/profile', component: EditProfileComponent },
-  { path: 'client/appointments', component: ClientAppointmentsComponent },
-  { path: 'vendor/appointments', component: VendorAppointmentsComponent },
-  { path: 'notifications', component: NotificationsComponent },
-  { path: 'user/appointment/vendors', component: VendorPageComponent },
-  { path: 'user/feedbacks', component: ReviewComponent },
+  { path: route.home, component: ComponentComponent },
+  { path: route.register, component: RegisterComponent },
+  { path: route.login, component: LoginComponent },
+  { path: route.vendorTasks, component: VendorTaskComponent },
+  { path: route.editProfile, component: EditProfileComponent },
+  { path: route.client_appointments, component: ClientAppointmentsComponent },
+  { path: route.vendor_appointments, component: VendorAppointmentsComponent },
+  { path: route.notification, component: NotificationsComponent },
+  { path: route.appointment_vendors, component: VendorPageComponent },
+  { path: route.feedbacks, component: ReviewComponent },
+
   { path: 'vendor/:id/review', component: InsertComponent },
 
   //404 not found page

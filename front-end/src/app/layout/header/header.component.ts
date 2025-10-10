@@ -5,6 +5,7 @@ import { UserServicesService } from '../../../services/user/user-services.servic
 import { CommonModule } from '@angular/common';
 import { firstValueFrom, Observable } from 'rxjs';
 import { UserFullDetails } from '../../../interfaces/user_full_details_interface';
+import { route } from '../../../environments/routes';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ import { UserFullDetails } from '../../../interfaces/user_full_details_interface
   standalone: true,
 })
 export class HeaderComponent {
+  route = route;
   api = api.url;
   menuOpen = false;
   @Input() user!: UserFullDetails;

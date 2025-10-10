@@ -3,6 +3,7 @@ import { Review } from '../../../../interfaces/review';
 import { ReviewService } from '../../../../services/Review/Review.service';
 import { CommonModule } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
+import { route } from '../../../../environments/routes';
 
 @Component({
   selector: 'app-review',
@@ -11,6 +12,7 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrl: './review.component.css',
 })
 export class ReviewComponent {
+  route = route;
   feedbacks: Review[] = [];
   loading = true;
   error: string | null = null;
@@ -72,6 +74,6 @@ export class ReviewComponent {
   }
 
   go() {
-    this.router.navigate(['/user/feedbacks']);
+    this.router.navigate([`${this.route.feedbacks}`]);
   }
 }
