@@ -30,6 +30,7 @@ export class AppComponent {
     position: 'fixed',
     bottom: 0,
     width: '100%',
+    'z-index': -1,
   };
 
   constructor(
@@ -69,7 +70,12 @@ export class AppComponent {
   }
 
   checkForFooter(url: string) {
-    const fixedFooter = ['/notifications', '/user/login'];
+    const fixedFooter = [
+      '/notifications',
+      '/user/login',
+      '/client/appointments',
+      '/vendor/appointments',
+    ];
     if (fixedFooter.includes(url)) {
       this.footerStyle = this.style;
     } else {

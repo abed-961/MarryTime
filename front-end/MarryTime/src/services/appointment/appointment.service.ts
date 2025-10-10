@@ -38,4 +38,10 @@ export class AppointmentService {
       }
     );
   }
+
+  refuseAppointment(id: number) {
+    return this.http.delete(`${this.api}/api/appointment/${id}/delete`, {
+      withCredentials: true,
+    });
+  }
 }

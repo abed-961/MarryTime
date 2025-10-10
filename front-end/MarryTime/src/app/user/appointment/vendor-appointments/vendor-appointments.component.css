@@ -1,49 +1,83 @@
 .vendor-appointments {
-  padding: 1rem;
-  font-family: Inter, system-ui, Arial;
-}
-
-h2 {
-  margin-bottom: 1rem;
-}
-
-.loading,
-.error,
-.empty {
-  text-align: center;
-  margin: 2rem 0;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .appointments-table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-top: 1rem;
 }
 
-th,
-td {
+.appointments-table th,
+.appointments-table td {
   padding: 0.75rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #eee;
   text-align: left;
+  vertical-align: top;
 }
 
-th {
-  background: #f3f4f6;
+.appointments-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+}
+
+.vendor-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.vendor-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  border: 2px solid #ddd;
+}
+
+.vendor-details {
+  line-height: 1.2;
+}
+
+.vendor-meta {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.status {
+  padding: 0.3rem 0.6rem;
+  border-radius: 20px;
+  text-transform: capitalize;
+  font-size: 0.85rem;
   font-weight: 600;
 }
 
 .status-pending {
-  color: #f59e0b;
-  font-weight: 600;
+  background: #fff3cd;
+  color: #856404;
 }
+
 .status-completed {
-  color: #16a34a;
-  font-weight: 600;
+  background: #d4edda;
+  color: #155724;
 }
+
 .status-cancelled {
-  color: #dc2626;
-  font-weight: 600;
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.empty {
+  margin-top: 1rem;
+  text-align: center;
+  color: #999;
+}
+
+.vendor-title-btn-container {
+  display: flex;
+  justify-content: space-between;
 }

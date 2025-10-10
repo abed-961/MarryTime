@@ -14,7 +14,9 @@
   display: flex;
   flex-direction: column;
 }
-
+.c-black {
+  color: var(--grey);
+}
 .form-label {
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -75,14 +77,14 @@
   list-style: none;
   padding: 0;
   margin: 0.25rem 0 0 0;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--light-grey-);
   border-radius: 6px;
   max-height: 150px;
   overflow-y: auto;
-  background-color: #fff;
+  background-color: var(--white);
   position: absolute;
-  width: 100%;
   z-index: 10;
+  transform: translateY(75px);
 }
 
 .dropdown li {
@@ -91,6 +93,6 @@
 }
 
 .dropdown li:hover {
-  background-color: #2563eb;
-  color: #fff;
+  background-color: var(--blue);
+  color: var(--yellow);
 }

@@ -4,6 +4,8 @@ import { AppointmentService } from '../../../../services/appointment/appointment
 import { CommonModule } from '@angular/common';
 import { AppointmentFormComponent } from '../../../Forms/appointment-form/appointment-form.component';
 import { Observable } from 'rxjs';
+import { DataService } from '../../../../services/data/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-appointments',
@@ -15,6 +17,9 @@ export class ClientAppointmentsComponent implements OnInit {
   appointments$!: Observable<Appointment[]>;
   showForm = false;
   private cdr = inject(ChangeDetectorRef);
+  private dataService = inject(DataService);
+  private router = inject(Router);
+
   constructor(private appointmentService: AppointmentService) {}
 
   ngOnInit() {
@@ -32,5 +37,11 @@ export class ClientAppointmentsComponent implements OnInit {
   onAppointmentCreated() {
     this.showForm = false;
     this.loadAppointments();
+  }
+
+  goToAppointmentsService(appt: any) {
+    this.dataService.sendData(appt);
+    this.router.navigate(['user/appointment/vendors'])
+
   }
 }
