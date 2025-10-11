@@ -46,7 +46,6 @@ export class ReviewComponent {
   getReviews() {
     this.feedbackService.getLatest().subscribe({
       next: (data) => {
-        console.log(data);
         this.feedbacks = data;
         this.loading = false;
         this.cdr.detectChanges();

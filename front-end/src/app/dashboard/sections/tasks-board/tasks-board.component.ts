@@ -13,7 +13,7 @@ import { route } from '../../../../environments/routes';
   styleUrl: './tasks-board.component.css',
 })
 export class TasksBoardComponent {
-  route = route
+  route = route;
   tasks$!: Observable<VendorTask[]>;
 
   private vs = inject(VendorService);
@@ -25,7 +25,6 @@ export class TasksBoardComponent {
 
   loadTasks() {
     this.tasks$ = this.vs.loadTasks();
-
     this.cdr.detectChanges();
   }
 }

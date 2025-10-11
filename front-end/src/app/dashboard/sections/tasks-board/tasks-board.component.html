@@ -15,8 +15,7 @@
                 <div class="task-grid">
                     <ng-container *ngIf="tasks$ | async as tasks">
                         @for(task of tasks | slice:0:4; track $index ){
-                        <div class="task-square" *ngFor="let task of tasks | slice:0:4"
-                            [routerLink]="route.vendorTasks">
+                        <div class="task-square" [routerLink]="route.vendorTasks">
                             <p class="task-title">{{task.title | titlecase}} </p>
                             <p>{{task.description}} </p>
                             <p class="task-status" [ngClass]="task.status">{{ task.status | titlecase }}</p>
