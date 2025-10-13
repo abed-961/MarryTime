@@ -10,6 +10,7 @@ export interface UserFullDetails {
 }
 
 export interface Vendor {
+user: any;
   vendor_name: string;
   vendor_photo: string;
   id: number;

@@ -131,18 +131,21 @@
 </section>
 <!-- ***** Kids Area Ends ***** -->
 
-<!-- ***** Explore Area Starts ***** -->
+<!-- ***** Suggest Appointment Area Starts ***** -->
 <section class="section">
-
-    <div class="container">
-        <div class="row suggesting-appointment-container" *ngIf="appointments$ |async as appointments" #suggestCard>
-            @for(a of appointments; track a.id ){
-            <app-suggesting-appointment [appointment]="a" id="card{{$index}}"></app-suggesting-appointment>
-            }
+    <div class="carousel-wrapper" *ngIf="appointments$ | async as appointments">
+        <button class="prev" (click)="prev()">&#10094;</button>
+        <div class="carousel-container" #carousel>
+            <app-suggesting-appointment *ngFor="let a of appointments; let i = index" [appointment]="a"
+                class="carousel-card" [id]="'card' + i">
+            </app-suggesting-appointment>
         </div>
+        <button class="next" (click)="next()">&#10095;</button>
     </div>
+
+
 </section>
-<!-- ***** Explore Area Ends ***** -->
+<!-- ***** Suggest Appointment Area Ends ***** -->
 
 <!-- ***** Social Area Starts ***** -->
 <app-review *ngIf="user$ | async as user"></app-review>

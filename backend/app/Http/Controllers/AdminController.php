@@ -45,10 +45,16 @@ class AdminController extends Controller
 
         return true;
     }
-   
 
-   public function showAllSuggest(){
-    $appointment = SuggestAppointment::inRandomOrder()->limit(8)->get();
-    return Response::to_json($appointment);
-   }
+
+    public function showAllSuggest()
+    {
+        $appointment = SuggestAppointment::with(['appointment', 'admin'])->limit(8)->get();
+        $appointment->load('appointment.category');
+        $appointment->load('appointment.vendors');
+        $appointment->load('appointment.vendors.user');
+
+
+        return Response::to_json($appointment);
+    }
 }

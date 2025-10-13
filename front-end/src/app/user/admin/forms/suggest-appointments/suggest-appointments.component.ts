@@ -2,7 +2,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  Input,
+  OnDestroy ,
   ViewChild,
 } from '@angular/core';
 import {

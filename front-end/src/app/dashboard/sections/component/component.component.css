@@ -75,12 +75,51 @@
   font-size: 1.1em;
 }
 
-.suggesting-appointment-container {
-  display: flex;
+.carousel-wrapper {
+  position: relative;
   width: 100%;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  height: 400px;
-  flex-direction: column;
-  gap: 20px;
+  overflow: hidden;
+}
+
+.carousel-container {
+  display: flex;
+  gap: 30px; /* spacing between cards */
+  scroll-behavior: smooth;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+
+.carousel-card {
+  flex: 0 0 auto; /* keep card width fixed */
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 0 12px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+}
+
+.prev {
+  left: 5px;
+}
+.next {
+  right: 5px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.7);
 }

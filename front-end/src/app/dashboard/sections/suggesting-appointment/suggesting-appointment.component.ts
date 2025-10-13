@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject, Input } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { DataService } from '../../../../services/data/data.service';
+import { route } from '../../../../environments/routes';
 
 @Component({
   selector: 'app-suggesting-appointment',
@@ -10,4 +12,12 @@ import { RouterLink } from '@angular/router';
 })
 export class SuggestingAppointmentComponent {
   @Input() appointment: any;
+  route = route;
+  private dts = inject(DataService);
+  private router = inject(Router);
+
+  sendAppointment(appointment: any) {
+    this.dts.sendData(appointment);
+    this.router.navigate([`/${route.appointment_vendors}`]);
+  }
 }

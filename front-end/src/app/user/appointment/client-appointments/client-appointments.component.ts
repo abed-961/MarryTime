@@ -6,6 +6,7 @@ import { AppointmentFormComponent } from '../../../Forms/appointment-form/appoin
 import { Observable } from 'rxjs';
 import { DataService } from '../../../../services/data/data.service';
 import { Router } from '@angular/router';
+import { route } from '../../../../environments/routes';
 
 @Component({
   selector: 'app-client-appointments',
@@ -19,6 +20,7 @@ export class ClientAppointmentsComponent implements OnInit {
   private cdr = inject(ChangeDetectorRef);
   private dataService = inject(DataService);
   private router = inject(Router);
+  route = route;
 
   constructor(private appointmentService: AppointmentService) {}
 
@@ -41,7 +43,6 @@ export class ClientAppointmentsComponent implements OnInit {
 
   goToAppointmentsService(appt: any) {
     this.dataService.sendData(appt);
-    this.router.navigate(['user/appointment/vendors'])
-
+    this.router.navigate([`/${route.appointment_vendors}`]);
   }
 }

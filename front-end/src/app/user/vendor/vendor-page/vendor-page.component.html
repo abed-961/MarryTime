@@ -8,9 +8,9 @@
     <div *ngIf="vendors.length > 0" class="vendor-grid">
         <div class="vendor-card" *ngFor="let vendor of vendors">
             <div class="vendor-photo-wrapper">
-                <img *ngIf="vendor.vendor_photo" [src]="photoUrl + vendor.vendor_photo" alt="{{ vendor.vendor_name }}"
+                <img *ngIf="vendor.user.photo" [src]="photoUrl + vendor.user.photo" alt="{{ vendor.vendor_name }}"
                     class="vendor-photo">
-                <div *ngIf="!vendor.vendor_photo" class="vendor-photo-placeholder">
+                <div *ngIf="!vendor.user.photo" class="vendor-photo-placeholder">
                     {{ vendor.vendor_name ? vendor.vendor_name[0] : '?' }}
                 </div>
             </div>

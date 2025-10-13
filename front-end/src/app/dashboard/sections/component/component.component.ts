@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 
 import { SuggestingAppointmentComponent } from '../suggesting-appointment/suggesting-appointment.component';
 import { AdminService } from '../../../../services/user/admin.service';
+import { AppointmentService } from '../../../../services/appointment/appointment.service';
 
 @Component({
   selector: 'app-component',
@@ -40,11 +41,59 @@ export class ComponentComponent implements OnInit {
   user$!: Observable<UserFullDetails>;
   private us = inject(UserServicesService);
   private as = inject(AdminService);
-  @ViewChild('suggestCard') suggestCard?: ElementRef<HTMLDivElement>;
-  private scrollInterval?: number;
 
   ngOnInit() {
     this.user$ = this.us.getUser();
     this.appointments$ = this.as.getSuggestAppointments();
+    this.appointments$.subscribe((res) => console.log(res));
+  }
+
+  @ViewChild('carousel') carousel!: ElementRef;
+
+  cardWidth = 0;
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      const firstCard =
+        this.carousel.nativeElement.querySelector('.carousel-card');
+      if (firstCard) {
+        this.cardWidth = firstCard.offsetWidth;
+      }
+      this.interval();
+    }, 1000);
+  }
+
+  interval() {
+    setInterval(() => {
+      const carouselEl = this.carousel.nativeElement;
+      const maxScroll = carouselEl.scrollWidth - carouselEl.clientWidth;
+
+      if (carouselEl.scrollLeft + this.cardWidth < maxScroll) {
+        // scroll right by one card
+        carouselEl.scrollBy({
+          left: this.cardWidth,
+          behavior: 'smooth',
+        });
+      } else {
+        // scroll back to start
+        carouselEl.scrollTo({
+          left: 0,
+          behavior: 'smooth',
+        });
+      }
+    }, 2000);
+  }
+  next() {
+    this.carousel.nativeElement.scrollBy({
+      left: this.cardWidth,
+      behavior: 'smooth',
+    });
+  }
+
+  prev() {
+    this.carousel.nativeElement.scrollBy({
+      left: -this.cardWidth,
+      behavior: 'smooth',
+    });
   }
 }
