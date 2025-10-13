@@ -20,7 +20,6 @@ export class WeddingPicturesComponent implements OnInit {
   }
 
   getPhotos() {
-    console.log('on');
     this.photoService.getPhotos().subscribe({
       next: (res: any) => {
         this.photos = res;
