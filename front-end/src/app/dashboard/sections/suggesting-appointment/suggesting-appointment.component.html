@@ -1,0 +1,22 @@
+<div class="appointment-card" *ngIf="appointment">
+  <div class="card-header">
+    <h3>📅 Appointment #{{ appointment.id }}</h3>
+    <span class="status" [ngClass]="appointment.status">
+      {{ appointment.status | titlecase }}
+    </span>
+  </div>
+
+  <div class="card-body">
+    <p><strong>Category:</strong> {{ appointment.category?.name || 'N/A' }}</p>
+    <p><strong>Location:</strong> {{ appointment.location }}</p>
+    <p><strong>Date:</strong> {{ appointment.appointment_date | date: 'longDate' }}</p>
+    <p><strong>Guests:</strong> {{ appointment.guests }}</p>
+    <p><strong>Tables:</strong> {{ appointment.tables }}</p>
+    <p *ngIf="appointment.notes"><strong>Notes:</strong> {{ appointment.notes }}</p>
+  </div>
+
+  <div class="card-footer">
+    <a [routerLink]="['/appointments', appointment.id]" class="btn btn-view">View Details</a>
+    <button class="btn btn-cancel" *ngIf="appointment.status === 'pending'">Cancel</button>
+  </div>
+</div>

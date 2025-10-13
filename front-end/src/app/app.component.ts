@@ -8,6 +8,7 @@ import { UserServicesService } from '../services/user/user-services.service';
 import { Observable } from 'rxjs';
 import { UserFullDetails } from '../interfaces/user_full_details_interface';
 import { SideBarComponent } from './layout/side-bar/side-bar.component';
+import { route } from '../environments/routes';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ import { SideBarComponent } from './layout/side-bar/side-bar.component';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  route = route;
   user$!: Observable<UserFullDetails>;
   currentUrl!: string;
   footerStyle = {};
@@ -47,21 +49,27 @@ export class AppComponent {
   }
 
   async checkUser(url: string) {
-    const vendorUrls = ['/user/vendor/Tasks', '/vendor/appointments'];
-    const guestUrls = ['/user/login', '/user/register', '/'];
+    const url1 = url.slice(1);
+    const vendorUrls = [route.vendorTasks, route.vendor_appointments];
+    const guestUrls = [route.login, `/${route.register}`, route.home];
+    const adminPages = [route.admin];
     this.user$ = await this.us.getUser();
     this.user$.subscribe({
       next: (user) => {
-        if (user.role !== 'vendor' && vendorUrls.includes(url)) {
-          this.router.navigate(['/']);
-        } else if (user.role == 'vendor' && url == '/client/appointments') {
-          this.router.navigate(['/vendor/appointments']);
+        if (user.role !== 'vendor' && vendorUrls.includes(url1)) {
+          this.router.navigate([route.home]);
+        } else if (user.role == 'vendor' && url1 == route.client_appointments) {
+          this.router.navigate([route.vendor_appointments]);
+        } else if (user.role !== 'admin' && adminPages.includes(url1)) {
+          this.router.navigate([route.home]);
         }
-        this.checkForFooter(url);
+        this.checkForFooter(url1);
       },
 
       error: () => {
+        console.log(route.register, url);
         if (!guestUrls.includes(url)) {
+          console.log(url == `/${route.register}`);
           this.router.navigate(['user/login']);
         }
       },
@@ -71,10 +79,11 @@ export class AppComponent {
 
   checkForFooter(url: string) {
     const fixedFooter = [
-      '/notifications',
-      '/user/login',
-      '/client/appointments',
-      '/vendor/appointments',
+      route.notification,
+      route.login,
+      route.client_appointments,
+      route.vendor_appointments,
+      route.suggest_appointment,
     ];
     if (fixedFooter.includes(url)) {
       this.footerStyle = this.style;

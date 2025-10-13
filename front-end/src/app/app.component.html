@@ -2,7 +2,7 @@
     <ng-container *ngIf="user$ |async as user ; else headerNotLoggedIn">
 
         <app-header [user]="user" [currentUrl]="currentUrl"></app-header>
-        <app-side-bar [username]="user.name" [currenUrl]="currentUrl"></app-side-bar>
+        <app-side-bar [user]="user" [currenUrl]="currentUrl"></app-side-bar>
     </ng-container>
 
     <ng-template #headerNotLoggedIn>

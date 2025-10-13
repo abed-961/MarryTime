@@ -3,13 +3,13 @@ import { Appointment } from '../../../../interfaces/appointment';
 import { AppointmentService } from '../../../../services/appointment/appointment.service';
 import { CommonModule } from '@angular/common';
 import { api } from '../../../../environments/api';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { DataService } from '../../../../services/data/data.service';
 import { route } from '../../../../environments/routes';
 
 @Component({
   selector: 'app-vendor-appointments',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './vendor-appointments.component.html',
   styleUrls: ['./vendor-appointments.component.css'],
 })

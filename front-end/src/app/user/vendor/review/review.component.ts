@@ -60,7 +60,6 @@ export class ReviewComponent {
   getAll() {
     this.feedbackService.getAll().subscribe({
       next: (data) => {
-        console.log(data);
         this.feedbacks = data;
         this.loading = false;
         this.cdr.detectChanges();

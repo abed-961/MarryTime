@@ -14,8 +14,8 @@ import { route } from '../../../environments/routes';
   styleUrl: './side-bar.component.css',
 })
 export class SideBarComponent {
-  route = route
-  @Input() username: string = 'not logged in';
+  route = route;
+  @Input() user: any = { name: 'not Logged In' };
   @Input() currenUrl!: string;
   showNotifications = false;
   notifications$!: Observable<Notification[]>;

@@ -31,7 +31,7 @@ export class HeaderComponent {
   logout() {
     this.us.logout().subscribe({
       next: () => {
-        this.router.navigate(['/user/login']);
+        this.router.navigate([route.login]);
       },
     });
   }
