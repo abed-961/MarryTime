@@ -1,0 +1,74 @@
+.appointment-card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: transform 0.2s ease;
+}
+
+.appointment-card:hover {
+  transform: translateY(-3px);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status {
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  background-color: #facc15;
+}
+.status.completed {
+  background-color: #16a34a;
+}
+.status.cancelled {
+  background-color: #dc2626;
+}
+
+.card-body p {
+  margin: 0.2rem 0;
+  color: #333;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-weight: 500;
+}
+
+.btn-view {
+  background-color: #3b82f6;
+  color: white;
+}
+.btn-view:hover {
+  background-color: #2563eb;
+}
+
+.btn-cancel {
+  background-color: #ef4444;
+  color: white;
+}
+.btn-cancel:hover {
+  background-color: #dc2626;
+}

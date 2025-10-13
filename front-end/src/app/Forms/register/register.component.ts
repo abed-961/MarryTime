@@ -53,7 +53,7 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this.us.register(this.registerForm).subscribe({
         next: (res: any) => {
-          this.handleRegister(res, 'success');
+          this.handleRegister(res.description, 'success');
           this.router.navigate(['/']);
         },
         error: (err: any) => {

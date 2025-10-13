@@ -1,0 +1,31 @@
+<div class="suggest-container section p-20">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+
+        <!-- Appointment Search -->
+        <div class="form-group position-relative">
+            <label>Search Appointment</label>
+            <input type="text" placeholder="Search by location or status..." #inputValue
+                (input)="filterAppointments($event.target.value)" (focus)="showDropdown = true"
+                (blur)="hideDropDown()" />
+            <small>write somthing to show suggesting </small>
+            <ul class="dropdown" *ngIf="showDropdown && filteredAppointments.length">
+                <li *ngFor="let app of filteredAppointments" (click)="selectAppointment(app)">
+                    {{ app.location }} — {{ app.status }}
+                </li>
+            </ul>
+        </div>
+
+        <!-- Selected Appointment Card -->
+        <div *ngIf="selectedAppointment" class="card">
+            <h3>Appointment Details</h3>
+            <p><strong>Date:</strong> {{ selectedAppointment.appointment_date }}</p>
+            <p><strong>Location:</strong> {{ selectedAppointment.location }}</p>
+            <p><strong>Status:</strong> {{ selectedAppointment.status }}</p>
+        </div>
+
+        <button type="submit" [disabled]="!form.valid" class="btn btn-success p-20 m-center">Suggest
+            Appointment</button>
+    </form>
+</div>
+s

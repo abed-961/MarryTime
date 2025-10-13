@@ -42,4 +42,9 @@ class Appointment extends Model
     {
         return $this->hasOne(Payment::class);
     }
+
+    public function suggest()
+    {
+        return $this->hasOne(SuggestAppointment::class);
+    }
 }

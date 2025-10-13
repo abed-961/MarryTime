@@ -8,6 +8,9 @@
 
             <ng-container *ngIf="user else guestLinks">
                 <a [routerLink]="route.home" routerLinkActive="active" *ngIf="currentUrl != '/'">Home</a>
+                <a [routerLink]="route.admin" routerLinkActive="active"
+                    *ngIf="currentUrl != route.admin && user.role == 'admin'">admin
+                    Page </a>
 
 
                 <ng-container *ngIf="user.role === 'vendor'">

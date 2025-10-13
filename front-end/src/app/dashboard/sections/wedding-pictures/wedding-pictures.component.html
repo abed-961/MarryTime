@@ -3,7 +3,7 @@
 
     <div class="gallery-grid">
         <div class="gallery-item" *ngFor="let photo of photos" (click)="openPhoto(photo)">
-            <img [src]="photo.url" [alt]="photo.caption">
+            <img [src]="photo_url + photo.photo" alt="not-found">
             <div class="overlay caption">
                 <p>{{ photo.caption }}</p>
             </div>
@@ -13,7 +13,7 @@
     <!-- Lightbox -->
     <div class="lightbox" *ngIf="selectedPhoto" (click)="closePhoto($event)">
         <div class="lightbox-content" (click)="$event.stopPropagation()">
-            <img [src]="selectedPhoto.url" [alt]="selectedPhoto.caption" class="enlarged-photo">
+            <img [src]="photo_url + selectedPhoto.photo" [alt]="selectedPhoto.caption" class="enlarged-photo img">
             <p class="caption">{{ selectedPhoto.caption }}</p>
             <button class="close-btn" (click)="selectedPhoto = null">✖</button>
         </div>

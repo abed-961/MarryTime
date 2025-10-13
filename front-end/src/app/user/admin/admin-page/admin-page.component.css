@@ -1,0 +1,38 @@
+.links-container {
+  padding: 20px;
+}
+
+.admin-sidebar {
+  list-style: none;
+  padding: 5px;
+  margin: 0;
+  border: 1px solid var(--light-grey1);
+  border-radius: 5px;
+}
+
+.admin-sidebar li:nth-child(even) {
+  background-color: var(--light-grey1);
+}
+
+.admin-sidebar li {
+  margin: 8px 0;
+}
+
+.admin-sidebar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  display: block;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.admin-sidebar a:hover {
+  background: #f0f0f0;
+}
+
+.active a {
+  background: #007bff;
+  color: white;
+}

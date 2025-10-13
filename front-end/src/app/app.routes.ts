@@ -12,6 +12,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ReviewComponent } from './user/vendor/review/review.component';
 import { InsertComponent } from './user/vendor/review/insert/insert.component';
 import { route } from '../environments/routes';
+import { AdminPageComponent } from './user/admin/admin-page/admin-page.component';
+import { SuggestAppointmentsComponent } from './user/admin/forms/suggest-appointments/suggest-appointments.component';
 export const routes: Routes = [
   { path: route.home, component: ComponentComponent },
   { path: route.register, component: RegisterComponent },
@@ -23,8 +25,12 @@ export const routes: Routes = [
   { path: route.notification, component: NotificationsComponent },
   { path: route.appointment_vendors, component: VendorPageComponent },
   { path: route.feedbacks, component: ReviewComponent },
+  { path: 'appointment/:id/show', component: VendorPageComponent },
 
   { path: 'vendor/:id/review', component: InsertComponent },
+  //admin section
+  { path: route.admin, component: AdminPageComponent },
+  { path: route.suggest_appointment, component: SuggestAppointmentsComponent },
 
   //404 not found page
   { path: '**', component: NotFoundComponent },

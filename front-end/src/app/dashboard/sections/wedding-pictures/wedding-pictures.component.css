@@ -6,6 +6,9 @@
   padding: 5px;
   margin: 10px;
 }
+.img {
+  image-rendering: revert-layer;
+}
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

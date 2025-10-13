@@ -21,6 +21,12 @@ export class AppointmentService {
     });
   }
 
+  loadAppointments() {
+    return this.http.get(`${this.api}/api/appointment/all`, {
+      withCredentials: true,
+    });
+  }
+
   loadVendors(searchTerm: any) {
     return this.http.get<any[]>(
       `http://localhost:8000/api/vendors?search=${searchTerm}`,

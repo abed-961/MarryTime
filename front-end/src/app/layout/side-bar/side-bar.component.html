@@ -5,6 +5,10 @@
 
         <nav class="sidebar-nav">
             <a [routerLink]="route.home" *ngIf="currenUrl !== '/'" routerLinkActive="active">Dashboard</a>
+            <a [routerLink]="route.admin" routerLinkActive="active"
+                    *ngIf="currenUrl != route.admin && user.role == 'admin'">admin
+                    Page </a>
+            
             <a (click)="scrollTo('profile-section')" routerLinkActive="active" *ngIf="currenUrl === '/'">Profile
             </a>
             <a [routerLink]="route.editProfile" routerLinkActive="active">Settings</a>
@@ -13,7 +17,7 @@
         <div class="sidebar-footer">
             <div class="user-info">
                 <span class="small">Logged in as</span>
-                <span class="username"> {{username}}</span>
+                <span class="username"> {{user.name}}</span>
             </div>
 
             <!-- Notification Bell -->
