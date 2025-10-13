@@ -1,10 +1,8 @@
 <div class="appointment-card" *ngIf="appointment">
-  
+
     <div class="card-header">
         <h3>📅 Appointment #{{ appointment.appointment.id }}</h3>
-        <span class="status" [ngClass]="appointment.appointment.status">
-            {{ appointment.appointment.status | titlecase }}
-        </span>
+
     </div>
 
     <div class="card-body">

@@ -1,10 +1,10 @@
 <div class="links-container section ">
     <ul class="admin-sidebar">
         <li routerLinkActive="active">
-            <a routerLink="/admin/dashboard">Dashboard</a>
+            <a [routerLink]="'/'+route.home">Dashboard</a>
         </li>
         <li routerLinkActive="active">
-            <a routerLink="/admin/users">Manage Users</a>
+            <a [routerLink]="'/'+route.manageUser">Manage Users</a>
         </li>
         <li routerLinkActive="active">
             <a routerLink="/admin/vendors">Manage Vendors</a>
@@ -19,13 +19,13 @@
             <a routerLink="/admin/packages">Packages</a>
         </li>
         <li routerLinkActive="active">
-            <a routerLink="/admin/notifications">Notifications</a>
+            <a [routerLink]="'/'+route.notification">Notifications</a>
         </li>
         <li routerLinkActive="active">
-            <a routerLink="/admin/reviews">Reviews</a>
+            <a [routerLink]="'/'+route.feedbacks">Reviews</a>
         </li>
         <li routerLinkActive="active">
-            <a routerLink="/admin/settings">Settings</a>
+            <a [routerLink]="'/'+route.editProfile">Settings</a>
         </li>
     </ul>
 </div>

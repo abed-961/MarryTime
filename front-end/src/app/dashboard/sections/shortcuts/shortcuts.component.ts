@@ -56,7 +56,11 @@ export class ShortcutsComponent implements OnInit, AfterViewInit {
       action: () =>
         this.router.navigate([`/${this.route.client_appointments}`]),
     },
-    { label: 'Manage Users', restrict: ['admin'] },
+    {
+      label: 'Manage Users',
+      restrict: ['admin'],
+      action: () => this.router.navigate([`/${this.route.manageUser}`]),
+    },
     {
       label: 'Settings',
       action: () => this.profileSetting(),
@@ -95,10 +99,8 @@ export class ShortcutsComponent implements OnInit, AfterViewInit {
   setTime() {
     const container = this.buttonsContainer.nativeElement;
     const maxScroll = container.scrollWidth - container.clientWidth;
-    console.log(maxScroll);
 
     this.buttonsInterval = setInterval(() => {
-      console.log(container.scrollLeft);
       // Scroll by 2px per tick for smooth animation
       container.scrollLeft += this.direction ? 2 : -2;
 

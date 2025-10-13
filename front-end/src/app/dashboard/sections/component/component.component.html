@@ -2,8 +2,16 @@
 <section class="section" id="men">
     <app-wedding-pictures></app-wedding-pictures>
 </section>
+
+<!-- ***** Kids Area Starts ***** -->
+<section class="section" *ngIf="user$ | async as user">
+    <app-shortcuts [user]="user"></app-shortcuts>
+</section>
+<!-- ***** Kids Area Ends ***** -->
+
 <!-- ***** wedding pictures  Area Ends ***** -->
 <section class="section" id='profile-section'>
+    <h1 style="text-align: center;">Profile info </h1>
     <app-user-profile-view *ngIf="user$ | async as user"></app-user-profile-view>
 </section>
 
@@ -14,11 +22,11 @@
 </section>
 <!-- ***** vendor task Area Ends ***** -->
 
-<!-- ***** Kids Area Starts ***** -->
-<section class="section" *ngIf="user$ | async as user">
-    <app-shortcuts [user]="user"></app-shortcuts>
-</section>
-<!-- ***** Kids Area Ends ***** -->
+
+
+<!-- ***** Social Area Starts ***** -->
+<app-review *ngIf="user$ | async as user"></app-review>
+<!-- ***** Social Area Ends ***** -->
 
 <!-- ***** Suggest Appointment Area Starts ***** -->
 <section class="section">
@@ -37,9 +45,7 @@
 </section>
 <!-- ***** Suggest Appointment Area Ends ***** -->
 
-<!-- ***** Social Area Starts ***** -->
-<app-review *ngIf="user$ | async as user"></app-review>
-<!-- ***** Social Area Ends ***** -->
+
 <section class="section">
     <app-personalized></app-personalized>
 
