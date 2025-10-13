@@ -5,17 +5,54 @@ namespace App\Http\Controllers;
 use App\DTO\Response;
 use App\Models\Appointment;
 use App\Models\SuggestAppointment;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Validation\Rule;
 
 
 class AdminController extends Controller
 {
+    public function index(Request $request)
+    {
+        if (!empty($request->filter)) {
+            if ($request->filter === "Deleted") {
+                $users = User::onlyTrashed()->get();
+            } else {
+                $users = User::all();
 
+            }
+        } else {
+            $users = User::withTrashed()->get();
+        }
+        return Response::to_json($users);
+
+    }
+
+    public function toggleRole(Request $request, User $user)
+    {
+        $admin = $request->user();
+        if ($user->role === "admin") {
+            return Response::failure('You can not change admin role', 500);
+        }
+        if ($admin->role !== 'admin')
+            return Response::failure('Unauthenticated');
+
+
+
+        if ($user->role === "vendor") {
+            $user->role = "client";
+        } else {
+            $user->role = "vendor";
+        }
+
+        $user->save();
+        return Response::success("user edited succefully");
+    }
     public function getAppointments(Request $request)
     {
         if (!$this->admin($request->user())) {
-            return Response::failure('you are not admin');
+            return Response::failure('you are not admin', 500);
         }
         $appointments = Appointment::all();
         return Response::to_json($appointments);
@@ -25,7 +62,7 @@ class AdminController extends Controller
     {
 
         if (!$this->admin($request->user())) {
-            return Response::failure('you are not admin');
+            return Response::failure('you are not admin', 500);
         }
 
         $data = $request->validate([
@@ -56,5 +93,32 @@ class AdminController extends Controller
 
 
         return Response::to_json($appointment);
+    }
+
+    public function DeleteUser(User $user, Request $request)
+    {
+        $admin = $request->user();
+        if ($admin->role !== "admin") {
+            return Response::failure('Unauthenticated');
+        }
+
+        $user->delete();
+        return Response::success("user Deleted successfully");
+    }
+    public function restoreUser(Request $request)
+    {
+        $user = User::withTrashed()->find($request->id);
+
+        if (!$user) {
+            return Response::failure('invalid id of user');
+        }
+        $admin = $request->user();
+        if ($admin->role !== 'admin') {
+            return Response::failure('you are not an admin');
+
+        }
+        $user->restore();
+        return Response::success('user restored successfully');
+
     }
 }

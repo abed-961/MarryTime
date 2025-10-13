@@ -1,0 +1,64 @@
+.table-container {
+  width: 80%;
+  margin-left: 10px;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container td,
+.table-container th {
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.table-container th {
+  background-color: var(--light-grey1);
+}
+
+.table-container tr:nth-child(even) {
+  background-color: var(--light-grey0);
+}
+
+.table-container tr td button {
+  padding: 10px;
+  font-size: 1.1em;
+  margin: 8px;
+  width: 50%;
+  max-width: 150px;
+}
+
+/* select */
+.custom-select-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.custom-select-wrapper label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.custom-select {
+  padding: 2px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #fff;
+  appearance: none; /* remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Optional: Add a custom arrow */
+.custom-select-wrapper {
+  position: relative;
+}

@@ -14,6 +14,7 @@ import { InsertComponent } from './user/vendor/review/insert/insert.component';
 import { route } from '../environments/routes';
 import { AdminPageComponent } from './user/admin/admin-page/admin-page.component';
 import { SuggestAppointmentsComponent } from './user/admin/forms/suggest-appointments/suggest-appointments.component';
+import { ManageUserComponent } from './user/admin/manage-user/manage-user.component';
 export const routes: Routes = [
   { path: route.home, component: ComponentComponent },
   { path: route.register, component: RegisterComponent },
@@ -31,6 +32,7 @@ export const routes: Routes = [
   //admin section
   { path: route.admin, component: AdminPageComponent },
   { path: route.suggest_appointment, component: SuggestAppointmentsComponent },
+  { path: route.manageUser, component: ManageUserComponent },
 
   //404 not found page
   { path: '**', component: NotFoundComponent },

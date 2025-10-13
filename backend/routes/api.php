@@ -15,7 +15,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 // without credantials
-Route::get("/appointment/suggest/all" , [AdminController::class , "showAllSuggest"]);
+Route::get("/appointment/suggest/all", [AdminController::class, "showAllSuggest"]);
 Route::get('/getPhotos', [Photos::class, 'index']);
 
 Route::prefix('/user')->group(function () {
@@ -67,7 +67,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //admin routes 
     Route::get("/appointment/all", [AdminController::class, "getAppointments"]);
-    Route::post("/appointment/suggest" , [AdminController::class , "insertSuggestAppointment"]) ;
+    Route::post("/appointment/suggest", [AdminController::class, "insertSuggestAppointment"]);
+    Route::post('/admin/users', [AdminController::class, 'index']);
+    Route::post("/admin/toggle/{user}/role", [AdminController::class, "toggleRole"]);
+    Route::post("/admin/{user}/delete", [AdminController::class, "DeleteUser"]);
+    Route::post("/user/restore", [AdminController::class, "restoreUser"]);
+
+
 
 
 

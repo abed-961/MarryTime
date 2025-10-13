@@ -8,7 +8,7 @@
 
   /* yellow */
   --yellow: #ffd700;
-  
+
   --light-grey2: #6b7280;
   --grey: #343a40;
 
@@ -16,6 +16,10 @@
 
   --black: #111827;
   --red: #e63946;
+}
+
+body {
+  font-size: 12px;
 }
 
 .section {

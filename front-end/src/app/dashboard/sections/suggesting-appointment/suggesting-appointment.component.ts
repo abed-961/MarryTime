@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { DataService } from '../../../../services/data/data.service';
 import { route } from '../../../../environments/routes';
 
 @Component({
   selector: 'app-suggesting-appointment',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './suggesting-appointment.component.html',
   styleUrl: './suggesting-appointment.component.css',
 })

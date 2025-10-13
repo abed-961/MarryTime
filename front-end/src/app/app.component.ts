@@ -88,7 +88,7 @@ export class AppComponent {
     if (fixedFooter.includes(url)) {
       this.footerStyle = this.style;
     } else {
-      this.footerStyle = {};
+      this.footerStyle = { position: 'sticky', bottom: 0 };
     }
   }
 }

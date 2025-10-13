@@ -24,4 +24,36 @@ export class AdminService {
   getSuggestAppointments(): Observable<any> {
     return this.http.get(`${this.api}/api/appointment/suggest/all`);
   }
+  ManageUser(filter: string): Observable<any[]> {
+    return this.http.post<any[]>(
+      `${this.api}/api/admin/users`,
+      { filter: filter },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
+  toggelUserRole(id: number) {
+    return this.http.post(
+      `${this.api}/api/admin/toggle/${id}/role`,
+      {},
+      { withCredentials: true }
+    );
+  }
+
+  deleteUser(id: number) {
+    return this.http.post(
+      `${this.api}/api/admin/${id}/delete`,
+      {},
+      { withCredentials: true }
+    );
+  }
+  restoreUser(id: number) {
+    return this.http.post(
+      `${this.api}/api/user/restore`,
+      { id: id },
+      { withCredentials: true }
+    );
+  }
 }
