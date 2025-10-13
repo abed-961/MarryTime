@@ -4,7 +4,7 @@ import {
   inject,
   OnInit,
   ViewChild,
-  viewChild,
+  NgZone,
 } from '@angular/core';
 import { UserProfileViewComponent } from '../user-profile-view/user-profile-view.component';
 import { WeddingPicturesComponent } from '../wedding-pictures/wedding-pictures.component';
@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { SuggestingAppointmentComponent } from '../suggesting-appointment/suggesting-appointment.component';
 import { AdminService } from '../../../../services/user/admin.service';
 import { AppointmentService } from '../../../../services/appointment/appointment.service';
+import { ShortcutsComponent } from '../shortcuts/shortcuts.component';
 
 @Component({
   selector: 'app-component',
@@ -32,6 +33,7 @@ import { AppointmentService } from '../../../../services/appointment/appointment
     ReviewComponent,
     FormsModule,
     SuggestingAppointmentComponent,
+    ShortcutsComponent,
   ],
   templateUrl: './component.component.html',
   styleUrl: './component.component.css',
@@ -41,11 +43,11 @@ export class ComponentComponent implements OnInit {
   user$!: Observable<UserFullDetails>;
   private us = inject(UserServicesService);
   private as = inject(AdminService);
+  private ngZone = inject(NgZone);
 
   ngOnInit() {
     this.user$ = this.us.getUser();
     this.appointments$ = this.as.getSuggestAppointments();
-    this.appointments$.subscribe((res) => console.log(res));
   }
 
   @ViewChild('carousel') carousel!: ElementRef;
@@ -59,7 +61,7 @@ export class ComponentComponent implements OnInit {
       if (firstCard) {
         this.cardWidth = firstCard.offsetWidth;
       }
-      this.interval();
+      this.ngZone.runOutsideAngular(() => this.interval());
     }, 1000);
   }
 
