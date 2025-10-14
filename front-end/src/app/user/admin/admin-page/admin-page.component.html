@@ -10,13 +10,10 @@
             <a routerLink="/admin/vendors">Manage Vendors</a>
         </li>
         <li routerLinkActive="active">
-            <a routerLink="/admin/categories">Categories</a>
+            <a [routerLink]="'/'+route.insertCategory">Categories</a>
         </li>
         <li>
             <a [routerLink]="'/'+route.suggest_appointment" routerLinkActive="active">Suggest Appointments</a>
-        </li>
-        <li routerLinkActive="active">
-            <a routerLink="/admin/packages">Packages</a>
         </li>
         <li routerLinkActive="active">
             <a [routerLink]="'/'+route.notification">Notifications</a>

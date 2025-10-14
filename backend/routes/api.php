@@ -67,11 +67,16 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //admin routes 
     Route::get("/appointment/all", [AdminController::class, "getAppointments"]);
-    Route::post("/appointment/suggest", [AdminController::class, "insertSuggestAppointment"]);
-    Route::post('/admin/users', [AdminController::class, 'index']);
-    Route::post("/admin/toggle/{user}/role", [AdminController::class, "toggleRole"]);
-    Route::post("/admin/{user}/delete", [AdminController::class, "DeleteUser"]);
-    Route::post("/user/restore", [AdminController::class, "restoreUser"]);
+    Route::middleware('role:admin')->group(function () {
+        Route::post("/appointment/suggest", [AdminController::class, "insertSuggestAppointment"]);
+        Route::post('/admin/users', [AdminController::class, 'index']);
+        Route::post("/admin/toggle/{user}/role", [AdminController::class, "toggleRole"]);
+        Route::post("/admin/{user}/delete", [AdminController::class, "DeleteUser"]);
+        Route::post("/user/restore", [AdminController::class, "restoreUser"]);
+        Route::post('/categories', [CategoryController::class, 'store']);
+
+    });
+
 
 
 

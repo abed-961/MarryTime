@@ -11,7 +11,7 @@ class Category extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'descripiton',
+        'description',
     ];
     // ✅ A category can be linked to many vendor services
     public function vendorServices()
