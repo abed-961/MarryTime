@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\DTO\Response;
+use App\Http\Requests\EditVendorRequest;
 use App\Models\Appointment;
 use App\Models\SuggestAppointment;
 use App\Models\User;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Validation\Rule;
@@ -120,5 +122,19 @@ class AdminController extends Controller
         $user->restore();
         return Response::success('user restored successfully');
 
+    }
+
+    public function getAllVendors()
+    {
+        $user = User::all();
+        $user->load('vendor');
+        return Response::to_json($user);
+    }
+
+    public function editVendor(EditVendorRequest $request, Vendor $vendor)
+    {
+        $data = $request->validated();
+        $vendor->update($data);
+        return Response::success('vendor updated succefully');
     }
 }

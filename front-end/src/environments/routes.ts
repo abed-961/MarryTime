@@ -1,3 +1,5 @@
+
+
 export const route = {
   home: '',
   register: 'user/register',
@@ -14,4 +16,6 @@ export const route = {
   suggest_appointment: 'user/admin/suggest/appointment',
   manageUser: 'user/admin/manageUser',
   insertCategory: 'user/admin/insertCategory',
+  vendorsPage: 'user/admin/vendors',
+  goToVendor: 'user/admin/show/:id/vendor',
 };

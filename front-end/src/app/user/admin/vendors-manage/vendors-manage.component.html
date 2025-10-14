@@ -1,0 +1,37 @@
+<div class="vendors-list">
+    <h2>Vendors</h2>
+    <div *ngIf="loading">Loading vendors...</div>
+    <table *ngIf="vendors.length > 0" border="1" class="vendors-table">
+        <thead>
+            <tr class="vendor-row">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Company Name</th>
+                <th>Location</th>
+                <th>Price Range</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(vendor of vendors;track vendor){
+            <tr (click)="goToVendor(vendor)" style="cursor:pointer;" class="vendor-row">
+
+                <td>{{ vendor.id }}</td>
+                <td>{{vendor.name}}</td>
+                <td>{{vendor.phone}}/td>
+                <td>{{vendor.email}}</td>
+                <ng-container *ngIf="vendor.vendor;else notSettingUp">
+                    <td>{{ vendor.vendor.company_name }}</td>
+                    <td>{{ vendor.vendor.location }}</td>
+                    <td>{{ vendor.vendor.price_range }}</td>
+                </ng-container>
+                <ng-template #notSettingUp>
+                    <td colspan="3"><button (click)="goToVendor(vendor)" class="btn btn-success align-center">Setting up
+                            Vendor</button></td>
+                </ng-template>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

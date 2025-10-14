@@ -54,6 +54,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 
+
+
     //notification 
     Route::get('/notifications', [NotificationController::class, 'index']);
     Route::post('/notifications/{notification}/read', [NotificationController::class, 'markRead']);
@@ -74,6 +76,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post("/admin/{user}/delete", [AdminController::class, "DeleteUser"]);
         Route::post("/user/restore", [AdminController::class, "restoreUser"]);
         Route::post('/categories', [CategoryController::class, 'store']);
+        Route::get("/admin/vendorsAll" , [AdminController::class , "getAllVendors"]);
+        Route::post("/vendor/{vendor}/edit" , [AdminController::class , "editVendor"]);
 
     });
 

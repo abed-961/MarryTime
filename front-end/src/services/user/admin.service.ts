@@ -62,4 +62,16 @@ export class AdminService {
       withCredentials: true,
     });
   }
+
+  getVendors(): Observable<any> {
+    return this.http.get(`${this.api}/api/admin/vendorsAll`, {
+      withCredentials: true,
+    });
+  }
+
+  editVendors(id: number, vendorData: any) {
+    return this.http.post(`${this.api}/api/vendor/${id}/edit`, vendorData, {
+      withCredentials: true,
+    });
+  }
 }
