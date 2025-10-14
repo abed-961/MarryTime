@@ -67,9 +67,7 @@ export class AppComponent {
       },
 
       error: () => {
-        console.log(route.register, url);
         if (!guestUrls.includes(url)) {
-          console.log(url == `/${route.register}`);
           this.router.navigate(['user/login']);
         }
       },
