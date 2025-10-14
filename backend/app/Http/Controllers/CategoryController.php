@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DTO\Response;
+use App\Http\Requests\InsertCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -21,5 +22,14 @@ class CategoryController extends Controller
 
 
         return Response::to_json($categories);
+    }
+    public function store(InsertCategoryRequest $request)
+    {
+        $validated = $request->validated();
+
+
+        $category = Category::create($validated);
+
+        return Response::success('category inserted succefully', 201);
     }
 }

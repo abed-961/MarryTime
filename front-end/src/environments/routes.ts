@@ -12,5 +12,6 @@ export const route = {
   //admin section
   admin: 'user/admin',
   suggest_appointment: 'user/admin/suggest/appointment',
-  manageUser : 'user/admin/manageUser',
+  manageUser: 'user/admin/manageUser',
+  insertCategory: 'user/admin/insertCategory',
 };

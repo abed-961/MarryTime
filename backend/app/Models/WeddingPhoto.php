@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class WeddingPhoto extends Model
 {
-    //
+    protected $fillable = [
+        'photo',
+    ];
 }

@@ -56,4 +56,10 @@ export class AdminService {
       { withCredentials: true }
     );
   }
+
+  addCategory(data: any): Observable<any> {
+    return this.http.post(`${this.api}/api/categories`, data, {
+      withCredentials: true,
+    });
+  }
 }

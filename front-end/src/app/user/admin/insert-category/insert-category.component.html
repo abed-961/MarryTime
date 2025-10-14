@@ -1,0 +1,31 @@
+<div class="category-form-container">
+    <h2>Add New Category</h2>
+
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Category Name</label>
+            <input id="name" formControlName="name" type="text" placeholder="Enter name" />
+            <div *ngIf="categoryForm.get('name')?.touched && categoryForm.get('name')?.invalid" class="error">
+                Name is required
+            </div>
+            <div *ngIf="categoryForm.get('name')?.hasError('server')" class="error">
+                {{categoryForm.get('name')?.getError('server')}}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" formControlName="description" placeholder="Enter description"></textarea>
+        </div>
+        <div *ngIf="categoryForm.get('description')?.touched && categoryForm.get('description')?.invalid" class="error">
+            description required
+        </div>
+        <div *ngIf="categoryForm.get('description')?.hasError('server')" class="error">
+            {{categoryForm.get('description')?.getError('server')}}
+        </div>
+
+        <button type="submit" [disabled]="loading">Add Category</button>
+    </form>
+
+    <p class="message" *ngIf="message">{{ message }}</p>
+</div>

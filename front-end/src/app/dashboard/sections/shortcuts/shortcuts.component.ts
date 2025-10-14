@@ -148,7 +148,5 @@ export class ShortcutsComponent implements OnInit, AfterViewInit {
     return btn.restrict.includes(this.user.role);
   }
 
-  newPath(path: any) {
-    this.router.navigate([`/${path}`]);
-  }
+  
 }

@@ -31,5 +31,6 @@ class Kernel extends HttpKernel
 
     protected $middlewareAliases = [
         'cors' => \Illuminate\Http\Middleware\HandleCors::class,
+        'role' => \App\Http\Middleware\CheckRole::class,
     ];
 }
