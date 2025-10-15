@@ -30,17 +30,16 @@
 }
 
 .vendor-card {
-  background-color: #fff;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease,
     background-color 3s ease;
+  background-color: var(--light-purple-subtle);
 }
 
 .vendor-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .vendor-card h3 {
@@ -84,13 +83,10 @@
   object-fit: contain;
 }
 
-.vendor-grid:hover .vendor-card {
-  background-color: var(--light-grey2);
-}
-
 .vendor-card:hover {
   background-color: var(--white) !important;
 }
+
 /* Responsive for smaller screens */
 @media (max-width: 1024px) {
   .vendor-grid {

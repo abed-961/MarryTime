@@ -1,20 +1,23 @@
 .blur {
   border: 1px solid black;
-  width: 600px;
+  min-width: 300px;
   margin: 20px auto;
-  background-color: white;
+  background-color: var(--purple);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 10px;
 }
 
+* {
+  font-size: 1.4rem;
+}
 .height {
   height: 50vh;
 }
 
 .child {
   width: 100%;
-  background-color: rgba(52, 58, 64, 0.633);
+  background-color: var(--light-purple-subtle);
   border-radius: 10px;
   height: 100%;
 }
@@ -23,6 +26,7 @@
   position: relative;
   margin-bottom: 1rem;
 }
+
 
 .password-wrapper {
   position: relative;
@@ -38,7 +42,6 @@
   top: 50%;
   right: 0.5rem;
   transform: translateY(-50%);
-  width: 24px; /* adjust size */
   height: 24px;
   cursor: pointer;
 }

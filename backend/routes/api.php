@@ -31,7 +31,7 @@ Route::prefix('/user')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get("/getVendorId", [VendorsController::class, "getVendorId"]);
+    Route::get("/getVendorId", [VendorsController::class, "getVendorId"])->middleware('role:vendor');
     Route::get("/vendor-tasks", [VendorsController::class, 'loadTasks']);
     Route::post("/{vendor}/vendor-tasks", [VendorsController::class, 'addTask']);
     Route::get("/vendor/filter", [VendorsController::class, 'vendorTaskFilter']);
@@ -76,8 +76,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post("/admin/{user}/delete", [AdminController::class, "DeleteUser"]);
         Route::post("/user/restore", [AdminController::class, "restoreUser"]);
         Route::post('/categories', [CategoryController::class, 'store']);
-        Route::get("/admin/vendorsAll" , [AdminController::class , "getAllVendors"]);
-        Route::post("/vendor/{vendor}/edit" , [AdminController::class , "editVendor"]);
+        Route::get("/admin/vendorsAll", [AdminController::class, "getAllVendors"]);
+        Route::post("/vendor/{vendor}/edit", [AdminController::class, "editVendor"]);
 
     });
 

@@ -6,9 +6,9 @@
         <nav class="sidebar-nav">
             <a [routerLink]="route.home" *ngIf="currenUrl !== '/'" routerLinkActive="active">Dashboard</a>
             <a [routerLink]="route.admin" routerLinkActive="active"
-                    *ngIf="currenUrl != route.admin && user.role == 'admin'">admin
-                    Page </a>
-            
+                *ngIf="currenUrl != route.admin && user.role == 'admin'">admin
+                Page </a>
+
             <a (click)="scrollTo('profile-section')" routerLinkActive="active" *ngIf="currenUrl === '/'">Profile
             </a>
             <a [routerLink]="route.editProfile" routerLinkActive="active">Settings</a>
@@ -34,8 +34,9 @@
 
                             <div *ngIf="notifications.length; else noNotifications">
                                 <div class="notification-list">
-                                    <div class="notification-item unread" *ngFor="let n of notifications | slice:0:5"
-                                        [ngClass]="[n.type]" (click)="markAsRead(n)">
+                                    <div class="notification-item unread" style="z-index: 9000;"
+                                        *ngFor="let n of notifications | slice:0:5" [ngClass]="[n.type]"
+                                        (click)="markAsRead(n)">
                                         <p>{{ n.message }}</p>
                                         <small>{{ n.created_at | date:'short' }}</small>
                                         <span *ngIf="!n.readed_it" class="unread-dot"></span>

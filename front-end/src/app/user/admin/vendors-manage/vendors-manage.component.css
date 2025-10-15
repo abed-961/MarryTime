@@ -1,6 +1,6 @@
 .vendors-list {
+  background-color: var(--cream);
   padding: 1rem;
-  width: 80%;
   max-width: 100%;
   overflow-x: auto;
   font-family: Arial, sans-serif;
@@ -24,9 +24,15 @@
   padding: 0.75rem;
   text-align: left;
 }
-
+.vendor-row:nth-child(odd) {
+  background-color: var(--light-purple-subtle);
+}
+.vendor-row:nth-child(even) {
+  background-color: var(--light-purple);
+}
 .vendors-table th {
-  background-color: #f4f4f4;
+  background-color: var(--dark-purple);
+  color: var(--white);
   font-weight: 600;
 }
 

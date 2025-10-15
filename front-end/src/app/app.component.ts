@@ -63,7 +63,7 @@ export class AppComponent {
         } else if (user.role !== 'admin' && adminPages.includes(url1)) {
           this.router.navigate([route.home]);
         }
-        this.checkForFooter(url1);
+        // this.checkForFooter(url1);
       },
 
       error: () => {
@@ -75,18 +75,18 @@ export class AppComponent {
     this.cdr.detectChanges();
   }
 
-  checkForFooter(url: string) {
-    const fixedFooter = [
-      route.notification,
-      route.login,
-      route.client_appointments,
-      route.vendor_appointments,
-      route.suggest_appointment,
-    ];
-    if (fixedFooter.includes(url)) {
-      this.footerStyle = this.style;
-    } else {
-      this.footerStyle = { position: 'sticky', bottom: 0 };
-    }
-  }
+  // checkForFooter(url: string) {
+  //   const fixedFooter = [
+  //     route.notification,
+  //     route.login,
+  //     route.client_appointments,
+  //     route.vendor_appointments,
+  //     route.suggest_appointment,
+  //   ];
+  //   if (fixedFooter.includes(url)) {
+  //     this.footerStyle = this.style;
+  //   } else {
+  //     this.footerStyle = { position: 'sticky', bottom: 0 };
+  //   }
+  // }
 }

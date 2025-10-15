@@ -1,14 +1,25 @@
+* {
+  font-size: 1.4rem;
+}
 .vendor-appointments {
   padding: 2rem;
-  background: #fff;
+  width: 100%;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  overflow-x: scroll;
+}
+
+.vendor-appointments::-webkit-scrollbar {
+  scrollbar-width: var(--purple);
 }
 
 .appointments-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
+}
+
+.appointments-table:nth-child(even) {
+  background-color: var(--light-purple);
 }
 
 .appointments-table th,
@@ -33,8 +44,8 @@
 .vendor-photo {
   width: 40px;
   height: 40px;
+  object-fit: contain;
   border-radius: 50%;
-  object-fit: cover;
   margin-right: 10px;
   border: 2px solid #ddd;
 }
@@ -80,4 +91,12 @@
 .vendor-title-btn-container {
   display: flex;
   justify-content: space-between;
+}
+
+.nested-vendors-table tbody tr:nth-child(even) {
+  background-color: var(--white1);
+}
+
+.nested-vendors-table tbody tr:nth-child(odd) {
+  background-color: var(--blue);
 }

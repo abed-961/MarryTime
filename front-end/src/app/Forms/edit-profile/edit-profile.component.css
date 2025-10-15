@@ -1,10 +1,14 @@
 .edit-profile-container {
-  max-width: 600px;
   margin: 40px auto;
-  background: #eee;
+  min-width: 400px;
+  background: var(--light-purple-subtle);
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  font-size: 1.4rem;
 }
 
 .edit-profile-container h2 {

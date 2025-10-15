@@ -16,7 +16,7 @@
         <input type="text" placeholder="Task description..." formControlName="description">
         <small class="text-danger"
             *ngIf="formTask.get('description')?.hasError('required') || formTask.get('description')?.hasError('minlength')">
-            description is required and must be at least 2 characters.
+            description is required and must be at least 10 characters.
         </small>
 
         <small class="text-danger" *ngIf="formTask.get('description')?.hasError('server')">
@@ -33,7 +33,7 @@
     </form>
 
 
-    <div class="task-container">
+    <div class="task-container task-list">
         <h2>Vendor To-Do List</h2>
 
         <!-- Filter select -->
@@ -45,7 +45,7 @@
             <option value="completed">Completed</option>
         </select>
 
-        <ul>
+        <ul task-list>
             <ng-container *ngIf="tasks$ | async as tasks; else noTasks">
                 <li *ngFor="let task of tasks" [ngClass]="task.status">
                     <div class="task-info">

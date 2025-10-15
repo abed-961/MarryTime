@@ -1,52 +1,53 @@
-<!-- ***** wedding pictures  Area Starts ***** -->
-<section class="section" id="men">
-    <app-wedding-pictures></app-wedding-pictures>
-</section>
+<div class="main-content">
+    <!-- ***** wedding pictures  Area Starts ***** -->
+    <section id="men">
+        <app-wedding-pictures></app-wedding-pictures>
+    </section>
 
-<!-- ***** Kids Area Starts ***** -->
-<section class="section" *ngIf="user$ | async as user">
-    <app-shortcuts [user]="user"></app-shortcuts>
-</section>
-<!-- ***** Kids Area Ends ***** -->
+    <!-- ***** Kids Area Starts ***** -->
+    <section *ngIf="user$ | async as user">
+        <app-shortcuts [user]="user"></app-shortcuts>
+    </section>
+    <!-- ***** Kids Area Ends ***** -->
 
-<!-- ***** wedding pictures  Area Ends ***** -->
-<section class="section" id='profile-section'>
-    <h1 style="text-align: center;">Profile info </h1>
-    <app-user-profile-view *ngIf="user$ | async as user"></app-user-profile-view>
-</section>
-
-
-<!-- ***** vendor task Area Starts ***** -->
-<section class="section" id="women" *ngIf="user$ | async as user">
-    <app-tasks-board *ngIf="user.role === 'vendor'"></app-tasks-board>
-</section>
-<!-- ***** vendor task Area Ends ***** -->
+    <!-- ***** wedding pictures  Area Ends ***** -->
+    <section id='profile-section'>
+        <h1 style="text-align: center;">Profile info </h1>
+        <app-user-profile-view *ngIf="user$ | async as user"></app-user-profile-view>
+    </section>
 
 
+    <!-- ***** vendor task Area Starts ***** -->
+    <section *ngIf="user$ | async as user">
+        <app-tasks-board *ngIf="user.role === 'vendor'"></app-tasks-board>
+    </section>
+    <!-- ***** vendor task Area Ends ***** -->
 
-<!-- ***** Social Area Starts ***** -->
-<app-review *ngIf="user$ | async as user"></app-review>
-<!-- ***** Social Area Ends ***** -->
 
-<!-- ***** Suggest Appointment Area Starts ***** -->
-<section class="section">
-    <h2 style="padding : 20px ; margin : 10px; text-align: center;">Suggest Appointment </h2>
-    <div class="carousel-wrapper" *ngIf="appointments$ | async as appointments">
-        <button class="prev" (click)="prev()">&#10094;</button>
-        <div class="carousel-container" #carousel>
-            <app-suggesting-appointment *ngFor="let a of appointments; let i = index" [appointment]="a"
-                class="carousel-card" [id]="'card' + i">
-            </app-suggesting-appointment>
+
+    <!-- ***** Social Area Starts ***** -->
+    <section class="flex-center w-100 p-20">
+        <app-review *ngIf="user$ | async as user"></app-review>
+    </section>
+    <!-- ***** Social Area Ends ***** -->
+
+    <!-- ***** Suggest Appointment Area Starts ***** -->
+    <section>
+        <h2 style="padding : 20px ;  text-align: center;">Suggest Appointment </h2>
+        <div class="carousel-wrapper" *ngIf="appointments$ | async as appointments">
+            <button class="prev" (click)="prev()">&#10094;</button>
+            <div class="carousel-container" #carousel>
+                <app-suggesting-appointment class="suggest-appointment" *ngFor="let a of appointments; let i = index"
+                    [appointment]="a" class="carousel-card" [id]="'card' + i">
+                </app-suggesting-appointment>
+            </div>
+            <button class="next" (click)="next()">&#10095;</button>
         </div>
-        <button class="next" (click)="next()">&#10095;</button>
-    </div>
+    </section>
+    <!-- ***** Suggest Appointment Area Ends ***** -->
 
 
-</section>
-<!-- ***** Suggest Appointment Area Ends ***** -->
-
-
-<section class="section">
-    <app-personalized></app-personalized>
-
-</section>
+    <section>
+        <app-personalized></app-personalized>
+    </section>
+</div>
