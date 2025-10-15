@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\DTO\Response;
 use App\Models\Notification;
+use App\Models\User;
+use App\Notifications\GlobalNotification;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification as NotificationsNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification as FacadesNotification;
 
 class NotificationController extends Controller
 {
@@ -34,9 +38,32 @@ class NotificationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public static function create($user = null, $message, $type)
     {
-        //
+        if (!empty($user)) {
+            $notification = [
+                'user_id' => $user->id,
+                'type' => $type,
+                'message' => $message,
+                'readed_it' => false,
+            ];
+            Notification::create($notification);
+
+        } else {
+            $users = User::all();
+            foreach ($users as $u) {
+                $notifications[] = [
+                    'user_id' => $u->id,
+                    'type' => $type,
+                    'message' => $message,
+                    'readed_it' => false,
+
+                ];
+            }
+            Notification::insert($notifications);
+        }
+
+
     }
 
     /**

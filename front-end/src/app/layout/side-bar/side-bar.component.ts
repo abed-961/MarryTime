@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, NgZone } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { Notification } from '../../../interfaces/notification';
 import { CommonModule } from '@angular/common';
@@ -23,11 +23,13 @@ export class SideBarComponent {
 
   constructor(
     private notificationService: NotificationService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private ngZone: NgZone
   ) {}
 
   ngOnInit() {
     this.loadNotifications();
+    this.notificationInterval();
   }
 
   async loadNotifications() {
@@ -35,6 +37,7 @@ export class SideBarComponent {
     this.notifications$.subscribe((notifications) => {
       this.takeUnreadMessage(notifications);
     });
+    this.cdr.detectChanges();
   }
 
   markAsRead(notification: Notification) {
@@ -61,5 +64,12 @@ export class SideBarComponent {
     this.notifications = notifications.filter(
       (notification) => !notification.readed_it
     );
+  }
+  notificationInterval() {
+    const notifcationInterval = this.ngZone.runOutsideAngular(() => {
+      setInterval(() => {
+        this.loadNotifications();
+      }, 8000);
+    });
   }
 }

@@ -22,7 +22,9 @@ class UserController extends Controller
         $user = User::create($validated);
         Auth::login($user);
         $user->createToken('user-token')->plainTextToken;
+        NotificationController::create($user, 'welcome to Marry Time Website ' . $user->name, 'success');
         return Response::success('user created succefully');
+
     }
 
 
@@ -38,6 +40,7 @@ class UserController extends Controller
         $user = Auth::user();
         // Create API token
         $user->createToken('user-token')->plainTextToken;
+        NotificationController::create($user, 'welcome back ' . $user->name, 'success');
 
         return Response::success('Logged in successfully');
     }
@@ -55,6 +58,7 @@ class UserController extends Controller
 
         // Delete all tokens for this user (logout from all devices)
         $user->tokens()->delete();
+        NotificationController::create($user, 'you logged out at ' . now(), 'info');
 
         return Response::success('Logged out successfully');
     }
@@ -94,6 +98,8 @@ class UserController extends Controller
         }
 
         $user->save();
+        NotificationController::create($user, 'you changed your information at' . now(), 'wraning');
+
         return Response::success('user edited succefully');
     }
 

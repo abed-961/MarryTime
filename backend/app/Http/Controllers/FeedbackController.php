@@ -69,6 +69,7 @@ class FeedbackController extends Controller
 
         // Create the feedback
         $feedback = Review::create($validated);
+        NotificationController::create($vendor->id, 'new review on you ' . $vendor->user->name, 'success');
 
         return response()->json([
             'message' => 'Feedback submitted successfully',
