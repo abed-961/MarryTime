@@ -1,12 +1,11 @@
 .register-form {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
-  color: white;
+  background-color: var(--purple);
+  min-width: 300px;
+
+}
+
+* {
+  font-size: 1.4rem;
 }
 
 .register-form h2 {
@@ -29,7 +28,6 @@
 .register-form .form-group label {
   margin-bottom: 5px;
   font-weight: 600;
-  color: #555;
 }
 
 .register-form .form-group input,
@@ -67,12 +65,14 @@
 .register-form button:hover {
   background-color: #0056b3;
 }
+* {
+  font-size: 1.4rem;
+}
 
 .blur {
   border: 1px solid black;
-  width: 600px;
   margin: 20px auto;
-  background-color: white;
+  background-color: var(--purple);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 10px;
@@ -80,7 +80,7 @@
 
 .child {
   width: 100%;
-  background-color: rgba(52, 58, 64, 0.633);
+  background-color: var(--light-purple-subtle);
   border-radius: 10px;
   color: inherit;
   padding: 15px;
@@ -108,4 +108,8 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
+}
+
+.select {
+  height: 40px;
 }

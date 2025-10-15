@@ -29,9 +29,6 @@ class VendorsController extends Controller
     public function getVendorId(Request $request)
     {
         $user = $request->user();
-        if ($user->role !== 'vendor') {
-            return Response::failure('you are not a vendor ');
-        }
         $vendorId = $user->vendor->id;
         return Response::to_json($vendorId);
     }

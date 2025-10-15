@@ -1,5 +1,5 @@
 <!-- ***** Vendor Task Area Starts ***** -->
-<section class="section" id="vendor-tasks">
+<section class="section p-20" id="vendor-tasks">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -10,9 +10,9 @@
             </div>
         </div>
 
-        <div class="row task-grid-row">
-            <div class="col-lg-8">
-                <div class="task-grid">
+        <div class=" task-grid-row">
+            <div class="w-100">
+                <div class="task-grid w-100">
                     <ng-container *ngIf="tasks$ | async as tasks">
                         @for(task of tasks | slice:0:4; track $index ){
                         <div class="task-square" [routerLink]="route.vendorTasks">

@@ -1,4 +1,4 @@
-<h2 class="title" style="padding : 20px ; margin : 10px">Shortcuts events</h2>
+<h2 class="title" style="padding : 20px ;">Shortcuts events</h2>
 <div class="scroll-buttons" #buttonsContainer>
     <ng-container *ngFor="let btn of buttons ; track $index">
         <button class="action-btn" (click)="btn.action ? btn.action() : unvailable()" *ngIf="canAccess(btn)">

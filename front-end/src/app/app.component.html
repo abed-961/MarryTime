@@ -1,13 +1,13 @@
-<div class="grid-view">
+<div class="dashboard-layout">
     <ng-container *ngIf="user$ |async as user ; else headerNotLoggedIn">
 
-        <app-header [user]="user" [currentUrl]="currentUrl"></app-header>
-        <app-side-bar [user]="user" [currenUrl]="currentUrl"></app-side-bar>
+        <app-header class="header" [user]="user" [currentUrl]="currentUrl"></app-header>
+        <app-side-bar class="sidebar" [user]="user" [currenUrl]="currentUrl"></app-side-bar>
     </ng-container>
 
     <ng-template #headerNotLoggedIn>
-        <app-header [currentUrl]="currentUrl"></app-header>
-        <app-side-bar [currenUrl]="currentUrl"></app-side-bar>
+        <app-header class="header" [currentUrl]="currentUrl"></app-header>
+        <app-side-bar class="sidebar" [currenUrl]="currentUrl"></app-side-bar>
     </ng-template>
 
 
@@ -17,14 +17,15 @@
     </main>
 
 
-    <app-alert></app-alert>
-    <section class="section w-90">
-        <ng-container *ngIf="user$ | async as user; else footerNotLoggedIn">
-            <app-footer [user]="user" [currentUrl]="currentUrl" [style]="footerStyle"></app-footer>
-        </ng-container>
 
-        <ng-template #footerNotLoggedIn>
-            <app-footer [currentUrl]="currentUrl"></app-footer>
-        </ng-template>
-    </section>
+
+    <ng-container *ngIf="user$ | async as user; else footerNotLoggedIn">
+        <app-footer class="footer" [user]="user" [currentUrl]="currentUrl" [style]="footerStyle"></app-footer>
+    </ng-container>
+
+    <ng-template #footerNotLoggedIn>
+        <app-footer class="footer" [currentUrl]="currentUrl"></app-footer>
+    </ng-template>
+
 </div>
+<app-alert></app-alert>

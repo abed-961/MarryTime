@@ -1,9 +1,8 @@
 /* === User Profile Section === */
 .user-profile-section {
-  background: #ddd;
   padding: 50px 0;
   font-family: "Poppins", sans-serif;
-  color: #333;
+
   border-bottom: 3px dotted #eee;
 }
 
@@ -18,7 +17,7 @@
 
 /* Profile info cards */
 .profile-card {
-  background: #f8f9fa;
+  background: var(--light-purple-subtle);
   padding: 20px;
   border-radius: 12px;
   text-align: center;
@@ -30,12 +29,11 @@
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 8px;
-  color: #222;
+  color: var(--white);
 }
 
 .profile-card span {
-  font-size: 14px;
-  color: #666;
+  font-size: 1.2rem;
 }
 
 /* Buttons */
@@ -53,7 +51,7 @@
 
 .profile-button a:hover {
   background: #ff6f61;
-  color: #fff;
+  color: var(--white1);
 }
 
 /* Profile images */
@@ -66,6 +64,7 @@
 .profile-thumb img {
   width: 100%;
   border-radius: 12px;
+  background-color: var(--cream);
   transition: transform 0.4s ease;
 }
 
@@ -110,7 +109,6 @@
   width: 100%;
   padding: 10px;
   border-radius: 30%;
-  background-color: #eee;
 }
 .photo {
   width: 70px;
@@ -119,7 +117,7 @@
   aspect-ratio: 16/9;
 }
 .block {
-  background-color: #eee;
+  background-color: var( --light-grey0);
   margin-top: 20px;
   border-radius: 10px;
 }

@@ -3,12 +3,14 @@
   margin: 2rem auto;
   color: white;
   padding: 2rem;
-  background-color: var(--grey);
+  background-color: var(--light-purple-subtle);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-family: "Inter", system-ui, Arial, sans-serif;
 }
-
+* {
+  font-size: 1.4rem;
+}
 .form-group {
   margin-bottom: 1.2rem;
   display: flex;

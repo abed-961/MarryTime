@@ -7,11 +7,11 @@
   white-space: nowrap;
   flex-wrap: nowrap;
   gap: 10px;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
-  background-color: var(--white);
   scroll-behavior: smooth;
   overflow-x: scroll;
+  background-color: var(--cream);
 }
 
 .scroll-buttons::-webkit-scrollbar {
@@ -29,7 +29,7 @@
 
 .action-btn {
   width: 200px;
-  background-color: #007bff;
+  background-color: var(--blue);
   color: var(--white);
   border: none;
   border-radius: 8px;

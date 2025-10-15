@@ -2,17 +2,20 @@
   padding: 20px;
   font-size: 1.3em;
 }
+.section {
+  background-color: var(--cream);
+}
 
 .admin-sidebar {
   list-style: none;
   padding: 5px;
   margin: 0;
-  border: 1px solid var(--light-grey1);
+  border: 1px solid var(--grey);
   border-radius: 5px;
 }
 
 .admin-sidebar li:nth-child(even) {
-  background-color: var(--light-grey1);
+  background-color: var(--light-purple-subtle);
 }
 
 .admin-sidebar li {

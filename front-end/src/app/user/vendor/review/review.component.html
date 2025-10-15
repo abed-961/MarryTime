@@ -1,4 +1,4 @@
-<section class="recent-feedback section">
+<section class="recent-feedback section main-width m-center">
     <h2>Recent Feedback</h2>
 
     <div *ngIf="loading" class="loading">Loading...</div>
@@ -16,9 +16,10 @@
             <p class="comment">"{{ fb.comment }}"</p>
             <small>{{ fb.created_at | date: 'short' }}</small>
         </div>
-
-        <a class="view-more-btn" (click)="go()" *ngIf="show"> View All
-            Feedbacks</a>
+        <div class="m-center">
+            <a class="view-more-btn btn btn-main" (click)="go()" *ngIf="show"> View All
+                Feedbacks</a>
+        </div>
     </div>
 
     <ng-template #noFeedback>

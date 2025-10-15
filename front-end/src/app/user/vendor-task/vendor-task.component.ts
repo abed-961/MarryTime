@@ -46,6 +46,7 @@ export class VendorTaskComponent implements OnInit {
   loadTasks() {
     this.vs.getVendorId().subscribe((res: any) => {
       this.vendorId = res;
+      console.log(res);
     });
     this.tasks$ = this.vs.loadTasks();
     this.cdr.detectChanges();
@@ -67,9 +68,7 @@ export class VendorTaskComponent implements OnInit {
           this.loadTasks();
         },
       });
-    } else {
-      console.log('invalid', this.formTask.value);
-    }
+    } 
   }
 
   handleErrors(err: any) {

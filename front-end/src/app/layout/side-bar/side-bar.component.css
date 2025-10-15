@@ -1,26 +1,17 @@
-.sidebar-container-main {
-  position: absolute;
-  height: 100vh;
-  right: 0;
-  top: 0;
-}
-
 /* Container layout */
 .sidebar-container {
-  position: fixed;
-  top: 0;
-  right: 0;
   display: flex;
+  position: sticky;
+  top: 0;
   height: 100vh;
   font-family: Arial, sans-serif;
-  font-size: 1.4em;
+  font-size: 1.4rem;
 }
 
 /* Sidebar */
 .sidebar {
   right: 0;
-  width: 180px;
-  background-color: var(--grey); /* dark gray */
+  width: 100%;
   color: white;
   display: flex;
   flex-direction: column;
@@ -230,10 +221,4 @@
   height: 10px;
   background-color: red;
   border-radius: 50%;
-}
-
-@media (max-width: 900px) {
-  .sidebar {
-    width: 180px;
-  }
 }

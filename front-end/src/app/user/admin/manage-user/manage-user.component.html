@@ -1,30 +1,30 @@
-<h2>Users List</h2>
+<div class="section h-100">
+    <div *ngIf=" loading" class="section">Loading users...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <h2 class="section">Users List</h2>
+    <div class="table-container section">
+        <div class="custom-select-wrapper">
+            <label for="userRole">Select Role:</label>
+            <select id="userRole" class="custom-select" (change)="fetchUsers($event)">
+                <option value="" selected>All</option>
+                <option value="Deleted">Deleted</option>
+                <option value="Available">Available</option>
+            </select>
+        </div>
 
-<div *ngIf=" loading">Loading users...</div>
-<div *ngIf="error" class="error">{{ error }}</div>
-<div class="table-container">
-    <div class="custom-select-wrapper">
-        <label for="userRole">Select Role:</label>
-        <select id="userRole" class="custom-select" (change)="fetchUsers($event)">
-            <option value="" selected>All</option>
-            <option value="Deleted">Deleted</option>
-            <option value="Available">Available</option>
-        </select>
-    </div>
-
-    <table *ngIf="users.length > 0" border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Created At</th>
-                <th>action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users">
-                <ng-container *ngIf="user.role !== 'admin'">
+        <table *ngIf="users.length > 0" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Created At</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for( user of users;track user){
+                <tr *ngIf="user.role !== 'admin'">
                     <td>{{ user.id }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
@@ -39,8 +39,10 @@
                         <button class="btn btn-success" (click)="Restore(user.id)">Restore </button>
                         }
                     </td>
-                </ng-container>
-            </tr>
-        </tbody>
-    </table>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
 </div>

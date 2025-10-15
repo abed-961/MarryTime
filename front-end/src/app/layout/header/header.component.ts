@@ -24,7 +24,9 @@ export class HeaderComponent {
   private us = inject(UserServicesService);
   private router = inject(Router);
 
+  toggle = true;
   toggleMenu() {
+    this.toggle = !this.toggle;
     this.menuOpen = !this.menuOpen;
   }
 

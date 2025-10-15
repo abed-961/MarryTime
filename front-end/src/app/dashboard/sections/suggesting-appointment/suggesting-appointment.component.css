@@ -1,6 +1,6 @@
 .appointment-card {
-  background: #fff;
-  border-radius: 1rem;
+  background: var(--light-purple);
+  border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
   margin: 1rem 0;
