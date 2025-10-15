@@ -10,7 +10,6 @@ import { UserFullDetails } from '../interfaces/user_full_details_interface';
 import { SideBarComponent } from './layout/side-bar/side-bar.component';
 import { route } from '../environments/routes';
 
-
 @Component({
   selector: 'app-root',
   imports: [
@@ -39,9 +38,7 @@ export class AppComponent {
   constructor(
     private us: UserServicesService,
     private router: Router,
-    private cdr: ChangeDetectorRef,
-
-
+    private cdr: ChangeDetectorRef
   ) {
     router.events.subscribe((route) => {
       if (route instanceof NavigationEnd) {
@@ -55,7 +52,6 @@ export class AppComponent {
     const url1 = url.slice(1);
     const vendorUrls = [route.vendorTasks, route.vendor_appointments];
     const guestUrls = [route.login, `/${route.register}`, route.home];
-    const adminPages = [route.admin];
     this.user$ = await this.us.getUser();
     this.user$.subscribe({
       next: (user) => {
@@ -63,10 +59,9 @@ export class AppComponent {
           this.router.navigate([route.home]);
         } else if (user.role == 'vendor' && url1 == route.client_appointments) {
           this.router.navigate([route.vendor_appointments]);
-        } else if (user.role !== 'admin' && adminPages.includes(url1)) {
+        } else if (user.role !== 'admin' && this.checkAdminRoutes(url1)) {
           this.router.navigate([route.home]);
         }
-        // this.checkForFooter(url1);
       },
 
       error: () => {
@@ -78,5 +73,16 @@ export class AppComponent {
     this.cdr.detectChanges();
   }
 
-  
+  checkAdminRoutes(curr: string) {
+    const url = [
+      route.admin,
+      route.suggest_appointment,
+      route.manageUser,
+      route.insertCategory,
+      route.vendorsPage,
+      route.goToVendor,
+      route.uploadPhotos,
+    ];
+    return url.includes(curr);
+  }
 }

@@ -11,6 +11,7 @@ import { UserServicesService } from '../../../services/user/user-services.servic
 import { AlertService } from '../../../services/alert/alert.service';
 import { Router } from '@angular/router';
 import { stat } from 'fs';
+import { route } from '../../../environments/routes';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +21,7 @@ import { stat } from 'fs';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  route = route;
   roles: string[] = ['client', 'vendor'];
 
   constructor(
@@ -34,7 +36,7 @@ export class RegisterComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       role: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.pattern('^[0-9]{8,15}$')]],
+      phone: ['', [Validators.required]],
     });
   }
   passwordVisible = false;
@@ -53,8 +55,10 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this.us.register(this.registerForm).subscribe({
         next: (res: any) => {
-          this.handleRegister(res.description, 'success');
-          this.router.navigate(['/']);
+          if (res.status) {
+            this.handleRegister(res.description, 'success');
+            this.router.navigate([`/${route.home}`]);
+          }
         },
         error: (err: any) => {
           this.handleErrors(err);

@@ -72,7 +72,7 @@
                                 *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid">
                                 <small *ngIf="registerForm.get('phone')?.errors?.['required']">Phone number is
                                     required.</small>
-                                <small *ngIf="registerForm.get('phone')?.errors?.['pattern']">Phone must be 10–15
+                                <small *ngIf="registerForm.get('phone')?.errors?.['pattern']">Phone must be 8–15
                                     digits.</small>
                                 @if(registerForm.get('phone')?.hasError('server')){
                                 <small class="text-danger">{{registerForm.get('phone')?.getError('server')}}</small>
