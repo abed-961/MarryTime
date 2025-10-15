@@ -74,4 +74,10 @@ export class AdminService {
       withCredentials: true,
     });
   }
+
+  uploadPhoto(data: any) {
+    return this.http.post(`${this.api}/api/user/wedding-photo/upload`, data, {
+      withCredentials: true,
+    });
+  }
 }

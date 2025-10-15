@@ -18,6 +18,7 @@ import { ManageUserComponent } from './user/admin/manage-user/manage-user.compon
 import { InsertCategoryComponent } from './user/admin/insert-category/insert-category.component';
 import { VendorsManageComponent } from './user/admin/vendors-manage/vendors-manage.component';
 import { EditInfoComponent } from './user/admin/vendorsManage/edit-info/edit-info.component';
+import { SuggestWeddingPhotoComponent } from './user/admin/forms/suggest-wedding-photo/suggest-wedding-photo.component';
 export const routes: Routes = [
   { path: route.home, component: ComponentComponent },
   { path: route.register, component: RegisterComponent },
@@ -39,6 +40,8 @@ export const routes: Routes = [
   { path: route.insertCategory, component: InsertCategoryComponent },
   { path: route.vendorsPage, component: VendorsManageComponent },
   { path: route.goToVendor, component: EditInfoComponent },
+  { path: route.uploadPhotos, component: SuggestWeddingPhotoComponent },
+
 
   //404 not found page
   { path: '**', component: NotFoundComponent },
