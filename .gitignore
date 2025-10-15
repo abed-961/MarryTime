@@ -21,7 +21,6 @@ lerna-debug.log*
 /backend/public/storage
 /backend/public/hot
 /backend/storage/*.key
-/backend/.env
 /backend/.env.example
 /backend/Homestead.yaml
 /backend/Homestead.json
