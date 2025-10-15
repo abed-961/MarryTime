@@ -39,6 +39,7 @@ class VendorsController extends Controller
         $data['vendor_id'] = $vendor->id;
 
         VendorTask::create($data);
+        NotificationController::create($vendor, 'new task added ', 'info');
 
         return Response::success('task added ');
     }
@@ -84,6 +85,7 @@ class VendorsController extends Controller
         $task->status = $request->input('status');
         $task->save();
 
+
         return Response::success('task updated');
     }
 
@@ -99,6 +101,8 @@ class VendorsController extends Controller
             return Response::failure('Unauthorized', 404);
         }
         $task->delete();
+        NotificationController::create($user, 'one task deleted at ' . now(), 'warning');
+
         return Response::success('Task deleted successfully');
     }
 

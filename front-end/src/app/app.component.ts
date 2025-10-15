@@ -10,6 +10,7 @@ import { UserFullDetails } from '../interfaces/user_full_details_interface';
 import { SideBarComponent } from './layout/side-bar/side-bar.component';
 import { route } from '../environments/routes';
 
+
 @Component({
   selector: 'app-root',
   imports: [
@@ -38,7 +39,9 @@ export class AppComponent {
   constructor(
     private us: UserServicesService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+
+
   ) {
     router.events.subscribe((route) => {
       if (route instanceof NavigationEnd) {
@@ -75,18 +78,5 @@ export class AppComponent {
     this.cdr.detectChanges();
   }
 
-  // checkForFooter(url: string) {
-  //   const fixedFooter = [
-  //     route.notification,
-  //     route.login,
-  //     route.client_appointments,
-  //     route.vendor_appointments,
-  //     route.suggest_appointment,
-  //   ];
-  //   if (fixedFooter.includes(url)) {
-  //     this.footerStyle = this.style;
-  //   } else {
-  //     this.footerStyle = { position: 'sticky', bottom: 0 };
-  //   }
-  // }
+  
 }

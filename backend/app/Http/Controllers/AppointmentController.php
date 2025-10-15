@@ -31,13 +31,7 @@ class AppointmentController extends Controller
         return Response::to_json($appointments);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -53,32 +47,12 @@ class AppointmentController extends Controller
         $appointment = Appointment::create($validated);
 
         $appointment->vendors()->attach($validated['vendor_id']);
+        NotificationController::create(null, 'new appointment is set ', 'success');
+
         return Response::success($appointment);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+   
 
     /**
      * Remove the specified resource from storage.
@@ -90,18 +64,18 @@ class AppointmentController extends Controller
 
         // Optional: check if the user is client or vendor and owns this appointment
         if ($user->role === 'client' && $appointment->client_id !== $user->id) {
-            return Response::failure('Unauthorized1');
+            return Response::failure('Unauthorized');
         }
 
         if ($user->role === 'vendor') {
             $vendors_id = $appointment->vendors->pluck('id')->toArray();
             if (!in_array($user->vendor->id, $vendors_id))
-                return Response::failure('Unauthorized2');
+                return Response::failure('Unauthorized');
 
             $appointment->vendors()->detach($user->vendor->id);
             return Response::success('Appointment refused successfully');
         }
 
-        return Response::failure('Unauthorized3');
+        return Response::failure('Unauthorized');
     }
 }

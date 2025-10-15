@@ -26,9 +26,11 @@ class CategoryController extends Controller
     public function store(InsertCategoryRequest $request)
     {
         $validated = $request->validated();
+        $user = $request->user();
 
 
-        $category = Category::create($validated);
+        Category::create($validated);
+        NotificationController::create(null, 'new category inserted', 'success');
 
         return Response::success('category inserted succefully', 201);
     }

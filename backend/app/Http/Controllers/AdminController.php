@@ -49,6 +49,8 @@ class AdminController extends Controller
         }
 
         $user->save();
+        NotificationController::create($user, 'admin changed your role at ' . now(), 'success');
+
         return Response::success("user edited succefully");
     }
     public function getAppointments(Request $request)
@@ -62,8 +64,8 @@ class AdminController extends Controller
 
     public function insertSuggestAppointment(Request $request)
     {
-
-        if (!$this->admin($request->user())) {
+        $user = $request->user();
+        if (!$this->admin($user)) {
             return Response::failure('you are not admin', 500);
         }
 
@@ -73,6 +75,8 @@ class AdminController extends Controller
 
         $data['admin_id'] = $request->user()->id;
         SuggestAppointment::create($data);
+        NotificationController::create($user, 'you inserted new information at ' . now(), 'success');
+
         return Response::success('Suggest Inserted');
     }
 
@@ -103,12 +107,13 @@ class AdminController extends Controller
         if ($admin->role !== "admin") {
             return Response::failure('Unauthenticated');
         }
-
+        NotificationController::create($admin, 'you deleted user ' . $user->name . ' at ' . now(), 'error');
         $user->delete();
         return Response::success("user Deleted successfully");
     }
     public function restoreUser(Request $request)
     {
+        $admin = $request->user();
         $user = User::withTrashed()->find($request->id);
 
         if (!$user) {
@@ -120,6 +125,8 @@ class AdminController extends Controller
 
         }
         $user->restore();
+        NotificationController::create($admin, 'your restored user ' . $user->name, 'warning');
+
         return Response::success('user restored successfully');
 
     }
@@ -133,8 +140,11 @@ class AdminController extends Controller
 
     public function editVendor(EditVendorRequest $request, Vendor $vendor)
     {
+        $admin = $request->user();
         $data = $request->validated();
         $vendor->update($data);
+        NotificationController::create($admin, 'you edited a vendor at' . now(), 'success');
+
         return Response::success('vendor updated succefully');
     }
 }
