@@ -78,6 +78,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/categories', [CategoryController::class, 'store']);
         Route::get("/admin/vendorsAll", [AdminController::class, "getAllVendors"]);
         Route::post("/vendor/{vendor}/edit", [AdminController::class, "editVendor"]);
+        Route::post('/user/wedding-photo/upload', [AdminController::class, 'storePhoto']);
+
 
     });
 

@@ -8,5 +8,6 @@ class WeddingPhoto extends Model
 {
     protected $fillable = [
         'photo',
+        'caption'
     ];
 }

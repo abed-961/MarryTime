@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\DTO\Response;
 use App\Http\Requests\EditVendorRequest;
+use App\Http\Requests\PhotoWeddingRequest;
 use App\Models\Appointment;
 use App\Models\SuggestAppointment;
 use App\Models\User;
 use App\Models\Vendor;
+use App\Models\WeddingPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Validation\Rule;
@@ -146,5 +148,20 @@ class AdminController extends Controller
         NotificationController::create($admin, 'you edited a vendor at' . now(), 'success');
 
         return Response::success('vendor updated succefully');
+    }
+
+    public function storePhoto(PhotoWeddingRequest $request)
+    {
+        $data = $request->validated();
+        $photo = $request->file('photo');
+        $photo_name = now() . 'Marry_Time_Wedding' . $photo->getClientOriginalName();
+        $data['photo'] = $photo_name;
+        WeddingPhoto::create($data);
+        $photo->storeAs('photos', $photo_name, 'public');
+
+
+        $admin = $request->user();
+        NotificationController::create($admin, 'new photo inserted', 'warning');
+        return Response::success('photo inserted succefully');
     }
 }

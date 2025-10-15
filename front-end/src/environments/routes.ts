@@ -18,4 +18,5 @@ export const route = {
   insertCategory: 'user/admin/insertCategory',
   vendorsPage: 'user/admin/vendors',
   goToVendor: 'user/admin/show/:id/vendor',
+  uploadPhotos : 'user/admin/wedding-photo/upload'
 };

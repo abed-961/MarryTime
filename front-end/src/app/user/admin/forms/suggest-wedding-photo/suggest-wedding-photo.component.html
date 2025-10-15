@@ -1,0 +1,30 @@
+<div class="upload-form">
+    <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+
+        <div>
+            <label for="photo">Photo:</label>
+            <input type="file" id="photo" (change)="onFileSelected($event)" />
+            @if(uploadForm.get('photo')?.hasError('server')){
+            <small class="text-danger">{{uploadForm.get('photo')?.getError('server')}}</small>
+            }
+        </div>
+
+        <div>
+            <label for="caption">Caption:</label>
+            <input type="text" id="caption" formControlName="caption" />
+            @if(uploadForm.get('caption')?.hasError('server')){
+            <small class="text-danger">{{uploadForm.get('caption')?.getError('server')}}</small>
+            }
+        </div>
+
+        <button type="submit" [disabled]="!uploadForm.valid || !selectedFile">Upload</button>
+    </form>
+
+    <div *ngIf="preview">
+        <h4>Preview:</h4>
+        <img [src]="preview" alt="Preview" width="200" />
+        <p>{{ uploadForm.value.caption }}</p>
+    </div>
+
+    <div *ngIf="message" class="message">{{ message }}</div>
+</div>
