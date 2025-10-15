@@ -38,10 +38,6 @@ class Appointment extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function payment()
-    {
-        return $this->hasOne(Payment::class);
-    }
 
     public function suggest()
     {
