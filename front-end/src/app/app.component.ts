@@ -50,8 +50,12 @@ export class AppComponent {
 
   async checkUser(url: string) {
     const url1 = url.slice(1);
-    const vendorUrls = [route.vendorTasks, route.vendor_appointments];
-    const guestUrls = [route.login, `/${route.register}`, route.home];
+    const vendorUrls = [
+      route.vendorTasks,
+      route.vendor_appointments,
+      route.goToVendor,
+    ];
+    const guestUrls = [route.login, route.register, route.home];
     this.user$ = await this.us.getUser();
     this.user$.subscribe({
       next: (user) => {
@@ -65,7 +69,7 @@ export class AppComponent {
       },
 
       error: () => {
-        if (!guestUrls.includes(url)) {
+        if (!guestUrls.includes(url1)) {
           this.router.navigate(['user/login']);
         }
       },
@@ -80,7 +84,6 @@ export class AppComponent {
       route.manageUser,
       route.insertCategory,
       route.vendorsPage,
-      route.goToVendor,
       route.uploadPhotos,
     ];
     return url.includes(curr);

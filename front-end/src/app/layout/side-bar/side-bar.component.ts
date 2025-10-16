@@ -69,7 +69,7 @@ export class SideBarComponent {
     const notifcationInterval = this.ngZone.runOutsideAngular(() => {
       setInterval(() => {
         this.loadNotifications();
-      }, 8000);
+      }, 10000);
     });
   }
 }

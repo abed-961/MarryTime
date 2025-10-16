@@ -148,5 +148,7 @@ export class ShortcutsComponent implements OnInit, AfterViewInit {
     return btn.restrict.includes(this.user.role);
   }
 
-  
+  trackByIndex(index: number, item: any): number {
+    return index;
+  }
 }

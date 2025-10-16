@@ -11,6 +11,9 @@
                 <a [routerLink]="route.admin" routerLinkActive="active"
                     *ngIf="currentUrl != route.admin && user.role == 'admin'">admin
                     Page </a>
+                <a [routerLink]="['/user','admin' , 'show' , user.id ,'vendor']"
+                    *ngIf="user.role === 'vendor' && currentUrl !== 'user/admin/show/'+user.id+'/vendor' ">Set
+                    up your busisness Information</a>
 
 
                 <ng-container *ngIf="user.role === 'vendor'">
