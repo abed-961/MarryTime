@@ -23,6 +23,10 @@ class UserController extends Controller
         Auth::login($user);
         $user->createToken('user-token')->plainTextToken;
         NotificationController::create($user, 'welcome to Marry Time Website ' . $user->name, 'success');
+        if ($user->role === 'vendor') {
+            NotificationController::create($user, 'Hello' . $user->name . 'don\'t forget to set up you venor information', 'warning');
+
+        }
         return Response::success('user created succefully');
 
     }

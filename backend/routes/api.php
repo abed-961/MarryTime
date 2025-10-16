@@ -40,7 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //user vendors
     Route::get('/user/{appointment}/vendors', [UserController::class, 'getUserVendors']);
-    Route::get('/user/{vendor}/getVendor', [VendorsController::class, 'getVendorById']);
+    Route::get('/user/{user}/getVendor', [VendorsController::class, 'getVendorById']);
 
 
 
@@ -69,6 +69,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //admin routes 
     Route::get("/appointment/all", [AdminController::class, "getAppointments"]);
+    Route::post("/vendor/{user}/edit", [AdminController::class, "editVendor"])->middleware('role:vendor');
     Route::middleware('role:admin')->group(function () {
         Route::post("/appointment/suggest", [AdminController::class, "insertSuggestAppointment"]);
         Route::post('/admin/users', [AdminController::class, 'index']);
@@ -77,7 +78,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post("/user/restore", [AdminController::class, "restoreUser"]);
         Route::post('/categories', [CategoryController::class, 'store']);
         Route::get("/admin/vendorsAll", [AdminController::class, "getAllVendors"]);
-        Route::post("/vendor/{vendor}/edit", [AdminController::class, "editVendor"]);
         Route::post('/user/wedding-photo/upload', [AdminController::class, 'storePhoto']);
 
 

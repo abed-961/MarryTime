@@ -2,13 +2,19 @@
     <h2 class="title">Wedding Moments 💍</h2>
 
     <div class="gallery-grid">
-        <div class="gallery-item" *ngFor="let photo of photos" (click)="openPhoto(photo)">
-            <img [src]="photo_url + photo.photo" alt="not-found">
-            <div class="overlay caption">
-                <p>{{ photo.caption }}</p>
+        <ng-container *ngIf="photos.length > 0; else noPhoto">
+            <div class="gallery-item" *ngFor="let photo of photos" (click)="openPhoto(photo)">
+                <img [src]="photo_url + photo.photo" alt="not-found">
+                <div class="overlay caption">
+                    <p>{{ photo.caption }}</p>
+                </div>
             </div>
-        </div>
+        </ng-container>
+
     </div>
+    <ng-template #noPhoto>
+        <div style="text-align: center;">No photo uploaded yet</div>
+    </ng-template>
 
     <!-- Lightbox -->
     <div class="lightbox" *ngIf="selectedPhoto" (click)="closePhoto($event)">

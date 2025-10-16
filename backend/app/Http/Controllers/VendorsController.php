@@ -133,9 +133,12 @@ class VendorsController extends Controller
     }
 
 
-    public function getVendorById(Vendor $vendor)
+    public function getVendorById(User $user)
     {
-        return Response::to_json($vendor->load('user'));
+        $vendor = $user->load('vendor');
+
+
+        return Response::to_json($vendor);
     }
 }
 

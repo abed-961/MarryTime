@@ -140,14 +140,26 @@ class AdminController extends Controller
         return Response::to_json($user);
     }
 
-    public function editVendor(EditVendorRequest $request, Vendor $vendor)
+    public function editVendor(EditVendorRequest $request, User $user)
     {
-        $admin = $request->user();
+        $user1 = $request->user();
         $data = $request->validated();
-        $vendor->update($data);
-        NotificationController::create($admin, 'you edited a vendor at' . now(), 'success');
+        $vendorExist = Vendor::where('user_id', $user1->id)->exists();
 
-        return Response::success('vendor updated succefully');
+        if ($vendorExist) {
+            $vendor = Vendor::where('user_id', $user->id);
+            $vendor->update($data);
+            NotificationController::create($user, 'you edited your vendor information at' . now(), 'info');
+            return Response::success('vendor updated succefully');
+        } else {
+            $data['user_id'] = $user->id;
+            Vendor::create($data);
+            NotificationController::create($user, 'you finish your vendor information at' . now(), 'success');
+            return Response::success('vendor data inserted succefully');
+
+        }
+
+
     }
 
     public function storePhoto(PhotoWeddingRequest $request)

@@ -13,8 +13,8 @@ import { stat } from 'fs';
   templateUrl: './edit-info.component.html',
   styleUrl: './edit-info.component.css',
 })
-export class EditInfoComponent implements AfterViewInit {
-  vendor: any;
+export class EditInfoComponent {
+  user: any;
   vendorForm!: FormGroup;
   loading = true;
 
@@ -24,9 +24,7 @@ export class EditInfoComponent implements AfterViewInit {
     private fb: FormBuilder,
     private vendorService: VendorService,
     private alertService: AlertService
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.vendorForm = this.fb.group({
       company_name: [''],
       price_range: [''],
@@ -34,16 +32,20 @@ export class EditInfoComponent implements AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
+  ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.vendorService.getVendorById(id).subscribe({
       next: (res: any) => {
-        this.vendor = res;
+        this.user = res;
         this.loading = false;
-        Object.keys(this.vendor).forEach((key) => {
-          console.log(key, this.vendor[key]);
-          this.vendorForm.patchValue({ [key]: this.vendor[key] });
-        });
+        if (res.user.vendor !== null) {
+          Object.keys(this.user.vendor).forEach((key) => {
+            this.vendorForm.patchValue({
+              [key]: this.user.vendor[key] ? this.user.vendor[key] : '',
+            });
+          });
+        }
+        console.log(this.vendorForm.value);
       },
       error: (error: any) => {
         this.loading = false;
@@ -53,12 +55,12 @@ export class EditInfoComponent implements AfterViewInit {
 
   saveVendor() {
     if (!this.vendorForm.valid) return;
-
-    this.adServ.editVendors(this.vendor.id , this.vendorForm.value).subscribe({
+    console.log(this.vendorForm.value);
+    this.adServ.editVendors(this.user.id, this.vendorForm.value).subscribe({
       next: (res: any) => {
         if (res.status) {
           this.notification(res.description, 'success');
-          this.ngAfterViewInit();
+          this.ngOnInit();
         } else {
           this.notification(res.description, 'error');
         }
@@ -83,7 +85,12 @@ export class EditInfoComponent implements AfterViewInit {
 
   changePrice(event: Event) {
     const input = event.target as HTMLInputElement;
-    console.log(input.value);
     this.vendorForm.patchValue({ price_range: input.value });
+  }
+
+  locationChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.vendorForm.patchValue({ location: input.value });
+    console.log(this.vendorForm.value);
   }
 }

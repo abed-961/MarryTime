@@ -1,11 +1,11 @@
 <div *ngIf="loading" class="section">Loading vendor...</div>
 
-<div *ngIf="!loading" class="form-container section">
+<div *ngIf="!loading" class="form-container ">
     <h2>Vendor Details</h2>
 
     <!-- Vendor Name & Email as paragraph -->
-    <p><strong>Name:</strong> {{ vendor.user.name }}</p>
-    <p><strong>Email:</strong> {{ vendor.user.email }}</p>
+    <p><strong>Name:</strong> {{ user.name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
 
     <!-- Vendor Form -->
     <form [formGroup]="vendorForm" (ngSubmit)="saveVendor()">
@@ -21,9 +21,10 @@
         <div>
             <label>Price Range</label>
             <select name="" id="" formControlName="price_range" (change)="changePrice($event)">
-                <option value="$" [selected]="vendor.price_range === '$'">$</option>
-                <option value="$$" [selected]="vendor.price_range === '$'">$$</option>
-                <option value="$$$" [selected]="vendor.price_range === '$'">$$$</option>
+                <option value="" [selected]="!user.vendor">select price</option>
+                <option value="$" [selected]="user.vendor.price_range === '$'">$</option>
+                <option value="$$" [selected]="user.vendor.price_range === '$'">$$</option>
+                <option value="$$$" [selected]="user.vendor.price_range === '$'">$$$</option>
             </select>
         </div>
         <div *ngIf="vendorForm.get('price_range')?.hasError('server')" class="text-danger">
@@ -33,7 +34,7 @@
 
         <div>
             <label>Location</label>
-            <input type="text" formControlName="location" />
+            <input type="text" formControlName="location" (change)="locationChange($event)" />
         </div>
         <div *ngIf="vendorForm.get('location')?.hasError('server')" class="text-danger">
             {{vendorForm.get('location')?.getError('server')}}
